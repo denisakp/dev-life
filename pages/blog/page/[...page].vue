@@ -1,4 +1,5 @@
 <script setup>
+import Pagination from "~/components/shared/Pagination.vue";
 const route = useRoute()
 
 const articlesCount = (await queryContent('/').find()).length

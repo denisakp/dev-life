@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/image',
+    '@nuxt/image-edge',
     '@nuxt/content',
     '@nuxtjs/color-mode'
   ],
@@ -24,5 +24,4 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     preset: 'node-server'
   },
-  // @ts-ignore'
 })
