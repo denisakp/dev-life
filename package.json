@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -21,5 +22,8 @@
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
     "tailwindcss": "^3.3.2"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }

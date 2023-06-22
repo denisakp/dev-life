@@ -21,7 +21,8 @@ export default defineNuxtConfig({
   ssr: true,
   // @ts-ignore
   nitro: {
-    compressPublicAssets: true
+    compressPublicAssets: true,
+    preset: 'digital-ocean'
   },
   // @ts-ignore'
 })
