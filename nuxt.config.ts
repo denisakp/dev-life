@@ -1,4 +1,3 @@
-// @ts-ignore
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
@@ -18,4 +17,11 @@ export default defineNuxtConfig({
       }
     },
   },
+  // @ts-ignore
+  ssr: false,
+  // @ts-ignore
+  nitro: {
+    compressPublicAssets: true
+  },
+  // @ts-ignore'
 })
