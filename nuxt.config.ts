@@ -18,8 +18,6 @@ export default defineNuxtConfig({
     },
   },
   // @ts-ignore
-  ssr: true,
-  // @ts-ignore
   nitro: {
     compressPublicAssets: true
   },
