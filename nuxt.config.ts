@@ -17,9 +17,9 @@ export default defineNuxtConfig({
       }
     },
   },
-
   // @ts-ignore
   nitro: {
     compressPublicAssets: true,
+    preset: 'node-server'
   },
 })
