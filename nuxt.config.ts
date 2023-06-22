@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   // @ts-ignore
   nitro: {
     compressPublicAssets: true,
-    preset: 'vercel'
+    preset: 'node-server'
   },
   // @ts-ignore'
 })
