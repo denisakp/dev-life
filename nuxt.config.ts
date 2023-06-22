@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   // @ts-ignore
   nitro: {
     compressPublicAssets: true,
-    preset: 'digital-ocean'
+    preset: 'vercel'
   },
   // @ts-ignore'
 })
