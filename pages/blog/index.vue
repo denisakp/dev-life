@@ -18,12 +18,12 @@ const skipNumber = () => {
 }
 
 const {data: articles, refresh} = await useAsyncData("articles", () => {
-  return  queryContent('/').skip(skipNumber()).limit(perPage.value).sort({ date: -1 }).find()
+  return queryContent('/').skip(skipNumber()).limit(perPage.value).sort({date: -1}).find()
 })
 
 onMounted(() => {
   refresh()
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0)
 })
 
 
@@ -36,11 +36,11 @@ onMounted(() => {
         <h5> Articles ({{ articlesCount }})</h5>
         <div class="flex flex-wrap my-4">
           <div class="p-2 lg:w-1/2 w-full" v-for="(post, index) in articles" :key="index">
-            <Post :post="post" />
+            <Post :post="post"/>
           </div>
         </div>
         <div class="w-full flex justify-center items-center">
-          <Pagination :total="articlesCount" :per-page="perPage" />
+          <Pagination :total="articlesCount" :per-page="perPage"/>
         </div>
       </div>
     </div>

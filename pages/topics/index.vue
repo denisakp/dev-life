@@ -6,7 +6,7 @@ const topics = await queryContent('/').only('topics').find()
   <div>
     <div class="page-bg">
       <div class="container">
-        <h3>LES SUJETS {{topics.length}} </h3>
+        <h3>LES SUJETS {{ topics.length }} </h3>
       </div>
     </div>
   </div>

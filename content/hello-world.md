@@ -8,5 +8,8 @@ slug: hello-world
 img: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673269496/Blog/articles/nuxt-js/helloworld_gnvjcx.png'
 ---
 
-Je m'appelle Denis AKPAGNONITE (alias denisakp), actuellement en deuxième année du cycle ingénieur, spécialité : Science de Données & Développement Informatique.
-Cela fait maintenant un bon moment que l'envie de partager tout ce que j'ai appris sur internet et surtout dans les livres d'informatique. Alors j'ai pris la décision de créer ce blog pour partager en retour tout ce qui m'a été enseigné.
+Je m'appelle Denis AKPAGNONITE (alias denisakp), actuellement en deuxième année du cycle ingénieur, spécialité : Science
+de Données & Développement Informatique.
+Cela fait maintenant un bon moment que l'envie de partager tout ce que j'ai appris sur internet et surtout dans les
+livres d'informatique. Alors j'ai pris la décision de créer ce blog pour partager en retour tout ce qui m'a été
+enseigné.

@@ -15,12 +15,14 @@ import technos from "../data/technos";
           <!-- <img class="object-fill h-96 w-full" src="" alt="profile"/> -->
 
           <p class="mt-8">
-            Je m'appelle <span class="hightlighted">Denis AKPAGNONITE</span> et je suis actuellement en deuxième année du cycle ingénieur, spécialité Sciences de Données &
+            Je m'appelle <span class="hightlighted">Denis AKPAGNONITE</span> et je suis actuellement en deuxième année
+            du cycle ingénieur, spécialité Sciences de Données &
             Développement Informatique dans la ville de Casablanca au Maroc. </p>
 
           <br/>
 
-          <p> Parce que pour moi, le métier idéal serait: <span class="hightlighted">Ingénieur DevSecOps</span> au sein d'une ESN telle que OVH, SFEIR, Capgemini, CGI, ATOS....,
+          <p> Parce que pour moi, le métier idéal serait: <span class="hightlighted">Ingénieur DevSecOps</span> au sein
+            d'une ESN telle que OVH, SFEIR, Capgemini, CGI, ATOS....,
             voici les sujets auxquels je porte un intérêt particulier: </p>
 
           <ul class="mt-4 list-disc ml-4 md:ml-6">
@@ -41,7 +43,8 @@ import technos from "../data/technos";
             </li>
 
             <li>
-              <p class="mt-4">le Quality assurance, notamment l'automatisation des tests de sécurité et fonctionnels de logiciels </p>
+              <p class="mt-4">le Quality assurance, notamment l'automatisation des tests de sécurité et fonctionnels de
+                logiciels </p>
             </li>
 
             <li>
@@ -53,21 +56,23 @@ import technos from "../data/technos";
 
           <h6 class="mt-4 font-medium">Parcours universitaire</h6>
           <ul class="mt-4 list-disc ml-4 md:ml-6">
-            <li>Licence informatique (BAC+3), spécialité Architecture des logiciels (ESGIS Togo) 🇹🇬  </li>
-            <li>Master (BAC+5 Ingénierie), spécialité Sciences de Données & Développement Informatique (en cours) 🇲🇦 </li>
+            <li>Licence informatique (BAC+3), spécialité Architecture des logiciels (ESGIS Togo) 🇹🇬 </li>
+            <li>Master (BAC+5 Ingénierie), spécialité Sciences de Données & Développement Informatique (en cours) 🇲🇦 
+            </li>
           </ul>
 
           <br>
           <h6 class="mt-4 font-medium">Mentions</h6>
           <p>
-            Je me suis inspiré du projet <span class="hightlighted"> <a href="https://loopbin.dev" target="_blank">Loopbin</a></span> de Corneil Edi pour ce blog
+            Je me suis inspiré du projet <span class="hightlighted"> <a href="https://loopbin.dev" target="_blank">Loopbin</a></span>
+            de Corneil Edi pour ce blog
           </p>
 
         </div>
       </div>
 
       <!-- Contact -->
-      <ContactDetail />
+      <ContactDetail/>
 
       <!-- Statistiques GITHUB -->
       <div class="mt-12 md:mt-16 flex flex-col md:flex-row md:justify-between  space-y-4 md:space-x-20">
@@ -86,11 +91,15 @@ import technos from "../data/technos";
         <h4>Mes Badges & certifications</h4>
         <div class="mt-6 space-y-4 md:space-y-0 grid grid-cols-4 2xl:grid-cols-4 2xl:gap-4 md:grid-cols-4 md:gap-4">
           <a href="https://www.credly.com/badges/6b64fa0a-e2bc-418a-acd9-d7ed71c635e8" target="_blank">
-            <nuxt-img src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673275619/Blog/badges/image_fmqofw.png" alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44" />
+            <nuxt-img src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673275619/Blog/badges/image_fmqofw.png"
+                      alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44"/>
           </a>
 
-          <a href="https://api.badgr.io/public/assertions/22JPp_tsRTazEW65LiJPWA?identity__email=akpagnonited%40outlook.com" target="_blank">
-            <nuxt-img src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673274348/Blog/badges/assertion-22JPp_tsRTazEW65LiJPWA_n1wa4z.png" alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44" />
+          <a href="https://api.badgr.io/public/assertions/22JPp_tsRTazEW65LiJPWA?identity__email=akpagnonited%40outlook.com"
+             target="_blank">
+            <nuxt-img
+                src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673274348/Blog/badges/assertion-22JPp_tsRTazEW65LiJPWA_n1wa4z.png"
+                alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44"/>
           </a>
 
         </div>

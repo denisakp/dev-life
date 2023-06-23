@@ -5,9 +5,14 @@ const route = useRoute()
 const slug = ref(route.params.slug[0]);
 
 let techno = loadTopic(slug.value);
-const posts = await queryContent('/').where({ 'topics': { $contains: slug.value }}).find()
+const posts = await queryContent('/').where({'topics': {$contains: slug.value}}).find()
 
-const query = { where: { 'topics': { $contains: slug.value } }, limit: 10, sort: { date: -1 }, only: ['title', 'description', 'tags', '_path', 'date'] }
+const query = {
+  where: {'topics': {$contains: slug.value}},
+  limit: 10,
+  sort: {date: -1},
+  only: ['title', 'description', 'tags', '_path', 'date']
+}
 </script>
 
 <template>
@@ -40,7 +45,7 @@ const query = { where: { 'topics': { $contains: slug.value } }, limit: 10, sort:
           <ContentList :query="query">
 
             <template v-slot="{ list }">
-              <Post v-for="(post, index) in list" :key="index" :post="post" />
+              <Post v-for="(post, index) in list" :key="index" :post="post"/>
             </template>
 
             <template #not-found>

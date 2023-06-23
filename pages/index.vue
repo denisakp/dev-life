@@ -1,8 +1,8 @@
 <script setup>
 
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const {data: navigation} = await useAsyncData('navigation', () => fetchContentNavigation())
 
-const query = { limit: 5, sort: { date: -1 }, only: ['title', 'description', 'tags', '_path', 'date']}
+const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags', '_path', 'date']}
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const query = { limit: 5, sort: { date: -1 }, only: ['title', 'description', 'ta
     <div class="container">
       <div>
         <h3>Sujets Disponibles</h3>
-        <Topics :topics="navigation" />
+        <Topics :topics="navigation"/>
       </div>
 
       <div class="mt-8">
@@ -19,7 +19,7 @@ const query = { limit: 5, sort: { date: -1 }, only: ['title', 'description', 'ta
           <ContentList :query="query">
 
             <template v-slot="{ list }">
-              <Post v-for="(post, index) in list" :key="index" :post="post" />
+              <Post v-for="(post, index) in list" :key="index" :post="post"/>
             </template>
 
             <template #not-found>

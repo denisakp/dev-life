@@ -7,16 +7,16 @@ const posts = ref([])
 const modalState = ref(false)
 const searchModal = () => modalState.value = !modalState.value
 
-watch(query, async(newValue) => {
-  if (!newValue || query.value.length < 4){
+watch(query, async (newValue) => {
+  if (!newValue || query.value.length < 4) {
     posts.value = []
     return
   }
 
   const articles = await queryContent()
-      .where({ _draft: false })
+      .where({_draft: false})
       .only(['_path', 'title', 'slug', 'description', 'date', 'tags'])
-      .sort({ date: -1 })
+      .sort({date: -1})
       .limit(25)
       .find()
 
@@ -30,7 +30,8 @@ watch(query, async(newValue) => {
 </script>
 
 <template>
-  <nav class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10">
+  <nav
+      class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10">
     <div class="container flex items-center justify-between text-dark dark:text-dark-low">
       <nuxt-link to="/">
         <nuxt-img src="/images/logo/main/main-_logo.png" class="h-8 w-18 md:h-10 md:w-18" alt="denisakp logo" format="webp"/>
@@ -103,22 +104,25 @@ watch(query, async(newValue) => {
 
       <div class="flex justify-center items-center space-x-2 md:space-x-4">
 
-        <button type="button" class="flex items-center p-2 cursor-pointer slick-hover rounded-full slick-border" @click="searchModal">
+        <button type="button" class="flex items-center p-2 cursor-pointer slick-hover rounded-full slick-border"
+                @click="searchModal">
           <span class="flex space-x-2 items-center  px-2">
             <p class="text-sm font-medium">Recherche</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 ">
               <path fill="none" d="M0 0h24v24H0z"/>
-              <path fill="currentColor" d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/>
+              <path fill="currentColor"
+                    d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/>
             </svg>
           </span>
         </button>
 
-        <SwitchTheme />
+        <SwitchTheme/>
       </div>
     </div>
 
     <Transition name="slide-in-up">
-      <div v-if="modalState" role="dialog" class="flex w-full fixed z-50 left-0 top-0 h-screen bg-light-dark antialiased overflow-auto">
+      <div v-if="modalState" role="dialog"
+           class="flex w-full fixed z-50 left-0 top-0 h-screen bg-light-dark antialiased overflow-auto">
         <div class="md:w-2/3 mx-auto">
           <div class="relative h-full md:h-auto w-full">
             <div class="w-full px-8 py-4 md:px-16 md:py-8 h-full md:h-auto">
@@ -129,8 +133,9 @@ watch(query, async(newValue) => {
                       <h3 class="font-bold text-2xl">Recherche</h3>
                       <div class="cursor-pointer slick-hover p-2 rounded-full" @click="searchModal">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8">
-                          <path fill="none" d="M0 0h24v24H0z" />
-                          <path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"/>
+                          <path fill="none" d="M0 0h24v24H0z"/>
+                          <path fill="currentColor"
+                                d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"/>
                         </svg>
                       </div>
                     </div>
@@ -153,7 +158,7 @@ watch(query, async(newValue) => {
 
               <div class="">
                 <section class="space-y-4 mt-8">
-                  <Post v-for="post in posts" :key="post._path" :post="post" />
+                  <Post v-for="post in posts" :key="post._path" :post="post"/>
                 </section>
               </div>
             </div>

@@ -28,7 +28,7 @@ let isPageActive = (page) => {
 
 const isInFirstPage = computed(() => props.currentPage === 1);
 
-const isInLastPage = computed(() => props.currentPage === props.totalPages );
+const isInLastPage = computed(() => props.currentPage === props.totalPages);
 
 const startPage = computed(() => {
   if (props.currentPage === 1) {
@@ -37,7 +37,7 @@ const startPage = computed(() => {
   if (props.currentPage === props.totalPages) {
     return props.totalPages - props.maxViewPage
   }
-  return  props.currentPage -1;
+  return props.currentPage - 1;
 });
 
 const endPage = computed(() => Math.min(Number(startPage) + props.maxViewPage - 1, props.totalPages));
@@ -52,7 +52,7 @@ const pages = computed(() => {
   }
 });
 
-let onFirstPage =() => {
+let onFirstPage = () => {
   emit('pageChanged', 1);
 }
 
@@ -65,7 +65,7 @@ let onCurrentPage = () => {
 }
 
 let onNextPage = () => {
-  if(props.currentPage < props.totalPages) {
+  if (props.currentPage < props.totalPages) {
     emit('pageChanged', props.currentPage + 1)
   }
 }
@@ -78,7 +78,7 @@ const reactiveQuery = computed(() => useRoute().query.page)
 
 watch(reactiveQuery, (x, y) => {
   console.log(x)
-  emit('changed', x )
+  emit('changed', x)
 })
 
 </script>
