@@ -17,12 +17,10 @@ export default defineNuxtConfig({
       }
     },
   },
+
   // @ts-ignore
   ssr: true,
   nitro: {
     compressPublicAssets: true,
-    prerender: {
-      crawlLinks: true
-    }
   },
 })
