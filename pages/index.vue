@@ -9,12 +9,12 @@ const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags'
   <div class="page-bg">
     <div class="container">
       <div>
-        <h3>Sujets Disponibles</h3>
+        <h3>Les thèmes couverts</h3>
         <Topics :topics="navigation"/>
       </div>
 
       <div class="mt-8">
-        <h3>Derniers articles</h3>
+        <h3>Les derniers articles</h3>
         <section class="space-y-4 mt-8">
           <ContentList :query="query">
 
@@ -36,9 +36,3 @@ const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags'
     </div>
   </div>
 </template>
-
-<style scoped>
-.img-cont img {
-  @apply h-full w-48 object-cover;
-}
-</style>

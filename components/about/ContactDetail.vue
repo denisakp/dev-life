@@ -2,7 +2,8 @@
   <div class="mt-12 md:mt-16">
     <h4>Mes contacts</h4>
     <div class="mt-6 space-y-2 md:space-y-0 grid 2xl:grid-cols-4 2xl:gap-4 md:grid-cols-2 md:gap-2">
-      <a href="mailto:akpagnonited@outlook.com" target="_blank">
+
+      <NuxtLink to="mailto:akpagnonited@outlook.com" target="_blank">
         <div class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border darker-text">
           <div class="bg-dark-low dark:bg-opacity-20 p-2 md:p-4 mr-4 rounded-sm">
             <svg
@@ -24,8 +25,10 @@
             </p>
           </div>
         </div>
-      </a>
-      <a href="https://github.com/denisakp" target="_blank">
+
+      </NuxtLink>
+
+      <NuxtLink to="https://github.com/denisakp" target="_blank">
         <div class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border darker-text">
           <div class="bg-dark-low dark:bg-opacity-20 p-2 md:p-4 mr-4 rounded-sm">
             <svg
@@ -47,8 +50,9 @@
             </p>
           </div>
         </div>
-      </a>
-      <a href="https://www.linkedin.com/in/denis-d-yaovi-akpagnonite-49868b171" target="_blank">
+      </NuxtLink>
+
+      <NuxtLink to="https://www.linkedin.com/in/denis-d-yaovi-akpagnonite-49868b171" target="_blank">
         <div class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border darker-text">
           <div class="bg-dark-low dark:bg-opacity-20 p-2 md:p-4 mr-4 rounded-sm">
             <svg
@@ -70,8 +74,9 @@
             </p>
           </div>
         </div>
-      </a>
-      <a href="https://twitter.com/denisakp" target="_blank">
+      </NuxtLink>
+
+      <NuxtLink target="_blank" to="https://twitter.com/denis_akp">
         <div
             class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border darker-text"
         >
@@ -93,11 +98,11 @@
           <div class="flex-grow">
             <p class="text-sm darker-text">Twitter</p>
             <p class="text-sm darker-text font-medium  md:block">
-              @denisakp
+              @denis_akp
             </p>
           </div>
         </div>
-      </a>
+      </NuxtLink>
     </div>
   </div>
 </template>

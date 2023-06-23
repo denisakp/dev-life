@@ -278,17 +278,6 @@ const technos = [
             },
         ]
     },
-    {
-        "title": "Environnement de travail | IDE",
-        "techs": [
-            {
-                "name": "Jetbrains",
-                "slug": "jetbrains",
-                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jetbrains/jetbrains-original.svg",
-                "description": "IDE par référence"
-            }
-        ]
-    }
 ];
 
 export default technos

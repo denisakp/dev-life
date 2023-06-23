@@ -1,6 +1,6 @@
 <script setup>
 import ContactDetail from "~/components/about/ContactDetail.vue";
-import technos from "../data/technos";
+import skills from "~/data/skills";
 </script>
 
 <template>
@@ -8,64 +8,68 @@ import technos from "../data/technos";
     <div class="container">
       <!-- Présentation -->
       <div class="flex flex-col md:flex-row items-center">
-        <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
-          <h3 class="text-center">Hello 👋 World</h3>
-          <br><br>
 
-          <!-- <img class="object-fill h-96 w-full" src="" alt="profile"/> -->
+        <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
+          <h3 class="text-center my-4"> 👋 Hello World</h3>
+          <nuxt-img src="/images/profile.jpg" class="h-full w-full" alt="profile"/>
 
           <p class="mt-8">
-            Je m'appelle <span class="hightlighted">Denis AKPAGNONITE</span> et je suis actuellement en deuxième année
-            du cycle ingénieur, spécialité Sciences de Données &
-            Développement Informatique dans la ville de Casablanca au Maroc. </p>
+            Je m'appelle <span class="hightlighted">Denis D. Yaovi AKPAGNONITE</span>, Ingénieur Informatique en
+            dernière année de formation en cycle d'ingénieur d'Etat marocain, parcours Sciences de Données
+            et Développement Informatique. Je suis passionné par la conception, développement et maintenance de Backend,
+            le Cloud/DevOps et l'application de l'Intelligence Artificielle dans le domaine de la Cybersécurité.
+          </p>
 
           <br/>
 
-          <p> Parce que pour moi, le métier idéal serait: <span class="hightlighted">Ingénieur DevSecOps</span> au sein
-            d'une ESN telle que OVH, SFEIR, Capgemini, CGI, ATOS....,
-            voici les sujets auxquels je porte un intérêt particulier: </p>
+          <p>Voici quelques trucs en plus que vous devrez savoir sur moi: </p>
 
           <ul class="mt-4 list-disc ml-4 md:ml-6">
             <li>
-              <p class="mt-4">la philosophie du DevOPS</p>
+              <p class="mt-4">Je préfère Linux à Windows, même si actuellement j'opère avec un Mac Book Pro M1 de
+                2022 </p>
             </li>
 
             <li>
-              <p class="mt-4">les infrastructures cloud</p>
+              <p class="mt-4">Je préfère le Backend au Frontend</p>
             </li>
 
             <li>
-              <p class="mt-4">les systèmes distribuées et parallèles</p>
+              <p class="mt-4">
+                Sécurité, Évolutivité, Performance, Gestion des erreurs, des Logs, Tests, et Monitoring sont mes 7
+                points de Chakra
+              </p>
             </li>
 
             <li>
-              <p class="mt-4">les solutions de cloud identity and access management (IAM)</p>
+              <p class="mt-4">J'ai horreur des personnes qui font des push sur la branche main  🙄 </p>
             </li>
 
             <li>
-              <p class="mt-4">le Quality assurance, notamment l'automatisation des tests de sécurité et fonctionnels de
-                logiciels </p>
+              <p class="mt-4">J'ai horreur des RH qui demandent 5 années d'expériences pour un poste de Junior</p>
             </li>
 
-            <li>
-              <p class="mt-4">la data science</p>
-            </li>
           </ul>
 
           <br>
 
           <h6 class="mt-4 font-medium">Parcours universitaire</h6>
           <ul class="mt-4 list-disc ml-4 md:ml-6">
-            <li>Licence informatique (BAC+3), spécialité Architecture des logiciels (ESGIS Togo) 🇹🇬 </li>
-            <li>Master (BAC+5 Ingénierie), spécialité Sciences de Données & Développement Informatique (en cours) 🇲🇦 
+            <li>Licence informatique (BAC+3), parcours Informatique Réseau et Télécoms, spécialité Architecture des
+              logiciels (ESGIS Togo) 🇹🇬 
+            </li>
+            <li>Cycle d'ingénieur d'Etat marocain, spécialité Sciences de Données & Développement Informatique (en
+              cours) 🇲🇦 
             </li>
           </ul>
 
           <br>
           <h6 class="mt-4 font-medium">Mentions</h6>
           <p>
-            Je me suis inspiré du projet <span class="hightlighted"> <a href="https://loopbin.dev" target="_blank">Loopbin</a></span>
-            de Corneil Edi pour ce blog
+            J'ai repris le projet
+            <NuxtLink target="_blank" to="https://loopbin.dev"><span class="hightlighted">Loopbin</span></NuxtLink>
+            initialement créé <span class="hightlighted">Ayao Corneille ALLOGBALO</span> que j'ai à peine customiser
+            parce que les feuilles de style CSS ne sont pas du tout mon fort.
           </p>
 
         </div>
@@ -87,39 +91,21 @@ import technos from "../data/technos";
         </div>
       </div>
 
-      <div class="mt-12 md:mt-16">
-        <h4>Mes Badges & certifications</h4>
-        <div class="mt-6 space-y-4 md:space-y-0 grid grid-cols-4 2xl:grid-cols-4 2xl:gap-4 md:grid-cols-4 md:gap-4">
-          <a href="https://www.credly.com/badges/6b64fa0a-e2bc-418a-acd9-d7ed71c635e8" target="_blank">
-            <nuxt-img src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673275619/Blog/badges/image_fmqofw.png"
-                      alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44"/>
-          </a>
-
-          <a href="https://api.badgr.io/public/assertions/22JPp_tsRTazEW65LiJPWA?identity__email=akpagnonited%40outlook.com"
-             target="_blank">
-            <nuxt-img
-                src="https://res.cloudinary.com/dpdwhd6ka/image/upload/v1673274348/Blog/badges/assertion-22JPp_tsRTazEW65LiJPWA_n1wa4z.png"
-                alt="ISC Candidate badge" class="h-28 md:h-32 lg:h-44"/>
-          </a>
-
-        </div>
-      </div>
-
       <!--Compétences -->
       <div class="mt-12 md:mt-16">
-        <h4>Mes Centres d'intérêts</h4>
+        <h4>Mes compétences techniques</h4>
 
         <div class="my-4">
           <div
-              v-for="tech in technos"
-              :key="tech.title"
+              v-for="skill in skills"
+              :key="skill.title"
               class="w-full slick-border rounded-sm p-2 mb-5"
           >
-            <p class="mx-2 text-gray-600">{{ tech.title }}</p>
+            <p class="mx-2 text-gray-600">{{ skill.title }}</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
               <div
-                  v-for="item in tech.techs"
+                  v-for="item in skill.techs"
                   :key="item.title"
                   class="p-2 w-full"
               >
@@ -148,8 +134,3 @@ import technos from "../data/technos";
   </div>
 </template>
 
-<style scoped>
-.img-cont img {
-  @apply max-w-full h-auto rounded-lg;
-}
-</style>
