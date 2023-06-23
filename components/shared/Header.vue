@@ -40,7 +40,7 @@ watch(query, async(newValue) => {
         <ul class="flex justify-center items-center space-x-6">
           <li>
             <nuxt-link
-                to="/blog"
+                to="/blog?page=1"
                 active-class="exact-navigation"
                 class="flex px-4 items-center py-2 font-medium slick-hover-blue cursor-pointer rounded-sm"
             >

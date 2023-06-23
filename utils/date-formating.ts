@@ -1,4 +1,4 @@
-export default function formatDate(date) {
+export default function formatDate(date: string) {
     return new Date(date).toLocaleDateString('fr-fr', {
         year: 'numeric',
         month: 'long',

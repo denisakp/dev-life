@@ -5,7 +5,7 @@ const props = defineProps(['total', 'perPage']);
 
 const totalPages = computed(() => Math.ceil(props.total / props.perPage));
 
-const currentPage = computed(() => parseInt(route.params.page));
+const currentPage = computed(() => parseInt(route.query.page));
 
 const nextPage = computed(() => (currentPage.value < totalPages.value) ? currentPage.value + 1 : totalPages.value);
 
@@ -38,7 +38,7 @@ const isPageActive = (page) => {
       <div class="flex">
         <nuxt-link
             class="pager-item"
-            :to="{ name: 'blog-page-page', params: { page: 1 } }"
+            :to="{ name: 'blog', query: { page: 1 } }"
             :class="{ disabled: currentPage === 1 }"
         >
           <p aria-hidden="true">First</p>
@@ -46,7 +46,7 @@ const isPageActive = (page) => {
 
         <nuxt-link
             class="pager-item"
-            :to="{ name: 'blog-page-page', params: { page: prevPage }}"
+            :to="{ name: 'blog', query: { page: prevPage }}"
             :class="{ disabled: currentPage === 1 }"
         >
           <p aria-hidden="true">&laquo;</p>
@@ -57,14 +57,14 @@ const isPageActive = (page) => {
             :key="page.name"
             class="pager-item"
             :class="{ active: isPageActive(page.name) }"
-            :to="{ name: 'blog-page-page', params: { page: page.name} }"
+            :to="{ name: 'blog', query: { page: page.name} }"
         >
           <p>{{ page.name }}</p>
         </nuxt-link>
 
         <nuxt-link
             class="pager-item"
-            :to="{ name: 'blog-page-page', params: { page: nextPage } }"
+            :to="{ name: 'blog', query: { page: nextPage } }"
             aria-label="Next"
             :class="{ disabled: currentPage === totalPages }"
         >
@@ -74,7 +74,7 @@ const isPageActive = (page) => {
         <nuxt-link
             class="pager-item"
             :class="{ disabled: currentPage === totalPages }"
-            :to="{ name: 'blog-page-page', params: { page: totalPages } }"
+            :to="{ name: 'blog', query: { page: totalPages } }"
         >
           <p aria-hidden="true">Last</p>
         </nuxt-link>
