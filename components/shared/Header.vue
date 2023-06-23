@@ -34,7 +34,8 @@ watch(query, async (newValue) => {
       class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10">
     <div class="container flex items-center justify-between text-dark dark:text-dark-low">
       <nuxt-link to="/">
-        <nuxt-img src="/images/logo/main/main-_logo.png" class="h-8 w-18 md:h-10 md:w-18" alt="denisakp logo" format="webp"/>
+        <nuxt-img src="/images/logo/main/main-_logo.png" class="h-8 w-18 md:h-10 md:w-18" alt="denisakp logo"
+                  format="webp"/>
       </nuxt-link>
 
       <div class="hidden md:flex flex-1 w-full mx-auto justify-center">
