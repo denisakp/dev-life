@@ -1,11 +1,11 @@
 <script setup>
 const route = useRoute()
 
-const props = defineProps(['total', 'perPage']);
+const props = defineProps(['total', 'perPage', 'pageQuery']);
 
 const totalPages = computed(() => Math.ceil(props.total / props.perPage));
 
-const currentPage = computed(() => parseInt(route.query.page));
+const currentPage = computed(() => props.pageQuery);
 
 const nextPage = computed(() => (currentPage.value < totalPages.value) ? currentPage.value + 1 : totalPages.value);
 

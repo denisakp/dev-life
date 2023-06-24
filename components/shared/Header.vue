@@ -34,15 +34,17 @@ watch(query, async (newValue) => {
       class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10">
     <div class="container flex items-center justify-between text-dark dark:text-dark-low">
       <nuxt-link to="/">
-        <nuxt-img src="/images/logo/main/main-_logo.png" class="h-8 w-18 md:h-10 md:w-18" alt="denisakp logo"
-                  format="webp"/>
+        <nuxt-img
+            src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
+            class="h-8 w-18 md:h-10 md:w-18" alt="denisakp logo"
+            format="webp"/>
       </nuxt-link>
 
       <div class="hidden md:flex flex-1 w-full mx-auto justify-center">
         <ul class="flex justify-center items-center space-x-6">
           <li>
             <nuxt-link
-                to="/blog?page=1"
+                to="/blog"
                 active-class="exact-navigation"
                 class="flex px-4 items-center py-2 font-medium slick-hover-blue cursor-pointer rounded-sm"
             >
