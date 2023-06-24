@@ -46,13 +46,13 @@ const skills = [
             {
                 "name": "Laravel",
                 "slug": "laravel",
-                "image": "/images/techs/laravel.svg",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain-wordmark.svg",
                 "description": "Framework web PHP basé sur le principe MVC"
             },
             {
                 "name": "Gin Gonic",
                 "slug": "gin-gonic",
-                "image": "/images/techs/gin-gonic.png",
+                "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/g1mp8yuff6uyku5jr7pn",
                 "description": "Un framework web pour le langage Go"
             },
         ]
@@ -75,13 +75,13 @@ const skills = [
             {
                 "name": "PHPUnit",
                 "slug": "phpunit",
-                "image": "/images/techs/phpunit.png",
+                "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/anvqs1nvr2lhcxrsahck",
                 "description": "Outil de tests sous PHP"
             },
             {
                 "name": "Golang Testing",
                 "slug": "golang-testing",
-                "image": "/images/techs/golang-testing.png",
+                "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/pl65g2xvvxkxydd07c2c",
                 "description": "Outil de tests Golang"
             },
         ]
@@ -139,7 +139,7 @@ const skills = [
             {
                 "name": "Terraform",
                 "slug": "terraform",
-                "image": "/images/techs/terraform.svg",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg",
                 "description": "Automatisation de resources serveurs"
             },
         ]
@@ -156,19 +156,19 @@ const skills = [
             {
                 "name": "Google Cloud",
                 "slug": "gcp",
-                "image": "/images/techs/gcp.png",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg",
                 "description": "Fournisseur de services de cloud."
             },
             {
                 "name": "Amazon Web Service",
                 "slug": "aws",
-                "image": "/images/techs/aws.svg",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
                 "description": "Fournisseur de services de cloud."
             },
             {
                 "name": "Firebase",
                 "slug": "firebase",
-                "image": "/images/techs/firebase.svg",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg",
                 "description": "Le cloud pour les applications web et mobile"
             },
         ]
@@ -185,7 +185,7 @@ const skills = [
             {
                 "name": "Nginx",
                 "slug": "nginx",
-                "image": "/images/techs/nginx.svg",
+                "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
                 "description": "Serveur Web robuste"
             },
             {
