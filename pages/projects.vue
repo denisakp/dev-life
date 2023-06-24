@@ -1,5 +1,20 @@
 <script setup>
 import projects from "../data/projects";
+
+useSeoMeta({
+  title: 'Projects',
+  description: 'Projects page Description',
+
+  ogTitle: 'Projects - Dev Life',
+  ogDescription: 'Projects page description',
+  ogImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g',
+  ogUrl: 'https://denisakp.me',
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Projects - Dev Life',
+  twitterDescription: 'Projects page Description',
+  twitterImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g'
+})
 </script>
 
 <template>

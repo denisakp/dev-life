@@ -2,7 +2,22 @@
 
 const {data: navigation} = await useAsyncData('navigation', () => fetchContentNavigation())
 
-const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags', '_path', 'date']}
+const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags', '_path', 'date']};
+
+useSeoMeta({
+  title: 'Home',
+  description: 'Description',
+
+  ogTitle: 'Home - Dev Life',
+  ogDescription: 'Home page description',
+  ogImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g',
+  ogUrl: 'https://denisakp.me',
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Home - Dev Life',
+  twitterDescription: 'Home page Description',
+  twitterImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g'
+})
 </script>
 
 <template>

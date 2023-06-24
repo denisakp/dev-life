@@ -1,15 +1,30 @@
 <script setup>
 import {useRoute} from "nuxt/app";
-import PrevNext from "../../components/PrevNext";
+import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
 const {path} = useRoute();
-const reviewedPath = path.replace("/blog", '')
+const reviewedPath = path.replace("/blog", '');
 
-const article = await queryContent().where({_path: reviewedPath}).findOne()
-const surround = await queryContent('/').only(['_path', 'title', 'slug', 'topics', 'img']).sort({date: 1}).findSurround(reviewedPath)
+const article = await queryContent().where({_path: reviewedPath}).findOne();
+const surround = await queryContent('/').only(['_path', 'title', 'slug', 'topics', 'img']).sort({date: 1}).findSurround(reviewedPath);
+const [prev, next] = surround;
 
-const [prev, next] = surround
+useSeoMeta({
+  title: article.title,
+  description: article.description,
+
+  ogTitle: article.title + ' - Dev Life',
+  ogDescription: article.description,
+  ogImage: article.img,
+  ogUrl: 'https://denisakp.me' + path,
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: article.title + ' - Dev Life',
+  twitterDescription: article.description,
+  twitterImage: article.img,
+})
+
 </script>
 
 <template>

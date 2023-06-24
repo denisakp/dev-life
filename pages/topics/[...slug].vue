@@ -13,6 +13,21 @@ const query = {
   sort: {date: -1},
   only: ['title', 'description', 'tags', '_path', 'date']
 }
+
+useSeoMeta({
+  title: techno.name,
+  description: techno.description,
+
+  ogTitle: techno.name + ' - Dev Life',
+  ogDescription: techno.description,
+  ogImage: techno.image,
+  ogUrl: 'https://denisakp.me/topics/' + techno.name,
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: techno.name + ' - Dev Life',
+  twitterDescription: techno.description,
+  twitterImage: techno.image
+})
 </script>
 
 <template>

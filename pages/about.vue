@@ -1,6 +1,21 @@
 <script setup>
 import ContactDetail from "~/components/about/ContactDetail.vue";
 import skills from "~/data/skills";
+
+useSeoMeta({
+  title: 'About me',
+  description: 'About page Description',
+
+  ogTitle: 'About me - Dev Life',
+  ogDescription: 'Home page description',
+  ogImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g',
+  ogUrl: 'https://denisakp.me/about',
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'About me - Dev Life',
+  twitterDescription: 'About me page Description',
+  twitterImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g'
+})
 </script>
 
 <template>
@@ -11,7 +26,9 @@ import skills from "~/data/skills";
 
         <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
           <h3 class="text-center my-4"> 👋 Hello World</h3>
-          <nuxt-img src="/images/profile.jpg" class="h-full w-full" alt="profile"/>
+          <nuxt-img
+              src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/re0wsg6outld6cbolnnv"
+              class="h-full w-full" alt="profile"/>
 
           <p class="mt-8">
             Je m'appelle <span class="hightlighted">Denis D. Yaovi AKPAGNONITE</span>, Ingénieur Informatique en
