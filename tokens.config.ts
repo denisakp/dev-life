@@ -1,18 +1,24 @@
 import { defineTheme } from 'pinceau'
-import theme from '@nuxt-themes/tokens/config'
 import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 // @ts-ignore
 export default defineTheme({
+    // @ts-ignore
+    transition: {
+        all: 'all .1s ease-in-out',
+    },
     typography: {
         letterSpacings: {
             tight: '-0.035em',
             wide: '0.035em'
         },
+        font: {
+            display: 'PaytoneOne',
+            body: '{typography.font.sans}'
+        }
     },
     // @ts-ignore
-
     color: {
         transparent: 'transparent',
         current: 'currentColor',
