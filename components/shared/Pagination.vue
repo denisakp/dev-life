@@ -1,5 +1,4 @@
 <script setup>
-const route = useRoute()
 
 const props = defineProps(['total', 'perPage', 'pageQuery']);
 
@@ -53,8 +52,8 @@ const isPageActive = (page) => {
         </nuxt-link>
 
         <nuxt-link
-            v-for="page in pages"
-            :key="page.name"
+            v-for="(page, index) in pages"
+            :key="index"
             class="pager-item"
             :class="{ active: isPageActive(page.name) }"
             :to="{ name: 'blog', query: { page: page.name} }"

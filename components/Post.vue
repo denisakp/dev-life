@@ -24,8 +24,8 @@ const props = defineProps({
         <div class="flex flex-wrap items-center mt-2">
           <div class="flex flex-grow mr-2 flex-wrap">
             <p
-                v-for="tag in props.post.tags"
-                :key="tag"
+                v-for="(tag, index) in props.post.tags"
+                :key="index"
                 class="ml-2 mt-1 text-xs py-1 px-2 bg-dark-low dark:bg-dark dark:bg-opacity-50 border border-dark-low dark:border-dark rounded-sm text-gray-600"
             >
               #{{ tag }}

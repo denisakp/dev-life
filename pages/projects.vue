@@ -24,8 +24,8 @@ useSeoMeta({
 
       <div class="flex flex-wrap my-4">
         <div
-            v-for="project in projects"
-            :key="project.title"
+            v-for="(project, index) in projects"
+            :key="index"
             class="p-2 lg:w-1/3 md:w-1/2 w-full"
         >
           <div class="h-full flex flex-col slick-border p-6 rounded-sm">
@@ -39,8 +39,8 @@ useSeoMeta({
 
               <div class="flex flex-grow flex-wrap space-x-2 mt-2">
                 <p
-                    v-for="tag in project.tags"
-                    :key="tag"
+                    v-for="(tag, _index) in project.tags"
+                    :key="_index"
                     class="mt-1 text-xs py-1 px-2 bg-dark-low dark:bg-dark dark:bg-opacity-50 slick-border rounded-sm dark-text"
                 >
                   {{ tag }}
