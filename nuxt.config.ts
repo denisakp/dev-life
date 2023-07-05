@@ -6,7 +6,6 @@ export default defineNuxtConfig({
         '@nuxt/content',
         '@nuxtjs/color-mode',
         'nuxt-simple-sitemap',
-        '@nuxtjs/google-fonts'
     ],
     // @ts-ignore
     css: [
@@ -39,12 +38,6 @@ export default defineNuxtConfig({
         siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://denisakp.me',
         // @ts-ignore
         changefreq: 'weekly'
-    },
-    googleFonts: {
-        display: 'swap',
-        families: {
-            Inter: [400, 500, 700],
-        }
     },
     runtimeConfig: {
         public: {

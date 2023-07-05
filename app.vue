@@ -12,6 +12,9 @@ useHead({
   },
   link: [
     {rel: "canonical", href: "https://denisakp.me"},
+    {rel: "preconnect", href: "https://fonts.gstatic.com"},
+    {rel: "preload", href: "https://fonts.gstatic.com"},
+    {rel: "prefetch", href: "https://fonts.gstatic.com"},
     {rel: "apple-touch-icon", type: "image/png", sizes: "180x180", href: "/favicon/apple-touch-icon.png"},
     {rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico'},
     {rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon/favicon-32x32.png"},
