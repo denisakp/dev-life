@@ -28,36 +28,33 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
-    <div class="page-bg">
-      <div class="container">
-        <div class="w-full">
-          <div class="img-cont h-72 mb-12">
-            <nuxt-img :src="article.img" :alt="article.title" class=" rounded-2xl"/>
-          </div>
-          <h3 class="my-2 dark-text">{{ article.title }}</h3>
-          <p class="mt-2 mb-4 md:mb-8 dark-text">{{ article.description }}</p>
+  <div class="page-bg">
+    <div class="container-small">
+      <div class="w-full">
+        <div class="img-cont h-72 mb-12">
+          <nuxt-img :src="article.img" :alt="article.title" class="rounded-2xl"/>
         </div>
-
-        <!-- Toc Component -->
-        <Toc :links="article.body.toc.links"/>
-
-        <div class="w-full">
-          <content-renderer :value="article" class="nuxt-content">
-
-            <template #empty>
-              <p>No content found.</p>
-            </template>
-          </content-renderer>
-        </div>
-
-        <!-- PrevNext Component -->
-        <PrevNext :prev="prev" :next="next"/>
-        <br/>
-        <br/>
-
-        <div class="w-full giscus"></div>
+        <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
+        <p class="mt-2 mb-4 md:mb-8 dark-text">{{ article.description }}</p>
       </div>
+
+      <!-- Toc Component -->
+      <Toc :links="article.body.toc.links"/>
+
+      <div class="w-full">
+        <content-renderer :value="article">
+          <template #empty>
+            <p>No content found.</p>
+          </template>
+        </content-renderer>
+      </div>
+
+      <!-- PrevNext Component -->
+      <PrevNext :prev="prev" :next="next"/>
+      <br/>
+      <br/>
+
+      <div class="w-full giscus"></div>
     </div>
   </div>
 </template>

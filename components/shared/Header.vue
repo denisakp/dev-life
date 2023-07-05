@@ -161,7 +161,7 @@ watch(query, async (newValue) => {
 
               <div class="">
                 <section class="space-y-4 mt-8">
-                  <Post v-for="post in posts" :key="post._path" :post="post"/>
+                  <Post v-for="(post, index) in posts" :key="index" :post="post"/>
                 </section>
               </div>
             </div>

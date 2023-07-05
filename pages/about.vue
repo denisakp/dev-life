@@ -23,15 +23,14 @@ useSeoMeta({
     <div class="container">
       <!-- Présentation -->
       <div class="flex flex-col md:flex-row items-center">
-
         <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
-          <h3 class="text-center my-4"> 👋 Hello World</h3>
+          <h3 class="text-center my-4 text-3xl"> 👋 Hello World</h3>
           <nuxt-img
               src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/re0wsg6outld6cbolnnv"
               class="h-full w-full" alt="profile"/>
 
           <p class="mt-8">
-            Je m'appelle <span class="hightlighted">Denis D. Yaovi AKPAGNONITE</span>, Ingénieur Informatique en
+            Je m'appelle <span class="hightlighted">Denis AKPAGNONITE</span>, Ingénieur Informatique en
             dernière année de formation en cycle d'ingénieur d'Etat marocain, parcours Sciences de Données
             et Développement Informatique. Je suis passionné par la conception, développement et maintenance de Backend,
             le Cloud/DevOps et l'application de l'Intelligence Artificielle dans le domaine de la Cybersécurité.
@@ -85,8 +84,8 @@ useSeoMeta({
           <p>
             J'ai repris le projet
             <NuxtLink target="_blank" to="https://loopbin.dev"><span class="hightlighted">Loopbin</span></NuxtLink>
-            initialement créé <span class="hightlighted">Ayao Corneille ALLOGBALO</span> que j'ai à peine customiser
-            parce que les feuilles de style CSS ne sont pas du tout mon fort.
+            initialement créé <span class="hightlighted">Ayao Corneille ALLOGBALO</span> que j'ai simplement customisé
+            parce que le CSS n'est pas du tout mon fort.
           </p>
 
         </div>
@@ -114,16 +113,16 @@ useSeoMeta({
 
         <div class="my-4">
           <div
-              v-for="skill in skills"
-              :key="skill.title"
+              v-for="(skill, index) in skills"
+              :key="index"
               class="w-full slick-border rounded-sm p-2 mb-5"
           >
             <p class="mx-2 text-gray-600">{{ skill.title }}</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
               <div
-                  v-for="item in skill.techs"
-                  :key="item.title"
+                  v-for="(item, _index) in skill.techs"
+                  :key="_index"
                   class="p-2 w-full"
               >
                 <div

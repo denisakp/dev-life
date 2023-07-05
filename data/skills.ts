@@ -151,7 +151,7 @@ const skills = [
                 "name": "DigitalOcean",
                 "slug": "digitalocean",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
-                "description": "Fournisseur d'infrastructure cloud"
+                "description": "Fournisseur de service cloud"
             },
             {
                 "name": "Google Cloud",
