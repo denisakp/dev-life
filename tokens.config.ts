@@ -1,32 +1,37 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import colors from 'tailwindcss/colors';
+import { defineTheme } from 'pinceau'
+import theme from '@nuxt-themes/tokens/config'
+import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
 
-export default {
-  theme: {
-    extend: {
-      colors: {
+// @ts-ignore
+export default defineTheme({
+    typography: {
+        letterSpacings: {
+            tight: '-0.035em',
+            wide: '0.035em'
+        },
+    },
+    // @ts-ignore
+
+    color: {
         transparent: 'transparent',
         current: 'currentColor',
         black: colors.black,
         white: colors.white,
-        'dark-high': '#0c1518',
+        darkHigh: '#0c1518',
         dark: '#39393b',
-        'dark-low': '#f1f1f1',
+        darkLow: '#f1f1f1',
         blue: '#4831D4',
         green: '#15DB95',
         yellow: '#EED971FF',
         red: '#EE4E34',
-      },
-      fontSize: {
+    },
+    fontSize: {
         ...defaultTheme.fontSize,
         '10xl': '9rem',
         '11xl': '11rem',
-      },
-      fontFamily: {
-        sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
-        mono: ['Cabinet Grotesk', ...defaultTheme.fontFamily.sans],
-      },
-      borderRadius: {
+    },
+    borderRadius: {
         '2xs': '2px',
         xs: '3px',
         sm: '5px',
@@ -34,19 +39,12 @@ export default {
         DEFAULT: '8px',
         lg: '10px',
         xl: '12px',
-      },
-      maxWidth: {
+    },
+    maxWidth: {
         '7xl': '72rem',
         '8xl': '80rem',
         '9xl': '90rem',
         '10xl': '100rem',
         '11xl': '110rem',
-      }
-    }
-  },
-  plugins: [
-      require('@tailwindcss/typography')
-  ],
-  darkMode: 'class'
-}
-
+    },
+})
