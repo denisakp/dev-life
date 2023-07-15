@@ -1,106 +1,118 @@
 <script setup>
+import { DEFAULT_MAX_PAGINATION_PAGES } from "~/utils/config";
 
-const props = defineProps(['total', 'perPage', 'pageQuery']);
+const props = defineProps(["totalPages", "perPage", "currentPage", "total"]);
 
-const totalPages = computed(() => Math.ceil(props.total / props.perPage));
+const emit = defineEmits(["pageChanged"]);
 
-const currentPage = computed(() => props.pageQuery);
+const maxVisiblePages = ref(DEFAULT_MAX_PAGINATION_PAGES);
 
-const nextPage = computed(() => (currentPage.value < totalPages.value) ? currentPage.value + 1 : totalPages.value);
+const inFirstPage = computed(() => props.currentPage === 1);
+const inLastPage = computed(() => props.currentPage === props.totalPages);
 
-const prevPage = computed(() => currentPage.value > 1 ? currentPage.value - 1 : 1);
+const startPage = computed(() => {
+  if (props.currentPage === 1) return 1;
 
-const startPage = computed(() => (currentPage.value === 1) ? 1 : (currentPage.value === totalPages.value) ? totalPages.value - totalPages.value + 1 : currentPage.value - 1);
-
-const endPage = computed(() => Math.min(startPage.value + totalPages.value - 1, totalPages.value));
-
-const pages = computed(() => {
-  const data = [];
-  for (let i = startPage.value; i <= endPage.value; i++) {
-    data.push({
-      name: i,
-      isDisabled: i === currentPage.value
-    })
+  if (props.currentPage === props.totalPages) {
+    const start = props.totalPages - (maxVisiblePages.value - 1);
+    return start === 0 ? 1 : start;
   }
-  return data;
+
+  return props.currentPage - 1;
 });
 
-const isPageActive = (page) => {
-  return currentPage.value === page
-}
+const pages = computed(() => {
+  const range = [];
+  for (let i = startPage.value; i <= props.totalPages; i += 1) {
+    range.push({ name: i, isDisabled: i === props.currentPage });
+  }
+  return range;
+});
 
+const isPageActive = (page) => props.currentPage === page;
+const onFirstPage = () => emit("pageChanged", 1);
+const onPreviousPage = () => {
+  if (props.currentPage > 1) {
+    emit("pageChanged", props.currentPage - 1);
+  }
+};
+const onPage = (page) => emit("pageChanged", page);
+const onNextPage = () => {
+  if (props.currentPage < props.totalPages) {
+    emit("pageChanged", props.currentPage + 1);
+  }
+};
+const onLastPage = () => emit("pageChanged", props.totalPages);
 </script>
 
 <template>
-  <div>
-    <nav aria-label="Page de navigation">
-      <div class="flex">
-        <nuxt-link
-            class="pager-item"
-            :to="{ name: 'blog', query: { page: 1 } }"
-            :class="{ disabled: currentPage === 1 }"
-        >
-          <p aria-hidden="true">First</p>
-        </nuxt-link>
+  <nav class="py-4">
+    <div class="flex">
+      <button
+        type="button"
+        class="pagination-item"
+        :disabled="inFirstPage"
+        @click.prevent="onFirstPage"
+      >
+        <p aria-hidden="true">First</p>
+      </button>
 
-        <nuxt-link
-            class="pager-item"
-            :to="{ name: 'blog', query: { page: prevPage }}"
-            :class="{ disabled: currentPage === 1 }"
-        >
-          <p aria-hidden="true">&laquo;</p>
-        </nuxt-link>
+      <button
+        type="button"
+        class="pagination-item"
+        :disabled="inFirstPage"
+        @click.prevent="onPreviousPage"
+      >
+        <p aria-hidden="true">&laquo;</p>
+      </button>
 
-        <nuxt-link
-            v-for="(page, index) in pages"
-            :key="index"
-            class="pager-item"
-            :class="{ active: isPageActive(page.name) }"
-            :to="{ name: 'blog', query: { page: page.name} }"
+      <template v-for="(page, index) in pages" :key="index">
+        <button
+          type="button"
+          class="pagination-item"
+          :class="{ active: isPageActive(page.name) }"
+          :disabled="page.isDisabled"
+          @click.prevent="onPage(page.name)"
         >
-          <p>{{ page.name }}</p>
-        </nuxt-link>
+          {{ page.name }}
+        </button>
+      </template>
 
-        <nuxt-link
-            class="pager-item"
-            :to="{ name: 'blog', query: { page: nextPage } }"
-            aria-label="Next"
-            :class="{ disabled: currentPage === totalPages }"
-        >
-          <p aria-hidden="true">&raquo;</p>
-        </nuxt-link>
+      <button
+        type="button"
+        class="pagination-item"
+        :disabled="inLastPage"
+        @click.prevent="onNextPage"
+      >
+        <p aria-hidden="true">&raquo;</p>
+      </button>
 
-        <nuxt-link
-            class="pager-item"
-            :class="{ disabled: currentPage === totalPages }"
-            :to="{ name: 'blog', query: { page: totalPages } }"
-        >
-          <p aria-hidden="true">Last</p>
-        </nuxt-link>
-
-      </div>
-    </nav>
-  </div>
+      <button
+        type="button"
+        class="pagination-item"
+        :disabled="inLastPage"
+        @click.prevent="onLastPage"
+      >
+        <p aria-hidden="true">Last</p>
+      </button>
+    </div>
+  </nav>
 </template>
 
 <style scoped>
-.pager-item {
+.pagination-item {
   @apply border border-dark-low dark:border-white dark:border-opacity-20 text-dark dark:text-white px-3 py-1 md:px-5 md:py-3 cursor-pointer;
 }
 
-.pager-item:hover {
+.pagination-item:hover {
   @apply bg-dark-low dark:bg-dark;
 }
 
-.pager-item.active {
+.pagination-item.active {
   @apply bg-blue font-bold text-white;
 }
 
-.pager-item.disabled {
+.pagination-item[diabled] {
   @apply opacity-70 cursor-not-allowed;
-}
-
-.pager-item.disabled:hover {
-  @apply bg-transparent dark:bg-transparent;
 }
 </style>
