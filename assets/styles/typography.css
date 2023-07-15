@@ -1,5 +1,5 @@
 body {
-  @apply text-base ;
+  @apply text-base;
 }
 
 h1 {
@@ -31,6 +31,6 @@ h2,
 h3,
 h4 {
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   @apply leading-tight;
 }

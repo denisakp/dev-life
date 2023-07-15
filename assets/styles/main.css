@@ -1,4 +1,4 @@
-@import url('fonts.css');
+@import url("fonts.css");
 
 .container {
   @apply max-w-5xl 2xl:max-w-9xl px-4 sm:px-10 mx-auto;
@@ -80,8 +80,8 @@
 }
 
 *::selection {
- @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* WebKit/Blink Browsers */
+  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* WebKit/Blink Browsers */;
 }
 *::-moz-selection {
- @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* Gecko Browsers */
+  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* Gecko Browsers */;
 }
