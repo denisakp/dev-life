@@ -7,16 +7,16 @@ useSeoMeta({
   description: "About page Description",
 
   ogTitle: "About me - Dev Life",
-  ogDescription: "Home page description",
+  ogDescription: "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+      "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me/about",
 
   twitterCard: "summary_large_image",
   twitterTitle: "About me - Dev Life",
-  twitterDescription: "About me page Description",
+  twitterDescription: "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+      "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
 });
 </script>
 
@@ -28,20 +28,19 @@ useSeoMeta({
         <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
           <h3 class="text-center my-4 text-3xl">👋 Hi There</h3>
           <nuxt-img
-            src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/re0wsg6outld6cbolnnv"
-            class="h-full w-full"
-            alt="profile"
+              src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/re0wsg6outld6cbolnnv"
+              class="h-full w-full"
+              alt="profile"
           />
 
           <p class="mt-8">
             I'm <span class="hightlighted">Denis AKPAGNONITE</span>, and I'm
-            currently attending an Engineer's degree, Data Science and Software
-            Development track, in Casablanca (Morocco). I'm passionate about
-            Backend designing, developing, and maintaining; Cloud/DevOps, and
+            currently attending an Engineer's degree in Data Science and Software
+            Development. I'm passionate about Backend designing, developing, and maintaining; Cloud/DevOps, and
             the application of Artificial Intelligence in Cybersecurity.
           </p>
 
-          <br />
+          <br/>
 
           <p>Here are a few more things you need to know about me:</p>
 
@@ -71,11 +70,11 @@ useSeoMeta({
             </li>
 
             <li>
-              <p class="mt-4">I think Light theme attracts bugs 🤣 </p>
+              <p class="mt-4">I think the Light theme attracts bugs 🤣 </p>
             </li>
           </ul>
 
-          <br />
+          <br/>
 
           <h4 class="mt-4 font-medium text-3xl">Academic background</h4>
           <ul class="mt-4 list-disc ml-4 md:ml-6">
@@ -86,12 +85,12 @@ useSeoMeta({
             </li>
           </ul>
 
-          <br />
+          <br/>
           <h4 class="mt-4 font-medium text-3xl">Mentions</h4>
           <p>
             I took over the
             <NuxtLink target="_blank" to="https://loopbin.dev"
-              ><span class="hightlighted">Loopbin</span></NuxtLink
+            ><span class="hightlighted">Loopbin</span></NuxtLink
             >
             project initially created by
             <span class="hightlighted">Ayao Corneille ALLOGBALO</span> which I
@@ -101,18 +100,18 @@ useSeoMeta({
       </div>
 
       <!-- Contact -->
-      <ContactDetail />
+      <ContactDetail/>
 
       <!-- GITHUB Stats -->
       <div
-        class="mt-12 md:mt-16 flex flex-col md:flex-row md:justify-between space-y-4 md:space-x-20"
+          class="mt-12 md:mt-16 flex flex-col md:flex-row md:justify-between space-y-4 md:space-x-20"
       >
         <div class="md:w-1/2">
           <h4 class="my-4 text-3xl">Github Stats</h4>
           <a href="https://github.com/denisakp" target="_blank">
             <img
-              src="https://github-readme-stats.vercel.app/api?username=denisakp&&show_icons=true&title_color=0c1518&icon_color=0c1518&text_color=0c1518&bg_color=15DB95"
-              alt="profile"
+                src="https://github-readme-stats.vercel.app/api?username=denisakp&&show_icons=true&title_color=0c1518&icon_color=0c1518&text_color=0c1518&bg_color=15DB95"
+                alt="profile"
             />
           </a>
         </div>
@@ -124,28 +123,28 @@ useSeoMeta({
 
         <div class="my-4">
           <div
-            v-for="(skill, index) in skills"
-            :key="index"
-            class="w-full slick-border rounded-sm p-2 mb-5"
+              v-for="(skill, index) in skills"
+              :key="index"
+              class="w-full slick-border rounded-sm p-2 mb-5"
           >
             <p class="mx-2 text-gray-600">{{ skill.title }}</p>
 
             <div
-              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
             >
               <div
-                v-for="(item, _index) in skill.techs"
-                :key="_index"
-                class="p-2 w-full"
+                  v-for="(item, _index) in skill.techs"
+                  :key="_index"
+                  class="p-2 w-full"
               >
                 <div
-                  class="h-full flex items-center slick-border rounded-sm hover:shadow-sm cursor-pointer"
+                    class="h-full flex items-center slick-border rounded-sm hover:shadow-sm cursor-pointer"
                 >
                   <div class="bg-dark-low m-2 p-2 mr-4 rounded-sm">
                     <img
-                      class="mx-auto h-6 w-6 md:h-8 md:w-8 flex-shrink-0"
-                      :src="item.image"
-                      alt="technology logo"
+                        class="mx-auto h-6 w-6 md:h-8 md:w-8 flex-shrink-0"
+                        :src="item.image"
+                        alt="technology logo"
                     />
                   </div>
                   <div class="flex-grow py-2 pr-2">

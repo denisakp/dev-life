@@ -6,11 +6,11 @@ import {
 } from "~/utils/config";
 
 const loadContent = async (skip, limit) =>
-  queryContent()
-    .skip(skip)
-    .limit(limit)
-    .sort({ date: DEFAULT_PAGINATION_SORT })
-    .find();
+    queryContent()
+        .skip(skip)
+        .limit(limit)
+        .sort({date: DEFAULT_PAGINATION_SORT})
+        .find();
 
 const perPage = DEFAULT_PAGINATION_LIMIT;
 const currentPage = ref(1);
@@ -18,17 +18,17 @@ const currentPage = ref(1);
 const totalArticles = ref((await queryContent("/").find()).length);
 const totalPages = ref(Math.ceil(totalArticles.value / perPage));
 const lastPageCount = ref(
-  totalArticles.value % perPage !== 0
-    ? totalArticles.value % perPage
-    : totalArticles.value - perPage,
+    totalArticles.value % perPage !== 0
+        ? totalArticles.value % perPage
+        : totalArticles.value - perPage,
 );
 
 let skipNumber = ref(
-  currentPage.value === 1
-    ? 0
-    : currentPage.value === totalPages.value
-    ? totalArticles.value - lastPageCount.value
-    : (currentPage.value - 1) * perPage,
+    currentPage.value === 1
+        ? 0
+        : currentPage.value === totalPages.value
+            ? totalArticles.value - lastPageCount.value
+            : (currentPage.value - 1) * perPage,
 );
 
 let articles = ref(await loadContent(skipNumber.value, perPage));
@@ -37,11 +37,11 @@ const onPageChanged = async (page) => {
   currentPage.value = page;
 
   const skip =
-    page === 1
-      ? 0
-      : page === totalPages.value
-      ? totalArticles.value - lastPageCount.value
-      : (page - 1) * perPage;
+      page === 1
+          ? 0
+          : page === totalPages.value
+              ? totalArticles.value - lastPageCount.value
+              : (page - 1) * perPage;
 
   articles.value = await loadContent(skip, perPage);
   window.scrollTo(0, 0);
@@ -56,16 +56,16 @@ useSeoMeta({
   description: "Blog page Description",
 
   ogTitle: "Blog - Dev Life",
-  ogDescription: "Blog page description",
+  ogDescription: "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+      "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me",
 
   twitterCard: "summary_large_image",
   twitterTitle: "Blog - Dev Life",
-  twitterDescription: "Blog page Description",
+  twitterDescription: "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+      "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
 });
 </script>
 
@@ -78,20 +78,20 @@ useSeoMeta({
       </h5>
       <div class="flex flex-wrap my-4">
         <div
-          class="p-2 lg:w-1/2 w-full"
-          v-for="(post, index) in articles"
-          :key="index"
+            class="p-2 lg:w-1/2 w-full"
+            v-for="(post, index) in articles"
+            :key="index"
         >
-          <Post :post="post" />
+          <Post :post="post"/>
         </div>
       </div>
       <div class="w-full flex justify-center items-center">
         <Pagination
-          :total="totalArticles"
-          :total-pages="totalPages"
-          :per-page="perPage"
-          :current-page="currentPage"
-          @page-changed="onPageChanged"
+            :total="totalArticles"
+            :total-pages="totalPages"
+            :per-page="perPage"
+            :current-page="currentPage"
+            @page-changed="onPageChanged"
         />
       </div>
     </div>
