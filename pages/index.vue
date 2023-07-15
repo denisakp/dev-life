@@ -1,44 +1,50 @@
 <script setup>
+const { data: navigation } = await useAsyncData("navigation", () =>
+  fetchContentNavigation(),
+);
 
-const {data: navigation} = await useAsyncData('navigation', () => fetchContentNavigation())
-
-const query = {limit: 5, sort: {date: -1}, only: ['title', 'description', 'tags', '_path', 'date']};
+const query = {
+  limit: 5,
+  sort: { date: -1 },
+  only: ["title", "description", "tags", "_path", "date"],
+};
 
 useSeoMeta({
-  title: 'Home',
-  description: 'Description',
+  title: "Home",
+  description: "Description",
 
-  ogTitle: 'Home - Dev Life',
-  ogDescription: 'Home page description',
-  ogImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g',
-  ogUrl: 'https://denisakp.me',
+  ogTitle: "Home - Dev Life",
+  ogDescription: "Home page description",
+  ogImage:
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogUrl: "https://denisakp.me",
 
-  twitterCard: 'summary_large_image',
-  twitterTitle: 'Home - Dev Life',
-  twitterDescription: 'Home page Description',
-  twitterImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g'
-})
+  twitterCard: "summary_large_image",
+  twitterTitle: "Home - Dev Life",
+  twitterDescription: "Home page Description",
+  twitterImage:
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+});
 </script>
 
 <template>
   <div class="page-bg">
     <div class="container">
       <div>
-        <h3>Les thèmes couverts</h3>
-        <Topics :topics="navigation"/>
+        <h2 class="text-3xl">Available topics</h2>
+        <Topics :topics="navigation" />
       </div>
 
       <div class="mt-8">
-        <h3>Les derniers articles</h3>
+        <h3 class="text-2xl">My last posts</h3>
         <section class="space-y-4 mt-8">
           <ContentList :query="query">
-
             <template v-slot="{ list }">
-              <Post v-for="(post, index) in list" :key="index" :post="post"/>
+              <Post v-for="(post, index) in list" :key="index" :post="post" />
             </template>
 
             <template #not-found>
-              <br><br><br><br>
+              <br /><br /><br /><br />
               <p class="text-4xl text-center">No articles found 🫣 </p>
             </template>
 
