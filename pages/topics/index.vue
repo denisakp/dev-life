@@ -1,26 +1,32 @@
 <script setup>
-const topics = await queryContent('/').only('topics').find();
+const navigation = await fetchContentNavigation();
+const topics = navigation.filter((item) => item._path !== "/hello-world");
 
 useSeoMeta({
-  title: 'Topics me',
-  description: 'Topics page Description',
+  title: "Topics",
+  description: "Topics page Description",
 
-  ogTitle: 'Topics - Dev Life',
-  ogDescription: 'Topics page description',
-  ogImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g',
-  ogUrl: 'https://denisakp.me/topics',
+  ogTitle: "Topics - Dev Life",
+  ogDescription: "Topics page description",
+  ogImage:
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogUrl: "https://denisakp.me/topics",
 
-  twitterCard: 'summary_large_image',
-  twitterTitle: 'Topics - Dev Life',
-  twitterDescription: 'Topics page Description',
-  twitterImage: 'https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g'
-})
+  twitterCard: "summary_large_image",
+  twitterTitle: "Topics - Dev Life",
+  twitterDescription: "Topics page Description",
+  twitterImage:
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+});
 </script>
 
 <template>
   <div class="page-bg">
     <div class="container">
-      <h3>LES SUJETS {{ topics.length }} </h3>
+      <h1 class="text-3xl capitalize">
+        Available Subjects: {{ topics.length }}
+      </h1>
+      <Topics :topics="topics" />
     </div>
   </div>
 </template>

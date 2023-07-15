@@ -1,30 +1,34 @@
 <script setup>
-import {useRoute} from "nuxt/app";
+import { useRoute } from "nuxt/app";
 import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
-const {path} = useRoute();
-const reviewedPath = path.replace("/blog", '');
+const { path } = useRoute();
+const reviewedPath = path.replace("/blog", "");
 
-const article = await queryContent().where({_path: reviewedPath}).findOne();
-const surround = await queryContent('/').only(['_path', 'title', 'slug', 'topics', 'img']).sort({date: 1}).findSurround(reviewedPath);
-const [prev, next] = surround;
+const article = await queryContent().where({ _path: reviewedPath }).findOne();
+
+const [prev, next] = await queryContent()
+  .where({ topics: { $contains: "algorithms" } })
+  .only(["_path", "title"])
+  .findSurround(reviewedPath);
+
+console.log(prev, next);
 
 useSeoMeta({
   title: article.title,
   description: article.description,
 
-  ogTitle: article.title + ' - Dev Life',
+  ogTitle: article.title + " - Dev Life",
   ogDescription: article.description,
   ogImage: article.img,
-  ogUrl: 'https://denisakp.me' + path,
+  ogUrl: "https://denisakp.me" + path,
 
-  twitterCard: 'summary_large_image',
-  twitterTitle: article.title + ' - Dev Life',
+  twitterCard: "summary_large_image",
+  twitterTitle: article.title + " - Dev Life",
   twitterDescription: article.description,
   twitterImage: article.img,
-})
-
+});
 </script>
 
 <template>
@@ -32,14 +36,18 @@ useSeoMeta({
     <div class="container-small">
       <div class="w-full">
         <div class="img-cont h-72 mb-12">
-          <nuxt-img :src="article.img" :alt="article.title" class="rounded-2xl"/>
+          <nuxt-img
+            :src="article.img"
+            :alt="article.title"
+            class="rounded-2xl"
+          />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
         <p class="mt-2 mb-4 md:mb-8 dark-text">{{ article.description }}</p>
       </div>
 
       <!-- Toc Component -->
-      <Toc :links="article.body.toc.links"/>
+      <Toc :links="article.body.toc.links" />
 
       <div class="w-full">
         <content-renderer :value="article">
@@ -50,9 +58,9 @@ useSeoMeta({
       </div>
 
       <!-- PrevNext Component -->
-      <PrevNext :prev="prev" :next="next"/>
-      <br/>
-      <br/>
+      <PrevNext :prev="prev" :next="next" />
+      <br />
+      <br />
 
       <div class="w-full giscus"></div>
     </div>
