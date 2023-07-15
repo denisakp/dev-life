@@ -1,30 +1,30 @@
 const skills = [
     {
-        "title": "Language de programmation ",
+        "title": "Programming Language",
         "techs": [
             {
                 "name": "TypeScript",
                 "slug": "typescript",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-                "description": "JavaScript fortement typé"
+                "description": "JavaScript with static typing."
             },
             {
                 "name": "Python",
                 "slug": "python",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg",
-                "description": "Langage de scripting très puissant"
+                "description": "Dynamic, high-level programming language."
             },
             {
                 "name": "PHP",
                 "slug": "php",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-                "description": "Langage optimisé pour les applications web"
+                "description": "Server-side scripting language for web."
             },
             {
                 "name": "Golang",
                 "slug": "golang",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
-                "description": "Langage inspiré et concurrent du C"
+                "description": "Compiled, statically-typed language"
             },
         ]
     },
@@ -35,112 +35,112 @@ const skills = [
                 "name": "Nest Js",
                 "slug": "nest-js",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg",
-                "description": "Framework TypeScript pour développer sous NodeJS"
+                "description": "Expressive, modular TypeScript framework."
             },
             {
                 "name": "Fast Api",
                 "slug": "fast-api",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-                "description": "Framework Python pour développer des API"
+                "description": "Modern, performant Python web framework"
             },
             {
                 "name": "Laravel",
                 "slug": "laravel",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain-wordmark.svg",
-                "description": "Framework web PHP basé sur le principe MVC"
+                "description": "Elegant, feature-rich PHP framework."
             },
             {
                 "name": "Gin Gonic",
                 "slug": "gin-gonic",
                 "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/g1mp8yuff6uyku5jr7pn",
-                "description": "Un framework web pour le langage Go"
+                "description": "Lightweight, flexible Golang web framework."
             },
         ]
     },
     {
-        "title": "Tests unitaires et tests d'intégrations",
+        "title": "Units and Integrations Testing",
         "techs": [
             {
                 "name": "Jest",
                 "slug": "jest",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
-                "description": "Outil de tests JavaScript"
+                "description": "Robust, JavaScript testing framework."
             },
             {
                 "name": "PyTest",
                 "slug": "pytest",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg",
-                "description": "Outil de tests Python"
+                "description": "Flexible, Python testing framework."
             },
             {
                 "name": "PHPUnit",
                 "slug": "phpunit",
                 "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/anvqs1nvr2lhcxrsahck",
-                "description": "Outil de tests sous PHP"
+                "description": "Robust, unit testing framework for PHP."
             },
             {
                 "name": "Golang Testing",
                 "slug": "golang-testing",
                 "image": "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/pl65g2xvvxkxydd07c2c",
-                "description": "Outil de tests Golang"
+                "description": "Built-in, comprehensive testing capabilities."
             },
         ]
     },
     {
-        "title": "Base de données SQL et NoSQL",
+        "title": "SQL and NoSQL Databases",
         "techs": [
             {
                 "name": "PostgresSQL",
                 "slug": "postgresql",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-                "description": "Le SGBDR réputé stable"
+                "description": "Powerful, open-source RDBS."
             },
             {
                 "name": "MariaDB",
                 "slug": "mariadb",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-                "description": "MySQL communautaire"
+                "description": "Community-driven, open-source RDBS."
             },
             {
                 "name": "Mongo Db",
                 "slug": "mongo-db",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg",
-                "description": "Base de données NoSQL orienté documents"
+                "description": "Document-oriented NoSQL database."
             },
             {
                 "name": "Redis",
                 "slug": "redis",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-                "description": "InMemory Database"
+                "description": "In-memory, key-value data store."
             }
         ]
     },
     {
-        "title": "Intégration Continue et Déploiement Continu",
+        "title": "Continuous Integration / Continuous deployment",
         "techs": [
             {
                 "name": "Docker",
                 "slug": "docker",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-                "description": "Pour la conteneurisation"
+                "description": "Open-source platform for containerization."
             },
             {
                 "name": "Github Actions",
                 "slug": "github-actions",
                 "image": "https://cdnjs.cloudflare.com/ajax/libs/simple-icons/3.2.0/githubactions.svg",
-                "description": "Outil CI de Github"
+                "description": "Workflow automation tool for GitHub repositories."
             },
             {
                 "name": "Kubernetes",
                 "slug": "kubernetes",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
-                "description": "Automatiser les déploiements"
+                "description": "Container orchestration platform."
             },
             {
                 "name": "Terraform",
                 "slug": "terraform",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg",
-                "description": "Automatisation de resources serveurs"
+                "description": "Infrastructure provisioning made easy."
             },
         ]
     },
@@ -151,30 +151,30 @@ const skills = [
                 "name": "DigitalOcean",
                 "slug": "digitalocean",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
-                "description": "Fournisseur de service cloud"
+                "description": "Scalable cloud infrastructure provider."
             },
             {
                 "name": "Google Cloud",
                 "slug": "gcp",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg",
-                "description": "Fournisseur de services de cloud."
+                "description": "Google Cloud Platform services."
             },
             {
-                "name": "Amazon Web Service",
+                "name": "AWS",
                 "slug": "aws",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-                "description": "Fournisseur de services de cloud."
+                "description": "Amazon Web Services cloud."
             },
             {
                 "name": "Firebase",
                 "slug": "firebase",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg",
-                "description": "Le cloud pour les applications web et mobile"
+                "description": "Real-time app development platform."
             },
         ]
     },
     {
-        "title": "Autres outils",
+        "title": "Other tools",
         "techs": [
             {
                 "name": "Git",
@@ -186,19 +186,19 @@ const skills = [
                 "name": "Nginx",
                 "slug": "nginx",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
-                "description": "Serveur Web robuste"
+                "description": "Open-source web server software."
             },
             {
                 "name": "Postman",
                 "slug": "postman",
                 "image": "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
-                "description": "API Designing"
+                "description": "API development and testing."
             },
             {
                 "name": "Jira",
                 "slug": "jira",
                 "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original-wordmark.svg",
-                "description": "Outil de gestion de projet"
+                "description": "Project management and issue tracking."
             },
         ]
     },
