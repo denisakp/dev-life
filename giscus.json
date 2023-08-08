@@ -1,0 +1,9 @@
+{
+  "origins": [
+    "https://denisakp.me",
+    "http://locahost:3000"
+  ],
+  "originsRegex": [
+    "http://localhost:[0-9]+"
+  ]
+}

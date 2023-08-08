@@ -1,5 +1,7 @@
 <script setup>
 import {useRoute} from "nuxt/app";
+
+const colorMode = useColorMode();
 import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
@@ -27,6 +29,27 @@ useSeoMeta({
   twitterDescription: article.description,
   twitterImage: article.img,
 });
+
+useHead({
+  script: [
+    {
+      async: true,
+      crossorigin: "anonymous",
+      src: "https://giscus.app/client.js",
+      "data-repo": "denisakp/denisakp.github.io",
+      "data-repo-id": "R_kgDOJyrfLg",
+      "data-category": "General",
+      "data-category-id": "DIC_kwDOJyrfLs4CX6eT",
+      "data-mapping": "pathname",
+      "data-strict": "0",
+      "data-reactions-enabled": "1",
+      "data-emit-metadata": "0",
+      "data-input-position": "bottom",
+      "data-theme": colorMode.value,
+      "data-lang": "en"
+    }
+  ]
+})
 </script>
 
 <template>
