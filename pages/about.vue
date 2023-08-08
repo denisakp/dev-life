@@ -7,14 +7,16 @@ useSeoMeta({
   description: "About page Description",
 
   ogTitle: "About me - Dev Life",
-  ogDescription: "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  ogDescription:
+      "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   ogImage:
       "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me/about",
 
   twitterCard: "summary_large_image",
   twitterTitle: "About me - Dev Life",
-  twitterDescription: "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  twitterDescription:
+      "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   twitterImage:
       "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
 });
@@ -26,7 +28,7 @@ useSeoMeta({
       <!-- Presentation -->
       <div class="flex flex-col md:flex-row items-center">
         <div class="mt-8 md:ml-8 md:mt-0 text-sm md:text-base">
-          <h3 class="text-center my-4 text-3xl">👋 Hi There</h3>
+          <h3 class="text-center my-4 text-3xl">👋 Nice to meet you</h3>
           <nuxt-img
               src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/re0wsg6outld6cbolnnv"
               class="h-full w-full"
@@ -34,10 +36,11 @@ useSeoMeta({
           />
 
           <p class="mt-8">
-            I'm <span class="hightlighted">Denis AKPAGNONITE</span>, and I'm
-            currently attending an Engineer's degree in Data Science and Software
-            Development. I'm passionate about Backend designing, developing, and maintaining; Cloud/DevOps, and
-            the application of Artificial Intelligence in Cybersecurity.
+            I'm <span class="hightlighted">Denis AKPAGNONITE</span>,
+            and I'm currently attending an Engineer's degree in Data
+            Science and Software Development. Passionate about Backend
+            designing, developing, and maintaining; Cloud/DevOps,
+            and Cybersecurity.
           </p>
 
           <br/>
@@ -47,30 +50,48 @@ useSeoMeta({
           <ul class="mt-4 list-disc ml-4 md:ml-6">
             <li>
               <p class="mt-4">
-                I prefer Linux to Windows, although I currently work with a 2022
-                Mac Book Pro M1
+                🎓 Currently studying at ESTEM in Casablanca, Morocco,
+                delving into data analysis, software development,
+                and AI's real-world applications.
               </p>
             </li>
 
             <li>
               <p class="mt-4">
-                I'm more comfortable with the backend than the frontend
+                👨‍💻 Backend enthusiast with expertise in Python,
+                TypeScript, and PHP. Recently crafted a Fake Store API
+                on NextJS. Aiming to build impactful,
+                reliable applications using backend skills
               </p>
             </li>
 
             <li>
               <p class="mt-4">
-                Security; Scalability; Performance; Errors, Logs, and Tests
-                Management; and Monitoring are my 7 Chakra points
+                💼 My focus areas: Security, Scalability, Performance,
+                Errors & Logs, Tests Management, and Monitoring.
+                Also exploring Cybersecurity and DevOps. Hands-on with
+                Jenkins, Docker, Kubernetes for streamlined CI/CD.
               </p>
             </li>
 
             <li>
-              <p class="mt-4">I hate people who push on the main branch  🙄 </p>
+              <p class="mt-4">🐧 Linux lover, though currently using a 2021
+                Mac Book Pro M1. Linux's flexibility and robust dev environment are my go-to.</p>
             </li>
 
             <li>
-              <p class="mt-4">I think the Light theme attracts bugs 🤣 </p>
+              <p class="mt-4">😅 Light theme = bug magnet 🤣, and I'm not a fan of main branch pushers 🙄.</p>
+            </li>
+
+            <li>
+              <p class="mt-4">
+                📚 Upcoming certifications in the pipeline next semester:
+                AWS Cloud Practitioner (CLF-C02),
+                Terraform Associate (003),
+                Linux Foundation Certified System Administrator (LFCS),
+                Certified Kubernetes Administrator (CKA),
+                EC-Council Certified Cybersecurity Technician (CCT)
+              </p>
             </li>
           </ul>
 
