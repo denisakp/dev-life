@@ -56,14 +56,16 @@ useSeoMeta({
   description: "Blog page Description",
 
   ogTitle: "Blog - Dev Life",
-  ogDescription: "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  ogDescription:
+      "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   ogImage:
       "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me",
 
   twitterCard: "summary_large_image",
   twitterTitle: "Blog - Dev Life",
-  twitterDescription: "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  twitterDescription:
+      "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   twitterImage:
       "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
 });
@@ -74,7 +76,7 @@ useSeoMeta({
     <div class="container">
       <h5 class="text-2xl">
         A total of
-        <span class="hightlighted"> {{ totalArticles }} </span> articles
+        <span class="hightlighted"> {{ totalArticles }} </span> posts
       </h5>
       <div class="flex flex-wrap my-4">
         <div
