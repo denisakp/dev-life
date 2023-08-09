@@ -13,6 +13,7 @@ const article = await queryContent().where({ _path: reviewedPath }).findOne();
 const [prev, next] = await queryContent()
   .where({ topics: { $contains: "algorithms" } })
   .only(["_path", "title"])
+  .sort({ date: 1 })
   .findSurround(reviewedPath);
 
 useSeoMeta({
@@ -36,16 +37,17 @@ useHead({
       async: true,
       crossorigin: "anonymous",
       src: "https://giscus.app/client.js",
-      "data-repo": "denisakp/denisakp.github.io",
+      "data-repo": "denisakp/dev-life",
       "data-repo-id": "R_kgDOJyrfLg",
       "data-category": "General",
       "data-category-id": "DIC_kwDOJyrfLs4CX6eT",
-      "data-mapping": "pathname",
+      "data-mapping": "title",
       "data-strict": "0",
       "data-reactions-enabled": "1",
       "data-emit-metadata": "0",
-      "data-input-position": "bottom",
+      "data-input-position": "top",
       "data-theme": colorMode.value,
+      "data-loading": "lazy",
       "data-lang": "en",
     },
   ],
@@ -54,7 +56,7 @@ useHead({
 
 <template>
   <div class="page-bg">
-    <div class="container-small">
+    <div class="container">
       <div class="w-full">
         <div class="img-cont h-72 mb-12">
           <nuxt-img
@@ -64,7 +66,9 @@ useHead({
           />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
-        <p class="mt-2 mb-4 md:mb-8 dark-text">{{ article.description }}</p>
+        <p class="pt-4 mt-2 mb-4 md:mb-8 dark-text">
+          {{ article.description }}
+        </p>
       </div>
 
       <!-- Toc Component -->
