@@ -1,19 +1,19 @@
 <script setup>
-import {useRoute} from "nuxt/app";
+import { useRoute } from "nuxt/app";
 
 const colorMode = useColorMode();
 import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
-const {path} = useRoute();
+const { path } = useRoute();
 const reviewedPath = path.replace("/blog", "");
 
-const article = await queryContent().where({_path: reviewedPath}).findOne();
+const article = await queryContent().where({ _path: reviewedPath }).findOne();
 
 const [prev, next] = await queryContent()
-    .where({topics: {$contains: "algorithms"}})
-    .only(["_path", "title"])
-    .findSurround(reviewedPath);
+  .where({ topics: { $contains: "algorithms" } })
+  .only(["_path", "title"])
+  .findSurround(reviewedPath);
 
 useSeoMeta({
   title: article.title,
@@ -46,10 +46,10 @@ useHead({
       "data-emit-metadata": "0",
       "data-input-position": "bottom",
       "data-theme": colorMode.value,
-      "data-lang": "en"
-    }
-  ]
-})
+      "data-lang": "en",
+    },
+  ],
+});
 </script>
 
 <template>
@@ -58,9 +58,9 @@ useHead({
       <div class="w-full">
         <div class="img-cont h-72 mb-12">
           <nuxt-img
-              :src="article.img"
-              :alt="article.title"
-              class="rounded-2xl"
+            :src="article.img"
+            :alt="article.title"
+            class="rounded-2xl"
           />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
@@ -68,7 +68,7 @@ useHead({
       </div>
 
       <!-- Toc Component -->
-      <Toc :links="article.body.toc.links"/>
+      <Toc :links="article.body.toc.links" />
 
       <div class="w-full">
         <content-renderer :value="article">
@@ -79,9 +79,9 @@ useHead({
       </div>
 
       <!-- PrevNext Component -->
-      <PrevNext :prev="prev" :next="next"/>
-      <br/>
-      <br/>
+      <PrevNext :prev="prev" :next="next" />
+      <br />
+      <br />
 
       <div class="w-full giscus"></div>
     </div>
