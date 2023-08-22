@@ -1,27 +1,44 @@
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxt/image',
-    '@nuxt/content',
-    '@nuxtjs/color-mode'
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image-edge",
+    "@nuxt/content",
+    "@nuxtjs/color-mode",
+    "nuxt-simple-sitemap",
   ],
+  // @ts-ignore
+  css: ["@/assets/styles/main.css", "@/assets/styles/typography.css"],
+  // @ts-ignore
+  extends: ["@nuxt-themes/typography"],
   colorMode: {
-    classSuffix: ''
+    classSuffix: "",
   },
   content: {
     highlight: {
       theme: {
-        default: 'material-default',
-        dark: 'material-darker',
-      }
+        default: "github-light",
+        dark: "github-dark",
+      },
     },
   },
   // @ts-ignore
   ssr: true,
-  // @ts-ignore
   nitro: {
-    compressPublicAssets: true
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "/sitemap.xml"],
+    },
   },
-  // @ts-ignore'
-})
+  sitemap: {
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me",
+    // @ts-ignore
+    changefreq: "weekly",
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me",
+    },
+  },
+});

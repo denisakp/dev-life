@@ -1,4 +1,4 @@
-@import url('font_share.css');
+@import url("fonts.css");
 
 .container {
   @apply max-w-5xl 2xl:max-w-9xl px-4 sm:px-10 mx-auto;
@@ -8,13 +8,8 @@
   @apply max-w-3xl  2xl:max-w-5xl px-4 sm:px-10 mx-auto;
 }
 
-.page-sepia {
-  background-color: #f1e7d0;
-  color: #433422;
-}
-
 .page-bg {
-  @apply bg-white dark:bg-dark-high text-dark-high dark:text-white  pb-20 md:pb-12;
+  @apply bg-white dark:bg-dark-high text-dark-high dark:text-white pb-20 md:pb-12;
 }
 
 .bg-light-dark {
@@ -57,12 +52,17 @@
 }
 
 .toc {
-  @apply list-none dark-text mb-8;
+  @apply list-none dark-text slick-border rounded-sm;
 }
 
 .toc,
 .toc-deep-2 {
+  @apply ml-1;
+}
 
+.toc,
+.toc-deep-2 {
+  @apply ml-2;
 }
 
 .toc,
@@ -75,16 +75,13 @@
   @apply ml-6;
 }
 
-.nuxt-content {
-  @apply break-words prose-stone;
-}
 .hightlighted {
   @apply text-blue dark:text-green font-medium;
 }
 
 *::selection {
- @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* WebKit/Blink Browsers */
+  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* WebKit/Blink Browsers */;
 }
 *::-moz-selection {
- @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* Gecko Browsers */
+  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* Gecko Browsers */;
 }
