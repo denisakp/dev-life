@@ -4,7 +4,7 @@ defineProps(["prev", "next"]);
 
 <template>
   <div
-    class="mt-6 md:mt-12 mx-4 flex flex-col md:flex-row justify-end space-y-4 md:space-x-4 md:space-y-0"
+    class="mt-6 md:mt-12 mx-4 flex flex-col md:flex-row justify-between space-y-4 md:space-x-4 md:space-y-0"
     :class="{
       'justify-between': prev !== null && next !== null,
       'justify-start': prev !== null && next === null,
