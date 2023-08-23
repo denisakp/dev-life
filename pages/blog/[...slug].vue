@@ -56,11 +56,10 @@ useHead({
   <div class="page-bg">
     <div class="container">
       <div class="w-full">
-        <div class="img-cont h-72 mb-12">
+        <div class="img-cont mb-12">
           <nuxt-img
               :src="article.img"
               :alt="article.title"
-              class="rounded-2xl"
           />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
@@ -92,6 +91,6 @@ useHead({
 
 <style scoped>
 .img-cont img {
-  @apply h-full w-full object-cover;
+  @apply h-72 w-full object-cover;
 }
 </style>
