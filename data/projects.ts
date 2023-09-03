@@ -24,5 +24,12 @@ const projects = [
         tags: ["laravel", "inertiajs", "vuejs"],
         github: "https://github.com/denisakp/SquaHR_url_shortener",
     },
+    {
+        title: "Awesome NestJS",
+        description: "This GitHub repository is the home of our exciting NestJS Series, where we explore the ins and outs of NestJS, the modern Node.js framework that adds structure and scalability to your server-side applications.",
+        date: "September 2023",
+        tags: ["nest-js", "mirco-service", "API"],
+        github: "https://github.com/denisakp/awesome-nest-js",
+    },
 ];
 export default projects;
