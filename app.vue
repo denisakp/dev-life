@@ -46,7 +46,6 @@ useHead({
     {name: "robots", content: "index, follow"},
     {name: "format-detection", content: "telephone=no"},
     {name: "og:type", content: "website"},
-    {"http-equiv": "Permissions-Policy", content: "interest-cohort=()"},
   ],
   script: [
     {src: "https://www.googletagmanager.com/gtag/js?id=G-D4WS1344ML", async: true},
