@@ -1,5 +1,7 @@
 {
   "origins": [
+    "http://localhost:3000",
     "https://denisakp.me"
-  ]
+  ],
+  "defaultCommentOrder": "newest"
 }
