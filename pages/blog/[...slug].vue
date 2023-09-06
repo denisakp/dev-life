@@ -31,20 +31,20 @@ useSeoMeta({
 useHead({
   script: [
     {
+      src: "//dev-life-1.disqus.com/count.js",
       async: true,
-      src: "https://giscus.app/client.js",
-      "data-repo": "denisakp/dev-life",
-      "data-repo-id": "R_kgDOJyrfLg",
-      "data-category": "Q&A",
-      "data-category-id": "DIC_kwDOJyrfLs4CX6eU",
-      "data-mapping": "pathname",
-      "data-strict": "0",
-      "data-reactions-enabled": "1",
-      "data-emit-metadata": "0",
-      "data-input-position": "bottom",
-      "data-theme": "preferred_color_scheme",
-      "data-lang": "en",
-      crossorigin: "anonymous"
+      id: "dsq-count-scr",
+      body: true
+    },
+    {
+      children: `
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dev-life-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+      `
     },
   ],
 });
@@ -82,7 +82,7 @@ useHead({
       <br/>
       <br/>
 
-      <div class="w-full giscus"></div>
+      <div id="disqus_thread" class="w-full"></div>
     </div>
   </div>
 </template>
