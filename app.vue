@@ -8,7 +8,7 @@ useHead({
     return titleChunk ? `${titleChunk} - Dev Life` : "Dev Life";
   },
   htmlAttrs: {
-    lang: "fr",
+    lang: "en",
   },
   link: [
     {rel: "canonical", href: "https://denisakp.me"},
@@ -48,6 +48,10 @@ useHead({
     {name: "og:type", content: "website"},
     {"http-equiv": "Permissions-Policy", content: "interest-cohort=()"},
   ],
+  script: [
+    {src: "https://www.googletagmanager.com/gtag/js?id=G-D4WS1344ML", async: true},
+    {children: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-D4WS1344ML');`}
+  ]
 });
 </script>
 
