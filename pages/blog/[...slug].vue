@@ -3,7 +3,6 @@ import {useRoute} from "nuxt/app";
 import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
-const colorMode = useColorMode();
 const {path} = useRoute();
 
 const reviewedPath = path.replace("/blog", "");
@@ -33,20 +32,19 @@ useHead({
   script: [
     {
       async: true,
-      crossorigin: "anonymous",
       src: "https://giscus.app/client.js",
       "data-repo": "denisakp/dev-life",
       "data-repo-id": "R_kgDOJyrfLg",
-      "data-category": "General",
-      "data-category-id": "DIC_kwDOJyrfLs4CX6eT",
-      "data-mapping": "title",
+      "data-category": "Q&A",
+      "data-category-id": "DIC_kwDOJyrfLs4CX6eU",
+      "data-mapping": "pathname",
       "data-strict": "0",
       "data-reactions-enabled": "1",
       "data-emit-metadata": "0",
-      "data-input-position": "top",
-      "data-theme": colorMode.value,
-      "data-loading": "lazy",
+      "data-input-position": "bottom",
+      "data-theme": "preferred_color_scheme",
       "data-lang": "en",
+      crossorigin: "anonymous"
     },
   ],
 });
