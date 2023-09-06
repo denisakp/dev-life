@@ -8,7 +8,6 @@ export default defineNuxtConfig({
         "nuxt-simple-sitemap",
         "@nuxtjs/robots",
         "nuxt-gtag"
-
     ],
     // @ts-ignore
     css: ["@/assets/styles/main.css", "@/assets/styles/typography.css"],
@@ -44,5 +43,5 @@ export default defineNuxtConfig({
             siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me",
         },
     },
-    gtag: {id: "GTM-5756M8X"}
+    gtag: {id: "G-D4WS1344ML"}
 });
