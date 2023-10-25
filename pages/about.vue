@@ -37,17 +37,21 @@ useSeoMeta({
           />
           -->
 
-          <p class="mt-8">
-            I'm <span class="hightlighted">Denis AKPAGNONITE</span>, and I'm
-            currently attending an Engineer's degree in Data Science and
-            Software Development. Passionate about Backend designing,
-            developing, and maintaining; Cloud/DevOps, and Cybersecurity.
+          <p class="mt-8 text-3xl">
+            I'm <span class="hightlighted">Denis AKPAGNONITE</span> A.K.A <span
+              class="hightlighted">Nine October</span>.
           </p>
+
+          <p class="mt-6">I'm a final-year student at
+            ESTEM, where I'm pursuing degree in Data Science and Software Development. My passions include Cloud/DevOps
+            environments and IT automation.I'm also an Open Source advocate, and my will to always improve has helped me
+            to understand the ideas,methods,procedures and developing technology in this ever changing area.</p>
 
           <br/>
 
           <p>Here are a few more things you need to know about me:</p>
 
+          <!--Technical skills
           <ul class="mt-4 list-disc ml-4 md:ml-6">
             <li>
               <p class="mt-4">
@@ -99,7 +103,7 @@ useSeoMeta({
             </li>
           </ul>
 
-          <br/>
+          <br/> -->
 
           <h4 class="mt-4 font-medium text-3xl">Academic background</h4>
           <ul class="mt-4 list-disc ml-4 md:ml-6">
