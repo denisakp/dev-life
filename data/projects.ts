@@ -8,6 +8,22 @@ const projects = [
         github: "https://github.com/denisakp/denisakp.github.io",
     },
     {
+        title: "SangSue",
+        description: "SangSue is a Python-based web scraping tool for website traversal, link discovery, and data extraction within a domain. Explore websites, map structures, extract valuable data, and classify web pages.",
+        date: "September 2023",
+        tags: ["python", "web-scraping", "api"],
+        github: "https://github.com/denisakp/sangsue",
+        preview: "https://denisakp.github.io/sangsue/"
+    },
+    {
+        title: "Canal Olympia",
+        description: "This project is a Python adaptation of the original idea written in TypeScript. It is intended to allow you to scrape data from the Canal Olympia official site and provides the data in JSON format. This JSON-formatted data can be used for various purposes",
+        date: "October 2023",
+        tags: ["python", "web-scraping", "api"],
+        github: "https://github.com/denisakp/canal-olympia-scrapper",
+        preview: "https://denisakp.github.io/canal-olympia-scrapper/"
+    },
+    {
         title: "Fake Store API",
         description:
             "Fake Store API is a REST API that provides fake e-commerce data in JSON format to developers who want to quickly prototype a web or mobile e-commerce application .",
@@ -30,6 +46,6 @@ const projects = [
         date: "September 2023",
         tags: ["nest-js", "mirco-service", "API"],
         github: "https://github.com/denisakp/awesome-nest-js",
-    },
+    }
 ];
 export default projects;
