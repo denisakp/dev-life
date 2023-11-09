@@ -7,28 +7,28 @@ const skills = [
                 slug: "digitalocean",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
-                description: "Scalable cloud infrastructure provider.",
+                description: "Scalable cloud infrastructure provider",
             },
             {
                 name: "Google Cloud",
                 slug: "gcp",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg",
-                description: "Google Cloud Platform services.",
+                description: "Google Cloud Platform services",
             },
             {
                 name: "AWS",
                 slug: "aws",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-                description: "Amazon Web Services cloud.",
+                description: "Amazon Web Services cloud",
             },
             {
                 name: "Terraform",
                 slug: "terraform",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg",
-                description: "Infrastructure as Code tool by HashiCorp.",
+                description: "Infrastructure as Code tool by HashiCorp",
             }
         ],
     },
@@ -40,14 +40,14 @@ const skills = [
                 slug: "docker",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-                description: "Open-source platform for containerization.",
+                description: "Open-source platform for containerization",
             },
             {
                 name: "Kubernetes",
                 slug: "kubernetes",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
-                description: "Container orchestration platform.",
+                description: "Container orchestration platform",
             },
         ],
     },
@@ -59,7 +59,7 @@ const skills = [
                 slug: "github-actions",
                 image:
                     "https://cdnjs.cloudflare.com/ajax/libs/simple-icons/3.2.0/githubactions.svg",
-                description: "Workflow automation tool for GitHub repositories.",
+                description: "Workflow automation tool for GitHub repositories",
             },
             {
                 name: "GitLab CI",
@@ -73,14 +73,14 @@ const skills = [
                 slug: "jenkins",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
-                description: "The open source CI/CD tool",
+                description: "The open source automation server",
             },
             {
-                name: "FluxCD",
-                slug: "flux-cd",
+                name: "ArgoCD",
+                slug: "argo-cd",
                 image:
-                    "https://www.vectorlogo.zone/logos/fluxcdio/fluxcdio-icon.svg",
-                description: "Continuous delivery solutions for k8s",
+                    "https://www.vectorlogo.zone/logos/argoprojio/argoprojio-icon.svg",
+                description: "A declarative GitOps CD for Kubernetes",
             },
 
         ],
@@ -96,11 +96,11 @@ const skills = [
                 description: "Web-based platform for collaboration",
             },
             {
-                name: "GitLab CI",
-                slug: "gitlab-ci",
+                name: "GitLab",
+                slug: "gitlab",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original-wordmark.svg",
-                description: "CI/CD automation toolset by GitLab",
+                description: "The most comprehensive DevSecOps Platform",
             },
             {
                 name: "BitBucket",
@@ -119,13 +119,13 @@ const skills = [
                 slug: "prometheus",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg",
-                description: "An open-source monitoring system.",
+                description: "An open-source monitoring system",
             },
             {
                 name: "ELK",
                 slug: "elk",
                 image:
-                    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original-wordmark.svg",
+                    "https://www.vectorlogo.zone/logos/elastic/elastic-icon.svg",
                 description: "Highly extensible stack for logs and data analysis",
             },
             {
@@ -153,21 +153,21 @@ const skills = [
                 slug: "c-cpp",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
-                description: "The influential programming language",
+                description: "The influential programming languages",
             },
             {
                 name: "Python",
                 slug: "python",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg",
-                description: "Dynamic, high-level programming language.",
+                description: "Dynamic, high-level programming language",
             },
             {
                 name: "PHP",
                 slug: "php",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-                description: "Server-side scripting language for web.",
+                description: "Server-side scripting language for web",
             },
             {
                 name: "Golang",
@@ -188,7 +188,7 @@ const skills = [
                 slug: "nest-js",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg",
-                description: "Expressive, modular TypeScript framework.",
+                description: "Expressive, modular TypeScript framework",
             },
             {
                 name: "Fast Api",
@@ -202,7 +202,7 @@ const skills = [
                 slug: "laravel",
                 image:
                     "https://www.vectorlogo.zone/logos/laravel/laravel-icon.svg",
-                description: "Elegant, feature-rich PHP framework.",
+                description: "Elegant, feature-rich PHP framework",
             },
         ],
     },
@@ -215,34 +215,34 @@ const skills = [
                 slug: "postgresql",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-                description: "Powerful, open-source RDBS.",
+                description: "Powerful, open-source RDB",
             },
             {
                 name: "MariaDB",
                 slug: "mariadb",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-                description: "Community-driven, open-source RDBS.",
+                description: "Community-driven, open-source RDB",
             },
             {
                 name: "MongoDB",
                 slug: "mongodb",
                 image:
                     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg",
-                description: "Document-oriented NoSQL database.",
+                description: "Document-oriented NoSQL database",
             },
             {
                 name: "Redis",
                 slug: "redis",
                 image:
                     "https://www.vectorlogo.zone/logos/redis/redis-icon.svg",
-                description: "In-memory, key-value data store.",
+                description: "In-memory, key-value data store",
             },
         ],
     },
 
     {
-        title: "Machine learning",
+        title: "Machine learning / Intelligence Artificial",
         techs: [
             {
                 name: "Pandas",
