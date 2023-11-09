@@ -1,6 +1,6 @@
 <template>
   <div class="mt-12 md:mt-16">
-    <h4 class="text-3xl">Mes contacts</h4>
+    <h4 class="text-3xl">Get in touch with me</h4>
     <div
         class="mt-6 space-y-2 md:space-y-0 grid 2xl:grid-cols-4 2xl:gap-4 md:grid-cols-2 md:gap-2"
     >

@@ -38,74 +38,20 @@ useSeoMeta({
           -->
 
           <p class="mt-8 text-3xl">
-            I'm <span class="hightlighted">Denis AKPAGNONITE</span> A.K.A <span
+            I'm <span class="hightlighted">Denis AKPAGNONITE</span> (denisakp) A.K.A <span
               class="hightlighted">Nine October</span>.
           </p>
 
-          <p class="mt-6">I'm a final-year student at
-            ESTEM, where I'm pursuing degree in Data Science and Software Development. My passions include Cloud/DevOps
-            environments and IT automation.I'm also an Open Source advocate, and my will to always improve has helped me
-            to understand the ideas,methods,procedures and developing technology in this ever changing area.</p>
+          <p class="mt-6">I'm a final-year student pursuing a degree in Software Engineering. My passions include
+            Cloud/DevOps environments and IT automation. I'm also an Open Source advocate, and my will to always improve
+            has helped me to understand the ideas,methods,procedures and developing technology in this ever changing
+            area.
+          </p>
 
           <br/>
 
-          <p>Here are a few more things you need to know about me:</p>
-
-          <!--Technical skills
-          <ul class="mt-4 list-disc ml-4 md:ml-6">
-            <li>
-              <p class="mt-4">
-                🎓 Currently studying at ESTEM in Casablanca, delving
-                into data analysis, software development, and AI's real-world
-                applications.
-              </p>
-            </li>
-
-            <li>
-              <p class="mt-4">
-                👨‍💻 Backend enthusiast with expertise in Python, TypeScript, and
-                PHP. Recently crafted a Fake Store API on NextJS. Aiming to
-                build impactful, reliable applications using backend skills
-              </p>
-            </li>
-
-            <li>
-              <p class="mt-4">
-                💼 My focus areas: Security, Scalability, Performance, Errors &
-                Logs, Tests Management, and Monitoring. Also exploring
-                Cybersecurity and DevOps. Hands-on with Jenkins, Docker,
-                Kubernetes for streamlined CI/CD.
-              </p>
-            </li>
-
-            <li>
-              <p class="mt-4">
-                🐧 Linux lover, though currently using a 2021 Mac Book Pro M1.
-                Linux's flexibility and robust dev environment are my go-to.
-              </p>
-            </li>
-
-            <li>
-              <p class="mt-4">
-                😅 Light theme = bug magnet 🤣, and I'm not a fan of main branch
-                pushers 🙄.
-              </p>
-            </li>
-
-            <li>
-              <p class="mt-4">
-                📚 Upcoming certifications in the pipeline next semester: AWS
-                Cloud Practitioner (CLF-C02), Terraform Associate (003), Linux
-                Foundation Certified System Administrator (LFCS), Certified
-                Kubernetes Administrator (CKA), EC-Council Certified
-                Cybersecurity Technician (CCT)
-              </p>
-            </li>
-          </ul>
-
-          <br/> -->
-
           <h4 class="mt-4 font-medium text-3xl">Academic background</h4>
+
           <ul class="mt-4 list-disc ml-4 md:ml-6">
             <li>BSc Software Engineering (3 years), in Lomé, Togo 🇹🇬 </li>
             <li>
@@ -116,14 +62,15 @@ useSeoMeta({
 
           <br/>
           <h4 class="mt-4 font-medium text-3xl">Mentions</h4>
-          <p>
+
+          <p class="mt-4">
             I took over the
             <NuxtLink target="_blank" to="https://loopbin.dev"
             ><span class="hightlighted">Loopbin</span></NuxtLink
             >
             project initially created by
             <span class="hightlighted">Ayao Corneille ALLOGBALO</span> which I
-            simply customized because I suck when it comes to the UI
+            simply customized because I suck when it comes to the UI.
           </p>
         </div>
       </div>
@@ -143,6 +90,19 @@ useSeoMeta({
                 alt="profile"
             />
           </a>
+        </div>
+
+        <div class="md:w-1/2">
+          <h4 class="my-3 text-3xl">Digital Badges</h4>
+          <div class="flex space-x-2">
+            <a href="https://www.credly.com/badges/1a490efa-6214-427a-964a-eca1e6898685/public_url" target="_blank">
+              <img
+                  src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/badges/hsop7pe6u1o7gk5ltxmh"
+                  class="h-28 md:h-32 lg:h-44"
+                  alt="aws clf c-02"
+              >
+            </a>
+          </div>
         </div>
       </div>
 
