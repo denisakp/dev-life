@@ -1,31 +1,29 @@
 <script setup>
-import {useRoute} from "nuxt/app";
+import { useRoute } from "nuxt/app";
 import PrevNext from "~/components/PrevNext";
 import Toc from "~/components/Toc.vue";
 
-const {path} = useRoute();
+const { path } = useRoute();
 
 const reviewedPath = path.replace("/blog", "");
 
-const article = await queryContent().where({_path: reviewedPath}).findOne();
+const article = await queryContent().where({ _path: reviewedPath }).findOne();
 
 const [prev, next] = await queryContent()
-    .only(["_path", "title"])
-    .findSurround(reviewedPath);
+  .only(["_path", "title"])
+  .findSurround(reviewedPath);
 
 useSeoMeta({
   title: article.title,
   description: article.description,
-
-  ogTitle: article.title + " - Dev Life",
+  ogTitle: article.title + " - Denis AKPAGNONITE",
   ogDescription: article.description,
   ogImage: article.img,
   ogUrl: "https://denisakp.me" + path,
-
   twitterCard: "summary_large_image",
-  twitterTitle: article.title + " - Dev Life",
+  twitterTitle: article.title + " - Denis AKPAGNONITE",
   twitterDescription: article.description,
-  twitterImage: article.img,
+  twitterImage: article.img
 });
 
 useHead({
@@ -45,8 +43,8 @@ useHead({
     (d.head || d.body).appendChild(s);
     })();
       `
-    },
-  ],
+    }
+  ]
 });
 </script>
 
@@ -56,8 +54,8 @@ useHead({
       <div class="w-full">
         <div class="img-cont mb-12">
           <nuxt-img
-              :src="article.img"
-              :alt="article.title"
+            :src="article.img"
+            :alt="article.title"
           />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
@@ -67,7 +65,7 @@ useHead({
       </div>
 
       <!-- Toc Component -->
-      <Toc :links="article.body.toc.links"/>
+      <Toc :links="article.body.toc.links" />
 
       <div class="w-full">
         <content-renderer :value="article">
@@ -78,9 +76,9 @@ useHead({
       </div>
 
       <!-- PrevNext Component -->
-      <PrevNext :prev="prev" :next="next"/>
-      <br/>
-      <br/>
+      <PrevNext :prev="prev" :next="next" />
+      <br />
+      <br />
 
       <div id="disqus_thread" class="w-full"></div>
     </div>

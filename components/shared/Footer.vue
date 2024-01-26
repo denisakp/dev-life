@@ -5,9 +5,9 @@
     <span
       class="text-sm text-gray-500 items-center sm:text-center dark:text-gray-400"
     >
-      © {{ new Date().getUTCFullYear() }} -
+      © 2022 - {{ new Date().getUTCFullYear() }} |
       <NuxtLink to="/" class="hover-underline">
-        Denis AKPAGNONITE 😎  Dev Life
+        Denis AKPAGNONITE (Nine October) 😎 
       </NuxtLink>
     </span>
   </footer>

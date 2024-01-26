@@ -4,18 +4,15 @@ import projects from "../data/projects";
 useSeoMeta({
   title: "Projects",
   description: "My open source projects",
-
-  ogTitle: "Projects - Dev Life",
+  ogTitle: "Projects - Denis AKPAGNONITE",
   ogDescription: "My open source projects",
-  ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogImage: "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me",
-
   twitterCard: "summary_large_image",
-  twitterTitle: "Projects - Dev Life",
+  twitterTitle: "Projects - Denis AKPAGNONITE",
   twitterDescription: "My open source projects",
   twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
 });
 </script>
 

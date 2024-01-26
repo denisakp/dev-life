@@ -2,7 +2,7 @@
 import loadTopic from "~/utils/load-topic";
 
 const props = defineProps({
-  topics: { type: Array, default: () => [] },
+  topics: { type: Array, default: () => [] }
 });
 </script>
 
@@ -14,16 +14,16 @@ const props = defineProps({
           <div
             class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border dark-text"
           >
-            <div class="bg-white mr-4 rounded-sm">
+            <div class="mr-6">
               <nuxt-img
-                class="mx-auto h-5 w-5 flex-shrink-0"
-                :src="loadTopic(item._path).image"
-                :alt="loadTopic(item._path).name + ' - Logo'"
+                class="mx-auto h-auto w-5 flex-shrink-0"
+                :src="loadTopic(item._path).iconPath"
+                :alt="loadTopic(item._path).title + ' - Logo'"
               />
             </div>
             <div class="flex-grow">
               <p class="font-medium">
-                {{ loadTopic(item._path).name }}
+                {{ loadTopic(item._path).title }}
               </p>
             </div>
           </div>

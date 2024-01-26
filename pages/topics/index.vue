@@ -4,10 +4,8 @@ const topics = navigation.filter((item) => item._path !== "/hello-world");
 
 useSeoMeta({
   title: "Topics",
-  description:
-    "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
-
-  ogTitle: "Topics - Dev Life",
+  description: "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  ogTitle: "Topics - Denis AKPAGNONITE",
   ogDescription:
     "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber securityn",
   ogImage:
@@ -15,11 +13,11 @@ useSeoMeta({
   ogUrl: "https://denisakp.me/topics",
 
   twitterCard: "summary_large_image",
-  twitterTitle: "Topics - Dev Life",
+  twitterTitle: "Topics - Denis AKPAGNONITE",
   twitterDescription:
     "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
   twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
 });
 </script>
 

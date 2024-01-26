@@ -1,31 +1,30 @@
 <script setup>
 const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation(),
+  fetchContentNavigation()
 );
 
 const query = {
   limit: 5,
   sort: { date: -1 },
-  only: ["title", "description", "tags", "_path", "date"],
+  only: ["title", "description", "tags", "_path", "date"]
 };
 
 useSeoMeta({
   title: "Home",
-  description: "Description",
-
-  ogTitle: "Home - Dev Life",
+  description: "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
+  ogTitle: "Home - Denis AKPAGNONITE",
   ogDescription:
-    "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+    "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
   ogImage:
     "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
   ogUrl: "https://denisakp.me",
 
   twitterCard: "summary_large_image",
-  twitterTitle: "Home - Dev Life",
+  twitterTitle: "Home - Denis AKPAGNONITE",
   twitterDescription:
-    "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+    "your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
   twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
 });
 </script>
 
@@ -47,7 +46,7 @@ useSeoMeta({
 
             <template #not-found>
               <br /><br /><br /><br />
-              <p class="text-4xl text-center">No articles found 🫣 </p>
+              <p class="text-4xl text-center">Sorry ! I'm not yet inspired 😮‍💨 </p>
             </template>
 
             <template #empty>
