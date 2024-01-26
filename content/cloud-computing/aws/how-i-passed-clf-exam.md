@@ -1,8 +1,8 @@
 ---
-title: "Unlocking the Cloud: My Journey to AWS Cloud Practitioner Certification"
-description: Follow my journey to AWS Cloud Practitioner Certification—an exploration of cloud concepts, exam success, and the boundless opportunities in the world of AWS.
-tags: [ AWS, Certification, Cloud ]
-topics: [ aws, certification ]
+title: My Journey to AWS Cloud Practitioner Certification
+description: Follow my journey to AWS Cloud Practitioner Certification—an exploration of cloud-computing concepts, exam success, and the boundless opportunities in the world of AWS.
+tags: [ AWS, Certification ]
+topics: [ aws, cloud-computing ]
 date: 2023-11-09
 slug: how-i-passed-aws-cloud-practitioner-exam
 img: "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/badges/eondglodvvgm9s9gietk"
