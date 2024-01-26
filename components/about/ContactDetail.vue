@@ -59,7 +59,7 @@
       </NuxtLink>
 
       <NuxtLink
-        to="www.linkedin.com/in/denis-akpagnonite-49868b171"
+        to="https://linkedin.com/in/denis-akpagnonite-49868b171"
         target="_blank"
       >
         <div
