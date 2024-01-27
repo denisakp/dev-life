@@ -2,6 +2,7 @@
 import Header from "~/components/shared/Header.vue";
 import Bottom from "~/components/shared/Bottom.vue";
 import Footer from "~/components/shared/Footer.vue";
+import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -66,6 +67,7 @@ useHead({
     class="w-full bg-white dark:bg-dark-high text-dark-high dark:text-white"
     :class="$colorMode.preference === 'dark' ? 'dark' : ''"
   >
+    <SpeedInsights />
     <Header />
     <main class="pt-20 md:pt-24 min-h-screen">
       <NuxtPage />
