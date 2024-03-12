@@ -51,10 +51,10 @@ useSeoMeta({
           </p>
 
           <p class="mt-5">
-            In a nutshell, I'm a <span class="font-bold">passionate web artisan</span>, a <span class="hightlighted">DevOps/Cloud Native expert</span>,
-            and an enthusiastic advocate for <span class="font-medium">open source</span>. I'm constantly seeking new
-            challenges and eager to bring my
-            skills and experience to design, build, develop, test, deploy and maintain real world projects.
+            In a nutshell, I'm a <span class="font-bold">passionate web artisan</span>, a <span class="hightlighted">DevOps
+             & Cloud Native expert</span>, and an enthusiastic advocate for <span class="font-medium">open source</span>.
+            I'm constantly seeking new challenges and eager to bring my skills and experience to design, build, develop,
+            test, deploy and maintain real world projects.
           </p>
 
           <h4 class="mt-8 font-medium text-3xl">Academic background</h4>
