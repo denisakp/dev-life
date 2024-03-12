@@ -1,14 +1,14 @@
 const projects = [
   {
     title: "Dev Life (This web site)",
-    description: "Your one-stop destination for all things Software Engineering, Cloud DevOps, AI, and Cyber security.",
+    description: "Level up your DevOps, Cloud, and security skills. Learn how to automate deployments, manage and monitor containerized apps.",
     date: "December 2022",
     tags: ["nuxt3", "nuxt-content", "vercel"],
     github: "https://github.com/denisakp/denisakp.github.io"
   },
   {
     title: "Fake Store API",
-    description: "Fake Store API provides fake data in JSON format for quick e-commerce apps prototyping.",
+    description: "Fake Store API provides fake e-commerce JSON-formatted data for quick e-commerce web and mobile apps prototyping.",
     date: "May 2023",
     tags: ["api", "nextjs", "mongodb"],
     github: "https://github.com/denisakp/fake-store-api",
@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: "Canal Olympia",
-    description: "This project is intended to scrape data from the Canal Olympia official site and provides the data in formatted JSON.",
+    description: "This project is intended to scrape data from the Canal Olympia official site and provides JSON-formatted data.",
     date: "October 2023",
     tags: ["python", "web-scraping", "api"],
     github: "https://github.com/denisakp/canal-olympia-scrapper",
@@ -39,7 +39,7 @@ const projects = [
   },
   {
     title: "Flopin",
-    description: "Flopin is a home made Vercel. I provide a GitHub repository link, and it clone, build and deploy the project in my local minikube cluster.",
+    description: "Flopin is a home made Vercel. I provide a GitHub repository link, and it clone, build and deploy the project in a local k8s cluster.",
     date: "March 2024",
     tags: ["golang", "minio", "devops"],
     github: "https://github.com/denisakp/flopin"

@@ -31,15 +31,33 @@ useSeoMeta({
             I'm <span class="hightlighted">Denis AKPAGNONITE</span>.
           </p>
 
-          <p class="mt-6">I'm a Software Engineering student. My passions include
-            Cloud/DevOps environments and IT automation. I'm also an Open Source advocate, and my will to always improve
-            has helped me to understand the ideas,methods,procedures and developing technology in this ever changing
-            area.
+          <p class="mt-5">I'm a <span class="font-bold">passionate DevOps & Cloud Native ⎈ Engineer</span>
+            with expertise in building and automating
+            scalable web applications and infrastructure.</p>
+
+          <p class="mt-5">
+            <span class="font-bold">More than just a DevOps & Cloud Native Engineer, I'm a digital craftsman.</span>
+            I pour my expertise and passion into every project, building high-performing, elegant, and secure websites
+            and web applications.
           </p>
 
-          <br />
+          <p class="mt-5">
+            <span class="font-bold">Open source is a core value for me</span>. I'm an aspiring contributor to
+            open-source projects and always on the
+            lookout for new ways to share my knowledge and support the community. I recently discovered the power of
+            open source through my participation in the first cohort of the <span class="hightlighted">All In Africa
+            program by GitHub</span>. This experience ignited my passion for contributing and being part of this
+            collaborative movement.
+          </p>
 
-          <h4 class="mt-4 font-medium text-3xl">Academic background</h4>
+          <p class="mt-5">
+            In a nutshell, I'm a <span class="font-bold">passionate web artisan</span>, a <span class="hightlighted">DevOps/Cloud Native expert</span>,
+            and an enthusiastic advocate for <span class="font-medium">open source</span>. I'm constantly seeking new
+            challenges and eager to bring my
+            skills and experience to design, build, develop, test, deploy and maintain real world projects.
+          </p>
+
+          <h4 class="mt-8 font-medium text-3xl">Academic background</h4>
 
           <ul class="mt-4 list-disc ml-4 md:ml-6">
             <li>BSc Software Engineering (3 years), in Lomé - Togo 🇹🇬 </li>
@@ -49,8 +67,7 @@ useSeoMeta({
             </li>
           </ul>
 
-          <br />
-          <h4 class="mt-4 font-medium text-3xl">Mentions</h4>
+          <h4 class="mt-8 font-medium text-3xl">Mentions</h4>
 
           <p class="mt-4">
             I took over the

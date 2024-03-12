@@ -6,7 +6,7 @@ const { data: navigation } = await useAsyncData("navigation", () =>
 );
 
 const query = {
-  limit: 5,
+  limit: 4,
   sort: { date: -1 },
   only: ["title", "description", "tags", "_path", "date"]
 };
