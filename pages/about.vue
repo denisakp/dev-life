@@ -1,23 +1,21 @@
 <script setup>
 import ContactDetail from "~/components/about/ContactDetail.vue";
 import skills from "~/data/skills";
+import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 
 useSeoMeta({
-  title: "About me",
-  description: "your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
+  title: "About me - DENIS AKPAGNONITE",
+  description: META_DESCRIPTION,
+
   ogTitle: "About me - Denis AKPAGNONITE",
-  ogDescription:
-    "your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogDescription: META_DESCRIPTION,
+  ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me/about",
 
   twitterCard: "summary_large_image",
   twitterTitle: "About me - Denis AKPAGNONITE",
-  twitterDescription:
-    "your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
+  twitterDescription: META_DESCRIPTION,
+  twitterImage: META_IMAGE
 });
 </script>
 
@@ -44,9 +42,9 @@ useSeoMeta({
           <h4 class="mt-4 font-medium text-3xl">Academic background</h4>
 
           <ul class="mt-4 list-disc ml-4 md:ml-6">
-            <li>BSc Software Engineering (3 years), in Lomé, Togo 🇹🇬 </li>
+            <li>BSc Software Engineering (3 years), in Lomé - Togo 🇹🇬 </li>
             <li>
-              MSc (Engineer's Degree), Software Engineering track (in
+              MEng, Software Engineering track (in
               progress), in Casablanca, Morocco 🇲🇦 
             </li>
           </ul>

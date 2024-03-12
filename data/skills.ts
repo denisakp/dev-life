@@ -12,15 +12,13 @@ const skills = [
       {
         name: "Google Cloud",
         slug: "gcp",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
         description: "Google Cloud Platform services"
       },
       {
         name: "AWS",
         slug: "aws",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
         description: "Amazon Web Services cloud-computing"
       }
     ]
@@ -31,15 +29,13 @@ const skills = [
       {
         name: "Terraform",
         slug: "terraform",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original-wordmark.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg",
         description: "Infrastructure as Code tool by HashiCorp"
       },
       {
         name: "Ansible",
         slug: "ansible",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original-wordmark.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-plain.svg",
         description: "Ansible"
       }
     ]
@@ -50,16 +46,20 @@ const skills = [
       {
         name: "Docker",
         slug: "docker",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
         description: "Open-source platform for containerization"
       },
       {
         name: "Kubernetes",
         slug: "kubernetes",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
         description: "Container orchestration platform"
+      },
+      {
+        name: "Helm",
+        slug: "helm",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/helm/helm-original.svg",
+        description: "A tool for managing k8s applications with charts"
       }
     ]
   },
@@ -77,7 +77,7 @@ const skills = [
         name: "GitLab CI",
         slug: "gitlab-ci",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original-wordmark.svg",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
         description: "CI/CD automation toolset by GitLab"
       },
       {
@@ -89,7 +89,7 @@ const skills = [
       },
       {
         name: "ArgoCD",
-        slug: "argo-cd",
+        slug: "argocd",
         image:
           "https://www.vectorlogo.zone/logos/argoprojio/argoprojio-icon.svg",
         description: "A declarative GitOps CD for Kubernetes"
@@ -102,57 +102,48 @@ const skills = [
     techs: [
       {
         name: "Github",
-        slug: "github-actions",
+        slug: "github",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
         description: "Web-based platform for collaboration"
       },
       {
         name: "GitLab",
         slug: "gitlab",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original-wordmark.svg",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
         description: "The most comprehensive DevSecOps Platform"
       },
       {
         name: "BitBucket",
         slug: "bitbucket",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bitbucket/bitbucket-original-wordmark.svg",
-        description: "Git-based code tool for teams using Jira"
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bitbucket/bitbucket-original.svg",
+        description: "Collaborative platform that integrates with Jira"
       }
     ]
   },
   {
-    title: "Monitoring & Static code analysis",
+    title: "Logging, Monitoring & Visualization",
     techs: [
       {
         name: "Prometheus",
         slug: "prometheus",
         image:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg",
-        description: "An open-source monitoring system"
-      },
-      {
-        name: "ELK",
-        slug: "elk",
-        image:
-          "https://www.vectorlogo.zone/logos/elastic/elastic-icon.svg",
-        description: "Highly extensible stack for logs and data analysis"
+        description: "The preferred toolkit for monitoring and altering"
       },
       {
         name: "Grafana",
         slug: "grafana",
         image:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg",
-        description: "open source monitoring and observability tool"
+        description: "A tool for visualising and analyzing metrics"
       },
       {
-        name: "SonarQube",
-        slug: "sonarqube",
-        image:
-          "https://img.shields.io/badge/SonarQube-black?style=for-the-badge&logo=sonarqube&logoColor=4E9BCD",
-        description: "continuous code quality inspection tool"
+        name: "Open Telemetry",
+        slug: "open-telemetry",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opentelemetry/opentelemetry-original.svg",
+        description: "A toolkit for creating and managing telemetry data"
       }
     ]
   },
@@ -171,7 +162,7 @@ const skills = [
         name: "Python",
         slug: "python",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
         description: "Dynamic, high-level programming language"
       },
       {
@@ -197,9 +188,8 @@ const skills = [
     techs: [
       {
         name: "Nest Js",
-        slug: "2.nest-js",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg",
+        slug: "nest-js",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
         description: "Expressive, modular TypeScript framework"
       },
       {
@@ -211,10 +201,16 @@ const skills = [
       },
       {
         name: "Laravel",
-        slug: "1.laravel",
-        image:
-          "https://www.vectorlogo.zone/logos/laravel/laravel-icon.svg",
+        slug: "laravel",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
         description: "Elegant, feature-rich PHP framework"
+      },
+      {
+        name: "Gin web framework",
+        slug: "gin",
+        image:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+        description: "Fastest web framework written in Golang"
       }
     ]
   },
@@ -240,14 +236,13 @@ const skills = [
         name: "MongoDB",
         slug: "mongodb",
         image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original-wordmark.svg",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
         description: "Document-oriented NoSQL database"
       },
       {
         name: "Redis",
         slug: "redis",
-        image:
-          "https://www.vectorlogo.zone/logos/redis/redis-icon.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
         description: "In-memory, key-value data store"
       }
     ]
@@ -259,30 +254,20 @@ const skills = [
       {
         name: "Pandas",
         slug: "pandas",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original-wordmark.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
         description: "Data structure and Data analysis library"
       },
       {
         name: "TensorFlow",
         slug: "tensor-flow",
-        image:
-          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
         description: "ML framework made by Google"
       },
       {
         name: "OpenCV",
         slug: "opencv",
-        image:
-          "https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg",
+        image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
         description: "Computer vision & ML software library"
-      },
-      {
-        name: "Seaborn",
-        slug: "seaborn",
-        image:
-          "https://seaborn.pydata.org/_images/logo-wide-lightbg.svg",
-        description: "Data Viz library based on Matplotlib"
       }
     ]
   }

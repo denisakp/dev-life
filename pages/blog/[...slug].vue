@@ -16,10 +16,12 @@ const [prev, next] = await queryContent()
 useSeoMeta({
   title: article.title,
   description: article.description,
+
   ogTitle: article.title + " - Denis AKPAGNONITE",
   ogDescription: article.description,
   ogImage: article.img,
   ogUrl: "https://denisakp.me" + path,
+
   twitterCard: "summary_large_image",
   twitterTitle: article.title + " - Denis AKPAGNONITE",
   twitterDescription: article.description,

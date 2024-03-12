@@ -7,12 +7,6 @@ const topics = [
 
   },
   {
-    title: "Design Patterns",
-    slug: "design-pattern",
-    description: " ",
-    iconPath: "/images/techs/software-engineering.png"
-  },
-  {
     title: "Cloud",
     slug: "cloud-computing",
     description: "",

@@ -2,7 +2,7 @@
 import Pagination from "~/components/shared/Pagination.vue";
 import {
   DEFAULT_PAGINATION_LIMIT,
-  DEFAULT_PAGINATION_SORT
+  DEFAULT_PAGINATION_SORT, META_DESCRIPTION, META_IMAGE
 } from "~/utils/config";
 
 const loadContent = async (skip, limit) =>
@@ -52,20 +52,18 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: "Blog",
-  description: "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
+  title: "Blog - Denis AKPAGNONITE",
+  description: META_DESCRIPTION,
+
   ogTitle: "Blog - Denis AKPAGNONITE",
-  ogDescription:
-    "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogDescription: META_DESCRIPTION,
+  ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me",
+
   twitterCard: "summary_large_image",
   twitterTitle: "Blog - Denis AKPAGNONITE",
-  twitterDescription:
-    "Your one-stop destination for all things software engineering, Cloud DevOps, AI, and cyber security",
-  twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
+  twitterDescription: META_DESCRIPTION,
+  twitterImage: META_IMAGE
 });
 </script>
 

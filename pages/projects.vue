@@ -1,18 +1,20 @@
 <script setup>
 import projects from "../data/projects";
+import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 
 useSeoMeta({
-  title: "Projects",
-  description: "My open source projects",
+  title: "Projects - Denis AKPAGNONITE",
+  description: META_DESCRIPTION,
+
   ogTitle: "Projects - Denis AKPAGNONITE",
-  ogDescription: "My open source projects",
-  ogImage: "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  ogDescription: META_DESCRIPTION,
+  ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me",
+
   twitterCard: "summary_large_image",
   twitterTitle: "Projects - Denis AKPAGNONITE",
-  twitterDescription: "My open source projects",
-  twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
+  twitterDescription: META_DESCRIPTION,
+  twitterImage: META_IMAGE
 });
 </script>
 

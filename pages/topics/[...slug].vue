@@ -67,10 +67,12 @@ onMounted(() => {
 useSeoMeta({
   title: techno.name,
   description: techno.description,
+
   ogTitle: techno.name + " - Denis AKPAGNONITE",
   ogDescription: techno.description,
   ogImage: techno.image,
   ogUrl: "https://denisakp.me/topics/" + techno.name,
+
   twitterCard: "summary_large_image",
   twitterTitle: techno.name + " - Denis AKPAGNONITE",
   twitterDescription: techno.description,

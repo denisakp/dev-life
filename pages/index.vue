@@ -1,4 +1,6 @@
 <script setup>
+import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
+
 const { data: navigation } = await useAsyncData("navigation", () =>
   fetchContentNavigation()
 );
@@ -10,21 +12,18 @@ const query = {
 };
 
 useSeoMeta({
-  title: "Home",
-  description: "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  ogTitle: "Home - Denis AKPAGNONITE",
-  ogDescription:
-    "Your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  ogImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g",
+  title: "Welcome - Denis AKPAGNONITE",
+  description: META_DESCRIPTION,
+
+  ogTitle: "Welcome - Denis AKPAGNONITE",
+  ogDescription: META_DESCRIPTION,
+  ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me",
 
   twitterCard: "summary_large_image",
-  twitterTitle: "Home - Denis AKPAGNONITE",
-  twitterDescription:
-    "your one-stop destination for all things software engineering, Cloud, DevOps, AI, and cyber security",
-  twitterImage:
-    "https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
+  twitterTitle: "Welcome - Denis AKPAGNONITE",
+  twitterDescription: META_DESCRIPTION,
+  twitterImage: META_IMAGE
 });
 </script>
 
