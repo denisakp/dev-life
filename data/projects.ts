@@ -7,12 +7,11 @@ const projects = [
     github: "https://github.com/denisakp/denisakp.github.io"
   },
   {
-    title: "Fake Store API",
-    description: "Fake Store API provides fake e-commerce JSON-formatted data for quick e-commerce web and mobile apps prototyping.",
-    date: "May 2023",
-    tags: ["api", "nextjs", "mongodb"],
-    github: "https://github.com/denisakp/fake-store-api",
-    preview: "https://fake-store-api-sigma.vercel.app"
+    title: "Expressjs MongoDB Docker",
+    description: "This project demonstrates how to integrate Express.js, with MongoDB database, all containerized with Docker.",
+    date: "April 2024",
+    tags: ["node.js", "mongo", "docker"],
+    github: "https://github.com/denisakp/expressjs-mongo-docker"
   },
   {
     title: "SangSue",
@@ -38,11 +37,12 @@ const projects = [
     github: "https://github.com/denisakp/awesome-nest-js"
   },
   {
-    title: "Flopin",
-    description: "Flopin is a home made Vercel. I provide a GitHub repository link, and it clone, build and deploy the project in a local k8s cluster.",
-    date: "March 2024",
-    tags: ["golang", "minio", "devops"],
-    github: "https://github.com/denisakp/flopin"
+    title: "Fake Store API",
+    description: "Fake Store API provides fake e-commerce JSON-formatted data for quick e-commerce web and mobile apps prototyping.",
+    date: "May 2023",
+    tags: ["api", "nextjs", "mongodb"],
+    github: "https://github.com/denisakp/fake-store-api",
+    preview: "https://fake-store-api-sigma.vercel.app"
   }
 ];
 export default projects;
