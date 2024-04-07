@@ -1,13 +1,13 @@
 const skills = [
   {
-    title: "Cloud providers",
+    title: "Cloud",
     techs: [
       {
         name: "DigitalOcean",
         slug: "digitalocean",
         image:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
-        description: "Scalable cloud-computing infrastructure provider"
+        description: "Scalable cloud infrastructure provider"
       },
       {
         name: "Google Cloud",
@@ -36,7 +36,7 @@ const skills = [
         name: "Ansible",
         slug: "ansible",
         image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-plain.svg",
-        description: "Ansible"
+        description: "Powerful automation platform by RedHat "
       }
     ]
   },
