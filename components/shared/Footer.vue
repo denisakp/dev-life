@@ -5,7 +5,7 @@
     <span
       class="text-sm text-gray-500 items-center sm:text-center dark:text-gray-400"
     >
-      © 2022 - {{ new Date().getUTCFullYear() }} |
+      © 2022 - {{ new Date().getUTCFullYear() }} -
       <NuxtLink to="/" class="hover-underline">
         Denis AKPAGNONITE | Nine October
       </NuxtLink>

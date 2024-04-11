@@ -54,14 +54,14 @@ useHead({
   <div class="page-bg">
     <div class="container">
       <div class="w-full">
-        <div class="img-cont mb-12">
+        <div v-if="article.img" class="img-cont mb-12">
           <nuxt-img
             :src="article.img"
             :alt="article.title"
           />
         </div>
         <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
-        <p class="pt-4 mt-2 mb-4 md:mb-8 dark-text">
+        <p v-if="article.description" class="pt-4 mt-2 mb-4 md:mb-8 dark-text">
           {{ article.description }}
         </p>
       </div>

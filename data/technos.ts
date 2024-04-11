@@ -4,7 +4,7 @@ const technos = [
     techs: [
       {
         name: "Algorithms",
-        slug: "1.data-structure-algorithms",
+        slug: "_1.data-structure-algorithms",
         image:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thealgorithms/thealgorithms-original.svg",
         description: "Coding Game, Challenges"

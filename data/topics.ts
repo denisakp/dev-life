@@ -2,7 +2,7 @@ const topics = [
   {
     title: "DSA",
     slug: "data-structure-algorithms",
-    description: "Explore the fundamental building blocks of computer science through the study of data structures and 1.data-structure-algorithms, essential for designing efficient and optimized software solutions.",
+    description: "Explore the fundamental building blocks of computer science through the study of algorithms and data structures, essential for designing efficient and optimized software solutions.",
     iconPath: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thealgorithms/thealgorithms-original.svg"
 
   },
