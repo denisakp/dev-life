@@ -287,7 +287,7 @@ multi-stage Docker builds reduce final image size without sacrificing security o
 incorporating Jest for end-to-end testing ensures that the application is reliable and resilient before it goes live.
 Finally, Nginx as a reverse proxy improves performance while also providing an added layer of protection.
 
-Whether you're an experienced developer or new to Docker, this arrangement is intended to strike
+Whether you're an experienced developer or new to Docker, this guide is intended to strike
 a balance between simplicity, security, and performance, making it an excellent starting point for delivering scalable
 and efficient web apps.
 
