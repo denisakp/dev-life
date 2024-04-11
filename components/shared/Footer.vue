@@ -7,7 +7,7 @@
     >
       © 2022 - {{ new Date().getUTCFullYear() }} |
       <NuxtLink to="/" class="hover-underline">
-        Denis AKPAGNONITE (Nine October) 😎 
+        Denis AKPAGNONITE | Nine October
       </NuxtLink>
     </span>
   </footer>
