@@ -1,4 +1,5 @@
 <script setup>
+import SwitchTheme from "./SwitchTheme.vue";
 
 const query = ref("");
 const posts = ref([]);
@@ -184,6 +185,7 @@ watch(query, async (newValue) => {
           </span>
         </button>
 
+        <SwitchTheme />
 
       </div>
     </div>
