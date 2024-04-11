@@ -31,30 +31,33 @@ useSeoMeta({
           I'm <span class="hightlighted">Denis AKPAGNONITE</span>
         </p>
 
-        <p class="mt-5">I'm a
-          <span class="font-bold"> Software Engineer </span> specializing in <span class="font-bold">DevOps & Cloud Native ⎈ technologies.</span>
-          I have experience designing and automating scalable web apps and infrastructure.</p>
+        <p class="mt-5">I'm a dedicated
+          <span class="font-bold"> Software Engineer </span> specializing in
+          <span class="font-bold">DevOps & Cloud Native ⎈ technologies.</span>
+          My journey in Tech is driven by my enthusiasm for designing and
+          implementing scalable web applications and infrastructures that
+          leverage the latest in cloud advancements.</p>
 
         <p class="mt-5">
-          <span class="font-bold">More than just a DevOps & Cloud Native Engineer, I'm a digital craftsman.</span>
-          I pour my expertise and passion into every project, building high-performing, elegant, and secure websites
-          and web applications.
+          My work mindset is built around a strong commitment to open source.
+          I actively participate in open-source projects, motivated by a
+          conviction in collaboration and knowledge sharing. My involvement in
+          <span class="hightlighted">GitHub's All In Africa</span> program was a transformative experience that
+          fueled my desire to contribute to and advocate for the open-source
+          community.
         </p>
 
         <p class="mt-5">
-          <span class="font-bold">Open source is a core value for me</span>. I'm an aspiring contributor to
-          open-source projects and always on the
-          lookout for new ways to share my knowledge and support the community. I recently discovered the power of
-          open source through my participation in the first cohort of the <span class="hightlighted">All In Africa
-            program by GitHub</span>. This experience ignited my passion for contributing and being part of this
-          collaborative movement.
+          My expertise lies at the intersection of Software Engineering, Cloud Native solutions, and technical writing.
+          I am an aspiring thought leader in these areas, constantly seeking out new challenges. Whether it's
+          developing, testing, deploying, or maintaining robust projects, I am passionate about applying my skills to
+          create impactful real-world solutions.
         </p>
 
         <p class="mt-5">
-          In a nutshell, I'm a <span class="font-bold">passionate web artisan</span>, a <span class="hightlighted">DevOps
-             & Cloud Native expert</span>, and an enthusiastic advocate for <span class="font-medium">open source</span>.
-          I'm constantly seeking new challenges and eager to bring my skills and experience to design, build, develop,
-          test, deploy and maintain real world projects.
+          In essence, I am more than simply a software engineer; I am a strong supporter of open source, a Cloud Native
+          fan, and an aspiring DevOps specialist. My goal is to continue growing, learning, and making meaningful
+          contributions to the technology industry.
         </p>
 
         <h4 class="mt-8 font-medium text-3xl">Academic background</h4>
