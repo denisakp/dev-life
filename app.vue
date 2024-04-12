@@ -69,7 +69,7 @@ useHead({
   >
     <SpeedInsights />
     <Header />
-    <main class="min-h-screen">
+    <main class="pt-16 md:pt-24 min-h-screen">
       <NuxtPage />
     </main>
     <Bottom />

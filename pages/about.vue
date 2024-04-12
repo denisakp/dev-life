@@ -77,9 +77,9 @@ useSeoMeta({
           <NuxtLink target="_blank" to="https://loopbin.dev"
           ><span class="highlighted">Loopbin</span></NuxtLink
           >
-          project initially created by
-          <span class="highlighted">Ayao Corneille ALLOGBALO</span> which I
-          simply customized because I suck when it comes to the UI.
+          project which was originally designed by
+          <span class="highlighted">Ayao Corneille ALLOGBALO</span> and I simply customized it because I'm terrible when
+          it comes to the UI design.
         </p>
       </div>
 
