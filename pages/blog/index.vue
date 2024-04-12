@@ -72,7 +72,7 @@ useSeoMeta({
     <div class="container">
       <h5 class="text-2xl">
         A total of
-        <span class="hightlighted"> {{ totalArticles }} </span> posts
+        <span class="highlighted"> {{ totalArticles }} </span> posts
       </h5>
       <div class="flex flex-wrap my-4">
         <div

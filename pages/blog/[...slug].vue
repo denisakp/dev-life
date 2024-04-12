@@ -16,6 +16,7 @@ const [prev, next] = await queryContent()
 useSeoMeta({
   title: article.title,
   description: article.description,
+  keywords: article.tags.toString(),
 
   ogTitle: article.title + " - Denis AKPAGNONITE",
   ogDescription: article.description,
@@ -60,14 +61,16 @@ useHead({
             :alt="article.title"
           />
         </div>
-        <h3 class="text-5xl my-2 dark-text">{{ article.title }}</h3>
+        <h3 class="text-5xl mt-0 my-2 dark-text">{{ article.title }}</h3>
         <p v-if="article.description" class="pt-4 mt-2 mb-4 md:mb-8 dark-text">
           {{ article.description }}
         </p>
       </div>
 
       <!-- Toc Component -->
-      <Toc :links="article.body.toc.links" />
+      <div class="w-full">
+        <Toc :links="article.body.toc.links" />
+      </div>
 
       <div class="w-full">
         <content-renderer :value="article">

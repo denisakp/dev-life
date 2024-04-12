@@ -28,7 +28,7 @@ useSeoMeta({
         <h3 class="text-center my-4 text-3xl">👋 Nice to meet you</h3>
 
         <p class="text-3xl">
-          I'm <span class="hightlighted">Denis AKPAGNONITE</span>
+          I'm <span class="highlighted">Denis AKPAGNONITE</span>
         </p>
 
         <p class="mt-5">I'm a dedicated
@@ -42,7 +42,7 @@ useSeoMeta({
           My work mindset is built around a strong commitment to open source.
           I actively participate in open-source projects, motivated by a
           conviction in collaboration and knowledge sharing. My involvement in
-          <span class="hightlighted">GitHub's All In Africa</span> program was a transformative experience that
+          <span class="highlighted">GitHub's All In Africa</span> program was a transformative experience that
           fueled my desire to contribute to and advocate for the open-source
           community.
         </p>
@@ -75,10 +75,10 @@ useSeoMeta({
         <p class="mt-4">
           I took over the
           <NuxtLink target="_blank" to="https://loopbin.dev"
-          ><span class="hightlighted">Loopbin</span></NuxtLink
+          ><span class="highlighted">Loopbin</span></NuxtLink
           >
           project initially created by
-          <span class="hightlighted">Ayao Corneille ALLOGBALO</span> which I
+          <span class="highlighted">Ayao Corneille ALLOGBALO</span> which I
           simply customized because I suck when it comes to the UI.
         </p>
       </div>

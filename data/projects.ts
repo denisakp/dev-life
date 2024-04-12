@@ -14,18 +14,17 @@ const projects = [
     github: "https://github.com/denisakp/expressjs-mongo-docker"
   },
   {
-    title: "SangSue",
-    description: "SangSue is a web scraping tool for website traversal, link discovery, and data extraction within a domain.",
-    date: "September 2023",
-    tags: ["python", "web-scraping", "api"],
-    github: "https://github.com/denisakp/sangsue",
-    preview: "https://denisakp.github.io/sangsue/"
+    title: "Quotes Scraping Tool",
+    description: "An open-source project designed to introduce enthusiasts to the world of open source participation. ",
+    date: "April 2024",
+    tags: ["python", "scraping", "open-source"],
+    github: "https://github.com/blablageeks/quotes-scraping-tool"
   },
   {
     title: "Canal Olympia",
     description: "This project is intended to scrape data from the Canal Olympia official site and provides JSON-formatted data.",
     date: "October 2023",
-    tags: ["python", "web-scraping", "api"],
+    tags: ["python", "scraping", "open-source"],
     github: "https://github.com/denisakp/canal-olympia-scrapper",
     preview: "https://denisakp.github.io/canal-olympia-scrapper/"
   },
@@ -33,7 +32,7 @@ const projects = [
     title: "Awesome NestJS",
     description: "This is the public repository of my NestJS Series, where we explore the ins and outs of NestJS framework.",
     date: "September 2023",
-    tags: ["nest-js", "mirco-service", "API"],
+    tags: ["nest-js", "mirco-service", "api"],
     github: "https://github.com/denisakp/awesome-nest-js"
   },
   {
