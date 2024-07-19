@@ -19,7 +19,7 @@ const skills = [
         name: "AWS",
         slug: "aws",
         image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-        description: "Amazon Web Services cloud-computing"
+        description: "Amazon Web Services"
       }
     ]
   },

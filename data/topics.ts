@@ -1,14 +1,14 @@
 const topics = [
   {
-    title: "DSA",
-    slug: "data-structure-algorithms",
+    title: "Data Structure",
+    slug: "dsa",
     description: "Explore the fundamental building blocks of computer science through the study of algorithms and data structures, essential for designing efficient and optimized software solutions.",
     iconPath: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/thealgorithms/thealgorithms-original.svg"
 
   },
   {
     title: "Cloud",
-    slug: "cloud-computing",
+    slug: "cloud",
     description: "",
     iconPath: "/images/techs/cloud-computing.png"
   },
@@ -31,8 +31,8 @@ const topics = [
     iconPath: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
   },
   {
-    title: "Framework",
-    slug: "frameworks",
+    title: "Backend",
+    slug: "backend",
     description: "",
     iconPath: "/images/techs/frameworks.png"
   }

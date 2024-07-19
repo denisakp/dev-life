@@ -55,16 +55,7 @@ useHead({
   <div class="page-bg">
     <div class="container">
       <div class="w-full">
-        <div v-if="article.img" class="img-cont mb-12">
-          <nuxt-img
-            :src="article.img"
-            :alt="article.title"
-          />
-        </div>
-        <h3 class="text-5xl mt-0 my-2 dark-text">{{ article.title }}</h3>
-        <p v-if="article.description" class="pt-4 mt-2 mb-4 md:mb-8 dark-text">
-          {{ article.description }}
-        </p>
+        <h3 class="text-5xl text-center mt-0 my-2">{{ article.title }}</h3>
       </div>
 
       <!-- Toc Component -->
@@ -72,7 +63,7 @@ useHead({
         <Toc :links="article.body.toc.links" />
       </div>
 
-      <div class="w-full">
+      <div class="w-full text-justify">
         <content-renderer :value="article">
           <template #empty>
             <p>No content found.</p>
@@ -92,6 +83,7 @@ useHead({
 
 <style scoped>
 .img-cont img {
-  @apply h-72 w-full object-cover;
+
+  @apply mx-auto h-auto max-w-full  ;
 }
 </style>

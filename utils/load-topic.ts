@@ -1,4 +1,3 @@
-import techno from "~/data/technos";
 import topics from "~/data/topics";
 
 export default function loadTopic(slug: string) {

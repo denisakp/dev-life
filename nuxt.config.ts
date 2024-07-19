@@ -1,29 +1,32 @@
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
+
   modules: [
     "@nuxtjs/tailwindcss",
-    "@nuxt/image-edge",
     "@nuxt/content",
     "@nuxtjs/color-mode",
-    "nuxt-simple-sitemap"
+    "@nuxt/image",
+    "@nuxtjs/mdc",
+    "@nuxtjs/sitemap",
+    "@nuxtjs/robots"
   ],
-  // @ts-ignore
+
   css: ["@/assets/styles/main.css", "@/assets/styles/typography.css"],
-  // @ts-ignore
   extends: ["@nuxt-themes/typography"],
+
   colorMode: {
     classSuffix: ""
   },
+
   content: {
     highlight: {
-      theme: {
-        default: "github-light",
-        dark: "github-dark"
-      }
-    }
+      theme: 'github-light'
+    },
+    documentDriven: true,
   },
-  // @ts-ignore
+
   ssr: true,
+
   nitro: {
     compressPublicAssets: true,
     prerender: {
@@ -31,14 +34,24 @@ export default defineNuxtConfig({
       routes: ["/", "/sitemap.xml"]
     }
   },
-  sitemap: {
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me",
-    // @ts-ignore
-    changefreq: "weekly"
-  },
+
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me"
     }
-  }
+  },
+
+  site: {
+    url: "https://denisakp.me",
+  },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+      ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
+    }
+  },
+
+  compatibilityDate: "2024-07-18"
 });

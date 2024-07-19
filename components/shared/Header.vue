@@ -1,7 +1,6 @@
 <script setup>
-import SwitchTheme from "./SwitchTheme.vue";
 
-const query = ref("");
+const query = ref('');
 const posts = ref([]);
 
 const modalState = ref(false);
@@ -33,9 +32,7 @@ watch(query, async (newValue) => {
   <nav
     class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10"
   >
-    <div
-      class="container flex items-center justify-between text-dark dark:text-dark-low"
-    >
+    <div class="container flex items-center justify-between text-dark dark:text-dark-low" >
       <nuxt-link to="/">
         <nuxt-img
           src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
@@ -184,8 +181,6 @@ watch(query, async (newValue) => {
             </svg>
           </span>
         </button>
-
-        <SwitchTheme />
 
       </div>
     </div>
