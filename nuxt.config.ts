@@ -1,28 +1,30 @@
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/content",
-    "@nuxtjs/color-mode",
     "@nuxt/image",
     "@nuxtjs/mdc",
     "@nuxtjs/sitemap",
-    "@nuxtjs/robots"
+    "@nuxtjs/robots",
+    "@nuxtjs/color-mode"
   ],
 
   css: ["@/assets/styles/main.css", "@/assets/styles/typography.css"],
+
   extends: ["@nuxt-themes/typography"],
 
   colorMode: {
-    classSuffix: ""
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
   },
 
   content: {
     highlight: {
       theme: 'github-light'
     },
-    documentDriven: true,
   },
 
   ssr: true,
@@ -31,13 +33,13 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/sitemap.xml"]
+      routes: ["/", "/sitemap.xml", "/robots.txt"],
     }
   },
 
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://denisakp.me"
+      siteUrl: "https://denisakp.me"
     }
   },
 

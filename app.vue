@@ -1,8 +1,9 @@
 <script setup>
+import { SpeedInsights } from "@vercel/speed-insights/nuxt";
+
 import Header from "~/components/shared/Header.vue";
 import Bottom from "~/components/shared/Bottom.vue";
 import Footer from "~/components/shared/Footer.vue";
-import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 
 useHead({
   titleTemplate: (titleChunk) => {
