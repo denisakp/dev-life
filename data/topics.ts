@@ -9,31 +9,31 @@ const topics = [
   {
     title: "Cloud",
     slug: "cloud",
-    description: "",
+    description: "Explore the cloud computing ecosystem articles, tutorials, and resources to help you get started with cloud computing.",
     iconPath: "/images/techs/cloud-computing.png"
   },
   {
     title: "IaC",
     slug: "iac",
-    description: "",
+    description: "Explore the Infrastructure as Code (IaC) ecosystem articles, tutorials, and resources to help you get started with IaC.",
     iconPath: "/images/techs/iac.png"
   },
   {
     title: "DevOps",
     slug: "devops",
-    description: "DevOps description",
+    description: "Explore the DevOps ecosystem articles, tutorials, and resources to help you get started with DevOps.",
     iconPath: "/images/techs/devops.png"
   },
   {
     title: "Kubernetes",
     slug: "kubernetes",
-    description: "",
+    description: "Explore the Kubernetes ecosystem articles, tutorials, and resources to help you get started with Kubernetes.",
     iconPath: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
   },
   {
     title: "Backend",
     slug: "backend",
-    description: "",
+    description: "Explore the backend ecosystem articles, tutorials, and resources to help you get started with backend development.",
     iconPath: "/images/techs/frameworks.png"
   }
 ];
