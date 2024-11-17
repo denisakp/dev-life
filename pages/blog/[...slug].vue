@@ -40,11 +40,6 @@ useSeoMeta({
       <h3 class="text-3xl text-blue font-bold mt-0 my-2">{{ article.title }}</h3>
     </div>
 
-    <!-- Toc Component
-    <div >
-      <Toc :links="article.body.toc.links" />
-    </div> -->
-
     <div class="max-w-none lg:prose-lg prose">
       <content-renderer :value="article">
         <template #empty>
@@ -75,9 +70,3 @@ useSeoMeta({
 
   </div>
 </template>
-
-<style scoped>
-.img-cont img {
-  @apply mx-auto h-auto max-w-full;
-}
-</style>

@@ -51,7 +51,8 @@ useHead({
     { name: "author", content: "Denis AKPAGNONITE" },
     { name: "robots", content: "index, follow" },
     { name: "format-detection", content: "telephone=no" },
-    { name: "og:type", content: "website" }
+    { name: "og:type", content: "website" },
+    { name: "og:site_name", content: "Denis AKPAGNONITE"}
   ],
   script: [
     { src: "https://www.googletagmanager.com/gtag/js?id=G-D4WS1344ML", async: true },
