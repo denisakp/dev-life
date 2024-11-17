@@ -7,6 +7,13 @@ const projects = [
     github: "https://github.com/denisakp/denisakp.github.io"
   },
   {
+    title: "Sentinel",
+    description: "Sentinel an open-source backup and restoration tool designed for seamless management of PostgreSQL, MySQL, and MongoDB databases, in Docker, Kubernetes, and local environments",
+    date: "September 2024",
+    tags: ["golang", "kubernetes", "docker", "database"],
+    github: "https://github.com/denisakp/sentinel"
+  },
+  {
     title: "Expressjs MongoDB Docker",
     description: "This project demonstrates how to integrate Express.js, with MongoDB database, all containerized with Docker.",
     date: "April 2024",
