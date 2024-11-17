@@ -62,11 +62,13 @@ useSeoMeta({
         </p>
 
         <p class="mb-12">
-          I currently work on the Mon Ami Albert platform, ensuring reliable and scalable operations for seamless academic support.
+          Currently, I'm a DevOps Specialist & Backend Engineer for <span class="highlighted">Mon Ami Albert</span>,
+          an online tutoring platform that connects teachers with students in need of academic support. I ensure secure,
+          reliable, and accessible platform operations, enabling seamless interactions.
         </p>
 
         <!-- Skills -->
-        <h2 class="text-2xl text-blue font-bold mb-6">🛠️ Skills</h2>
+        <h2 class="text-2xl text-blue font-bold mb-4">🛠️ Skills</h2>
         <ul class="list-disc ml-4 mb-12">
           <li><b>Programming languages</b>: Go, Python, Bash, PHP, TypeScript</li>
           <li><b>CI/CD</b>: GitLab CI, GitHub Actions, Teamcity, Jenkins</li>
@@ -77,7 +79,7 @@ useSeoMeta({
         </ul>
 
         <!-- Contact -->
-        <h2 class="text-2xl text-blue mb-6">📞 Contact</h2>
+        <h2 class="text-2xl text-blue mb-4">📞 Contact</h2>
         <p class="mb-6">
           {{ email  }} (My email address is hidden in ROT47)
         </p>
