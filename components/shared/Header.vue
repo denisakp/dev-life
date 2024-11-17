@@ -30,16 +30,11 @@ watch(query, async (newValue) => {
 
 <template>
   <nav
-    class="fixed flex w-full bg-white dark:bg-dark-high items-center justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low dark:border-dark z-10"
+    class="fixed flex w-full bg-white justify-between flex-wrap top-0 animated mx-auto py-2 md:py-3 h-auto border-b border-dark-low z-10"
   >
-    <div class="container flex items-center justify-between text-dark dark:text-dark-low" >
+    <div class="container flex items-center justify-between text-dark " >
       <nuxt-link to="/">
-        <nuxt-img
-          src="https://res.cloudinary.com/dpdwhd6ka/image/upload/f_auto,q_auto/v1/Blog/images/hbcudyxllyjvbkjxvs7g"
-          class="h-8 w-18 md:h-10 md:w-18"
-          sizes="md:h-10 md:w-18"
-          alt="Dev Life logo"
-        />
+        <div class="text-sm md:text-base text-blue font-bold">&lt; Denis AKPAGNONITE /&gt; </div>
       </nuxt-link>
 
       <div class="hidden md:flex flex-1 w-full mx-auto justify-center">
@@ -135,28 +130,6 @@ watch(query, async (newValue) => {
             </nuxt-link>
           </li>
 
-          <li>
-            <nuxt-link
-              to="/about"
-              active-class="exact-navigation"
-              class="flex px-4 items-center py-2 font-medium slick-hover-blue cursor-pointer rounded-sm"
-            >
-              <span class="mr-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  class="w-6 h-6"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    fill="currentColor"
-                    d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992zm9 8.508a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM7.527 17a4.5 4.5 0 0 1 8.946 0H7.527z"
-                  />
-                </svg>
-              </span>
-              <p class="text-sm">About me</p>
-            </nuxt-link>
-          </li>
         </ul>
       </div>
 
@@ -167,7 +140,7 @@ watch(query, async (newValue) => {
           @click="searchModal"
         >
           <span class="flex space-x-2 items-center px-2">
-            <p class="text-sm font-medium">Searching</p>
+            <p class="text-sm font-medium">Search posts</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -226,7 +199,7 @@ watch(query, async (newValue) => {
                       type="search"
                       autocomplete="off"
                       placeholder="Start typing you query here"
-                      class="slick-border px-6 py-3 md:py-4 w-full shadow-sm border-dark bg-light-dark-low"
+                      class="slick-border px-6 py-3 md:py-4 w-full shadow-sm border-dark bg-light-dark"
                     />
                     <p class="mt-2 text-xs md:text-sm dark-text">
                       Search results

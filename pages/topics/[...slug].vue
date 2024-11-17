@@ -65,23 +65,23 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: techno.name,
+  title: techno.title,
   description: techno.description,
 
-  ogTitle: techno.name + " - Denis AKPAGNONITE",
+  ogTitle: techno.title + " - Denis AKPAGNONITE",
   ogDescription: techno.description,
   ogImage: techno.image,
-  ogUrl: "https://denisakp.me/topics/" + techno.name,
+  ogUrl: "https://denisakp.me/topics/" + techno.title,
 
   twitterCard: "summary_large_image",
-  twitterTitle: techno.name + " - Denis AKPAGNONITE",
+  twitterTitle: techno.title + " - Denis AKPAGNONITE",
   twitterDescription: techno.description,
   twitterImage: techno.image
 });
 </script>
 
 <template>
-  <div class="page-bg">
+  <div class="container">
     <template v-if="techno">
       <template v-if="totalArticles > 0">
         <div class="container">

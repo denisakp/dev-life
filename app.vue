@@ -2,7 +2,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 
 import Header from "~/components/shared/Header.vue";
-import Bottom from "~/components/shared/Bottom.vue";
+import Bottom from "~/components/shared/BottomNav.vue";
 import Footer from "~/components/shared/Footer.vue";
 
 useHead({
@@ -39,7 +39,11 @@ useHead({
       rel: "mask-icon",
       href: "/favicon/safari-pinned-tab.svg"
     },
-    { rel: "manifest", href: "/favicon/site.webmanifest" }
+    { rel: "manifest", href: "/favicon/site.webmanifest" },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;700&family=Inter:wght@400;600;700&display=swap"
+    }
   ],
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
@@ -65,12 +69,11 @@ useHead({
 
 <template>
   <div
-    class="w-full bg-white dark:bg-dark-high text-dark-high dark:text-white"
-    :class="$colorMode.preference === 'dark' ? 'dark' : ''"
+    class="w-full bg-white flex flex-col min-h-screen text-dark-high"
   >
     <SpeedInsights />
     <Header />
-    <main class="pt-16 md:pt-24 min-h-screen">
+    <main class="md:pt-24 page-bg flex-grow">
       <NuxtPage />
     </main>
     <Bottom />

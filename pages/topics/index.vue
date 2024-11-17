@@ -5,7 +5,7 @@ const navigation = await fetchContentNavigation();
 const topics = navigation.filter((item) => item._path !== "/hello-world");
 
 useSeoMeta({
-  title: "Topics - Denis AKPAGNONITE",
+  title: "Topics",
   description: META_DESCRIPTION,
 
   ogTitle: "Topics - Denis AKPAGNONITE",
@@ -21,12 +21,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="page-bg">
-    <div class="container">
-      <h1 class="text-3xl capitalize">
-        Available Subjects: {{ topics.length }}
-      </h1>
-      <Topics :topics="topics" />
-    </div>
+  <div class="container">
+    <h1 class="text-3xl capitalize">
+      Available Subjects: {{ topics.length }}
+    </h1>
+    <Topics :topics="topics" />
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="md:hidden">
     <div
-      class="block fixed inset-x-0 bottom-0 z-10 border-t border-dark-low dark:border-opacity-10 bg-green px-2"
+      class="block fixed inset-x-0 bottom-0 z-10 border-t border-dark-low bg-green px-2"
     >
       <div id="tabs" class="flex justify-between w-full my-1 text-dark">
         <ul
@@ -97,28 +97,7 @@
               <p class="text-xs">Projects</p>
             </nuxt-link>
           </li>
-          <li>
-            <nuxt-link
-              active-class="bg-white bg-opacity-30"
-              to="/about"
-              class="flex flex-col py-2 px-3 items-center hover:bg-white hover:bg-opacity-40 cursor-pointer rounded-sm"
-            >
-              <span class="mb-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  class="w-5 h-5"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    fill="currentColor"
-                    d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992zm9 8.508a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM7.527 17a4.5 4.5 0 0 1 8.946 0H7.527z"
-                  />
-                </svg>
-              </span>
-              <p class="text-xs">About</p>
-            </nuxt-link>
-          </li>
+
         </ul>
       </div>
     </div>

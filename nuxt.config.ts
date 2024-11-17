@@ -8,10 +8,11 @@ export default defineNuxtConfig({
     "@nuxtjs/mdc",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "@nuxtjs/color-mode"
+    "@nuxtjs/color-mode",
+    "@vesp/nuxt-fontawesome",
   ],
 
-  css: ["@/assets/styles/main.css", "@/assets/styles/typography.css"],
+  css: ["@/assets/styles/main.css"],
 
   extends: ["@nuxt-themes/typography"],
 
@@ -23,7 +24,9 @@ export default defineNuxtConfig({
 
   content: {
     highlight: {
-      theme: 'github-light'
+      theme: 'github-light',
+      langs: ['python', 'docker', 'nginx', 'typescript', 'shell', 'js', 'json', 'yml', 'bash'],
+      wrapperStyle: true,
     },
   },
 
@@ -45,6 +48,11 @@ export default defineNuxtConfig({
 
   site: {
     url: "https://denisakp.me",
+    name: 'Denis AKPAGNONITE'
+  },
+
+  sitemap: {
+    cacheMaxAgeSeconds: 3600 // 1 hour
   },
 
   postcss: {
