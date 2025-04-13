@@ -16,7 +16,7 @@ const flattenLinks = (links) => {
 </script>
 
 <template>
-  <div class="h-auto p-4 toc">
+  <div class="mt-2 mx-48 md:mt-8  p-2 toc">
     <p class="text-base lg:text-2xl font-medium mb-2">Summary</p>
     <template v-for="(link, index) of flattenLinks(props.links)" :key="index">
       <li :class="`toc-deep-${link.depth}`">

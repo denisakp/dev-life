@@ -4,27 +4,36 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "nuxi generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "6.6.0",
+    "@fortawesome/free-regular-svg-icons": "6.6.0",
+    "@fortawesome/free-solid-svg-icons": "6.6.0",
+    "@giscus/vue": "3.0.0",
     "@nuxt-themes/tokens": "^2.0.0",
     "@nuxt-themes/typography": "^1.0.0",
-    "@nuxt/content": "^2.7.0",
+    "@nuxt/content": "^2.13.0",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.0.0-rc.1",
-    "@nuxt/image-edge": "^1.0.0-rc.1-28124054.2f62c05",
-    "@nuxtjs/color-mode": "^3.3.0",
-    "@nuxtjs/tailwindcss": "^6.8.0",
-    "@tailwindcss/typography": "^0.5.9",
+    "@nuxt/image": "1.7.0",
+    "@nuxtjs/color-mode": "3.4.2",
+    "@nuxtjs/mdc": "0.8.3",
+    "@nuxtjs/robots": "4.0.1",
+    "@nuxtjs/sitemap": "5.3.5",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^18",
-    "@vueuse/core": "^10.2.0",
-    "nuxt": "3.7.4",
-    "nuxt-simple-sitemap": "^2.7.0",
+    "@vesp/nuxt-fontawesome": "1.1.0",
+    "@vueuse/core": "^10.11.0",
+    "nuxt": "^3.12.0",
     "prettier": "3.0.2",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.4.6"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "1.0.8"
   }
 }

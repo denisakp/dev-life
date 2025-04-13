@@ -7,10 +7,14 @@ defineProps({
   alt: {
     type: String,
     required: true
+  },
+  className: {
+    type: String,
+    default: 'w-full object-contain'
   }
 })
 </script>
 
 <template>
-  <nuxt-img class="w-full object-contain" :src="source" :alt="alt"/>
+  <nuxt-img :class="className" :src="source" :alt="alt"/>
 </template>

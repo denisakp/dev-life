@@ -1,87 +1,87 @@
-@import url("fonts.css");
-
 .container {
-  @apply max-w-5xl 2xl:max-w-9xl px-4 sm:px-10 mx-auto;
+    @apply  max-w-5xl 2xl:max-w-9xl px-4 sm:px-10 mx-auto;
 }
 
 .container-small {
-  @apply max-w-3xl  2xl:max-w-5xl px-4 sm:px-10 mx-auto;
+    @apply max-w-3xl  2xl:max-w-5xl px-4 sm:px-10 mx-auto;
+}
+
+.reading-area {
+    @apply max-w-3xl 2xl:max-w-5xl px-6 sm:px-10 mx-auto justify-center;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .page-bg {
-  @apply bg-white dark:bg-dark-high text-dark-high dark:text-white pb-20 md:pb-12;
+    @apply bg-white text-dark-high pb-20 md:pb-12;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .bg-light-dark {
-  @apply bg-white dark:bg-dark-high text-dark-high dark:text-white;
-}
-
-.bg-light-dark-low {
-  @apply bg-white dark:bg-dark text-dark-high dark:text-white;
+    @apply bg-white text-dark-high;
 }
 
 .exact-navigation {
-  @apply bg-blue text-white;
+    @apply bg-blue text-white;
 }
+
 .exact-navigation:hover {
-  @apply text-dark dark:text-white;
+    @apply text-dark;
 }
 
 .slick-border {
-  @apply border-current dark:border-white dark:border-opacity-20 border;
+    @apply border-current border ;
 }
 
 .darker-text {
-  @apply text-dark-high dark:text-white;
+    @apply text-dark-high ;
 }
 
 .dark-text {
-  @apply text-dark dark:text-white dark:text-opacity-70;
+    @apply text-dark;
 }
 
 .dark-low-bg {
-  @apply bg-dark-low dark:bg-dark dark:bg-opacity-10;
+    @apply bg-dark-low;
 }
 
 .slick-hover:hover {
-  @apply bg-dark-low dark:bg-opacity-20;
+    @apply bg-dark-low;
 }
 
 .slick-hover-blue:hover {
-  @apply bg-blue bg-opacity-20;
+    @apply bg-blue bg-opacity-20;
 }
 
 .toc {
-  @apply list-none dark-text slick-border rounded-sm;
+    @apply list-none dark-text slick-border rounded-sm;
 }
 
-.toc,
-.toc-deep-2 {
-  @apply ml-1;
+.toc, .toc-deep-2 {
+    @apply ml-1;
 }
 
-.toc,
-.toc-deep-2 {
-  @apply ml-2;
+.toc, .toc-deep-2 {
+    @apply ml-2;
 }
 
-.toc,
-.toc-deep-3 {
-  @apply ml-4;
+.toc, .toc-deep-3 {
+    @apply ml-4;
 }
 
-.toc,
-.toc-deep-plus {
-  @apply ml-6;
+.toc, .toc-deep-plus {
+    @apply ml-6;
 }
 
-.hightlighted {
-  @apply text-blue dark:text-green font-medium;
+.highlighted {
+    @apply text-blue ;
 }
 
 *::selection {
-  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* WebKit/Blink Browsers */;
+    @apply bg-green bg-opacity-40 /* WebKit/Blink Browsers */
+    ;
 }
+
 *::-moz-selection {
-  @apply bg-green bg-opacity-40 dark:bg-white dark:bg-opacity-40/* Gecko Browsers */;
+    @apply bg-green bg-opacity-40/* Gecko Browsers */
+    ;
 }

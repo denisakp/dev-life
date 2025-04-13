@@ -3,7 +3,7 @@ import loadTopic from "~/utils/load-topic";
 import Pagination from "~/components/shared/Pagination.vue";
 import {
   DEFAULT_PAGINATION_LIMIT,
-  DEFAULT_PAGINATION_SORT,
+  DEFAULT_PAGINATION_SORT
 } from "~/utils/config";
 
 const route = useRoute();
@@ -33,15 +33,15 @@ const totalPages = ref(Math.ceil(totalArticles.value / perPage));
 const lastPageCount = ref(
   totalArticles.value % perPage !== 0
     ? totalArticles.value % perPage
-    : totalArticles.value - perPage,
+    : totalArticles.value - perPage
 );
 
 let skipNumber = ref(
   currentPage.value === 1
     ? 0
     : currentPage.value === totalPages.value
-    ? totalArticles.value - lastPageCount.value
-    : (currentPage.value - 1) * perPage,
+      ? totalArticles.value - lastPageCount.value
+      : (currentPage.value - 1) * perPage
 );
 
 let articles = ref(await loadContent(skipNumber.value, perPage));
@@ -53,8 +53,8 @@ const onPageChanged = async (page) => {
     page === 1
       ? 0
       : page === totalPages.value
-      ? totalArticles.value - lastPageCount.value
-      : (page - 1) * perPage;
+        ? totalArticles.value - lastPageCount.value
+        : (page - 1) * perPage;
 
   articles.value = await loadContent(skip, perPage);
   window.scrollTo(0, 0);
@@ -65,23 +65,23 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: techno.name,
+  title: techno.title,
   description: techno.description,
 
-  ogTitle: techno.name + " - Dev Life",
+  ogTitle: techno.title + " - Denis AKPAGNONITE",
   ogDescription: techno.description,
   ogImage: techno.image,
-  ogUrl: "https://denisakp.me/topics/" + techno.name,
+  ogUrl: "https://denisakp.me/topics/" + techno.title,
 
   twitterCard: "summary_large_image",
-  twitterTitle: techno.name + " - Dev Life",
+  twitterTitle: techno.title + " - Denis AKPAGNONITE",
   twitterDescription: techno.description,
-  twitterImage: techno.image,
+  twitterImage: techno.image
 });
 </script>
 
 <template>
-  <div class="page-bg">
+  <div class="container">
     <template v-if="techno">
       <template v-if="totalArticles > 0">
         <div class="container">
@@ -90,13 +90,13 @@ useSeoMeta({
               <div class="bg-dark-low p-4 mr-4 rounded-sm">
                 <img
                   class="mx-auto h-16 w-16 lg:w-24 flex-shrink-0"
-                  :src="techno.image"
-                  :alt="techno.name + ' logo'"
+                  :src="techno.iconPath"
+                  :alt="techno.title + ' logo'"
                 />
               </div>
               <div class="flex-grow">
                 <h4 class="darker-text">
-                  {{ techno.name }}
+                  {{ techno.title }}
                 </h4>
                 <p class="dark-text">
                   {{ techno.description }}
@@ -128,7 +128,7 @@ useSeoMeta({
 
       <template v-else>
         <div class="container">
-          <p class="text-4xl text-center">No articles yet 😮‍💨 </p>
+          <p class="text-4xl text-center">Sorry ! I'm not yet inspired for this topic 😮‍💨 </p>
         </div>
       </template>
     </template>

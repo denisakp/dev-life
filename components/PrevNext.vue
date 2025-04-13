@@ -1,21 +1,37 @@
 <script setup>
-defineProps(["prev", "next"]);
+
+const props = defineProps({
+  prev: {
+    type: Object,
+    default: null,
+  },
+  next: {
+    type: Object,
+    default: null,
+  },
+});
+
+const nextPath = ref(`/blog${props.next?._path}`);
+const prevPath = ref(`/blog${props.prev?._path}`);
+
 </script>
 
 <template>
   <div
-    class="mt-6 md:mt-12 mx-4 flex flex-col md:flex-row justify-between space-y-4 md:space-x-4 md:space-y-0"
+    class="mt-6 md:mt-12 mx-4 flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
     :class="{
-      'justify-between': prev !== null && next !== null,
-      'justify-start': prev !== null && next === null,
+      'justify-between': props.prev !== null && props.next !== null,
+      'justify-start': props.prev !== null && props.next === null,
+      'justify-end': props.prev === null && props.next !== null,
     }"
   >
+    <!-- Button Previous -->
     <NuxtLink
-      v-if="prev"
-      :to="`/blog${prev._path}`"
-      class="slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
+      v-if="props.prev"
+      :to="prevPath"
+      class="flex-grow max-w-full md:max-w-[45%] slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
     >
-      <div class="flex flex-row flex-nowrap items-center space-x-4">
+      <div class="flex flex-row items-center space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -27,24 +43,24 @@ defineProps(["prev", "next"]);
             d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"
           />
         </svg>
-        <div>
+        <div class="overflow-hidden">
           <p class="dark-text text-xs">Previous</p>
-          <p class="darker-text">{{ prev.title }}</p>
+          <p class="darker-text truncate" :title="props.prev.title">{{ props.prev.title }}</p>
         </div>
       </div>
     </NuxtLink>
 
+    <!-- Button Next -->
     <NuxtLink
       v-if="next"
-      :to="`/blog${next._path}`"
-      class="slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
+      :to="nextPath"
+      class="flex-grow max-w-full md:max-w-[45%] slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
     >
-      <div class="flex flex-row flex-nowrap items-center space-x-4">
-        <div>
+      <div class="flex flex-row items-center justify-end space-x-4">
+        <div class="overflow-hidden text-right">
           <p class="dark-text text-xs">Next</p>
-          <p class="darker-text">{{ next.title }}</p>
+          <p class="darker-text truncate" :title="props.next.title">{{ props.next.title }}</p>
         </div>
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

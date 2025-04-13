@@ -1,13 +1,11 @@
-import techno from "~/data/technos";
+import topics from "~/data/topics";
 
 export default function loadTopic(slug: string) {
   let data;
-  techno.map((element) => {
-    return element.techs.find((item) => {
-      if (item.slug === slug.replace("/", "")) {
-        data = item;
-      }
-    });
+  topics.map((el) => {
+    if (el.slug === slug.replace("/", "")) {
+      data = el;
+    }
   });
   return data;
 }

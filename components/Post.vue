@@ -7,23 +7,25 @@ const props = defineProps({
     required: true,
   },
 });
+
+const destination = ref("/blog" + props.post?._path);
 </script>
 
 <template>
   <div
-    class="h-full border-dark-low dark:border-white dark:border-opacity-20 border rounded-sm hover:shadow-sm"
+    class="h-full border-dark-low border rounded-sm hover:shadow-sm"
   >
     <NuxtLink
-      :to="'/blog' + props.post._path"
+      :to="destination"
       class="w-full"
       style="text-decoration: none"
     >
       <div class="p-4 flex flex-col h-full">
-        <p class="text-dark-high dark:text-white font-medium">
+        <p class="text-dark-high font-medium">
           {{ props.post.title }}
         </p>
         <p
-          class="flex-1 mt-2 text-sm leading-5 text-dark dark:text-white dark:text-opacity-80"
+          class="flex-1 mt-2 text-sm leading-5 text-dark"
         >
           {{ props.post.description }}
         </p>
@@ -33,7 +35,7 @@ const props = defineProps({
             <p
               v-for="(tag, index) in props.post.tags"
               :key="index"
-              class="ml-2 mt-1 text-xs py-1 px-2 bg-dark-low dark:bg-dark dark:bg-opacity-50 border border-dark-low dark:border-dark rounded-sm text-gray-600"
+              class="ml-2 mt-1 text-xs py-1 px-2 bg-dark-low border border-dark-low rounded-sm text-gray-600"
             >
               #{{ tag }}
             </p>
