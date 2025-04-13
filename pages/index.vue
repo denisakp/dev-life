@@ -32,7 +32,7 @@ useSeoMeta({
         <div class="text-5xl text-blue font-bold mb-6 ">&lt;/&gt;</div>
         <h2 class="text-3xl text-blue font-semibold mb-4">Denis AKPAGNONITE</h2>
         <p class="text-lg">
-          Software Engineer👨🏽‍💻 | Cloud Native Aficionado⎈ | Distributed Systems Maven⚙️
+          Software Engineer👨🏽‍💻 | DevSecOps⎈ | SRE  📊 | Cloud Engineer ☁️
         </p>
 
         <!-- Social Links -->
@@ -61,25 +61,25 @@ useSeoMeta({
           open-source tools to solve challenges in data consistency, fault tolerance, and security.
         </p>
 
-        <p class="mb-12">
-          Currently, I'm a DevOps Specialist & Backend Engineer for <span class="highlighted">Mon Ami Albert</span>,
+        <p class="mb-10">
+          Currently, I'm a Backend & DevOps Engineer for <span class="highlighted">Mon Ami Albert</span>,
           an online tutoring platform that connects teachers with students in need of academic support. I ensure secure,
           reliable, and accessible platform operations, enabling seamless interactions.
         </p>
 
         <!-- Skills -->
         <h2 class="text-2xl text-blue font-bold mb-4">🛠️ Skills</h2>
-        <ul class="list-disc ml-4 mb-12">
-          <li><b>Programming languages</b>: Go, Python, Bash, PHP, TypeScript</li>
+        <ul class="list-disc ml-4 mb-10">
+          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Bash, PHP</li>
           <li><b>CI/CD</b>: GitLab CI, GitHub Actions, Teamcity, Jenkins</li>
-          <li><b>DevOps</b>: Docker, Podman, Swarm, Kubernetes, Terraform, Ansible, ArgoCD, Helm</li>
-          <li><b>SecOps</b>: OWASP, Trivy, SonarQube, Codana, Keycloak, SpiceDB, Wazuh</li>
-          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, ELK, Victoria Metrics, Jaeger</li>
-          <li><b>Other tools</b>:Nginx, Caddy Server, Traefik, Linux, Zabbix, Proxmox, N8N</li>
+          <li><b>DevOps & Cloud</b>: Docker, Kubernetes, Terraform, Ansible, ArgoCD, Helm, AWS, GCP</li>
+          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA, Wazuh</li>
+          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus </li>
+          <li><b>Other tools</b>: Nginx, Caddy Server, Traefik, Linux, Zabbix, Proxmox, N8N</li>
         </ul>
 
         <!-- Contact -->
-        <h2 class="text-2xl text-blue mb-4">📞 Contact</h2>
+        <h2 class="text-2xl text-blue mb-2">📞 Contact</h2>
         <p class="mb-6">
           {{ email  }} (My email address is hidden in ROT47)
         </p>

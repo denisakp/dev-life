@@ -7,8 +7,16 @@ const projects = [
     github: "https://github.com/denisakp/denisakp.github.io"
   },
   {
+    title: "Obscura",
+    description: " A client-side password generator built with Vue 3 and Vite. It allows users to create strong, customizable passwords based on best security practices. ",
+    date: "April 2025",
+    tags: ["TypeScript", "Vue3", "security"],
+    github: "https://github.com/denisakp/obscura",
+    preview: "https://obscura.denisakp.me"
+  },
+  {
     title: "Sentinel",
-    description: "Sentinel an open-source backup and restoration tool designed for seamless management of PostgreSQL, MySQL, and MongoDB databases, in Docker, Kubernetes, and local environments",
+    description: "Sentinel is an open-source backup and restoration tool designed for seamless management of PostgreSQL, MySQL, and MongoDB databases, in Docker, Kubernetes, and local environments",
     date: "September 2024",
     tags: ["golang", "kubernetes", "docker", "database"],
     github: "https://github.com/denisakp/sentinel"
@@ -34,13 +42,6 @@ const projects = [
     tags: ["python", "scraping", "open-source"],
     github: "https://github.com/denisakp/canal-olympia-scrapper",
     preview: "https://denisakp.github.io/canal-olympia-scrapper/"
-  },
-  {
-    title: "Awesome NestJS",
-    description: "This is the public repository of my NestJS Series, where we explore the ins and outs of NestJS framework.",
-    date: "September 2023",
-    tags: ["nest-js", "mirco-service", "api"],
-    github: "https://github.com/denisakp/awesome-nest-js"
   },
   {
     title: "Fake Store API",
