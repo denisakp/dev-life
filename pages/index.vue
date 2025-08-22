@@ -2,13 +2,6 @@
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 import {faGithub, faLinkedin, faXTwitter} from '@fortawesome/free-brands-svg-icons'
 
-const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation()
-);
-
-// email hidden in ROT47
-const email = `2<A28?@?:E65o8>2:=]4@>`
-
 useSeoMeta({
   title: "Welcome",
   description: META_DESCRIPTION,
@@ -62,27 +55,22 @@ useSeoMeta({
         </p>
 
         <p class="mb-10">
-          Currently, I'm a Backend & DevOps Engineer for <span class="highlighted">Mon Ami Albert</span>,
-          an online tutoring platform that connects teachers with students in need of academic support. I ensure secure,
-          reliable, and accessible platform operations, enabling seamless interactions.
+          Currently, I'm the <span class="highlighted">Lead Backend Engineer</span> at <span class="highlighted">TalentFindr</span>,
+          a SaaS platform powered by AI that accelerates recruitment processes. TalentFindr helps companies
+          <em>hire the best talent 3x faster</em>. I focus on building secure, reliable, and scalable backend systems,
+          applying strong DevSecOps and software engineering practices to ensure performance and trust at scale.
         </p>
 
         <!-- Skills -->
         <h2 class="text-2xl text-blue font-bold mb-4">🛠️ Skills</h2>
         <ul class="list-disc ml-4 mb-10">
-          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Bash, PHP</li>
+          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, PHP, Lua</li>
           <li><b>CI/CD</b>: GitLab CI, GitHub Actions, Teamcity, Jenkins</li>
-          <li><b>DevOps & Cloud</b>: Docker, Kubernetes, Terraform, Ansible, ArgoCD, Helm, AWS, GCP</li>
-          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA, Wazuh</li>
-          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus </li>
-          <li><b>Other tools</b>: Nginx, Caddy Server, Traefik, Linux, Zabbix, Proxmox, N8N</li>
+          <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, ArgoCD, Helm, AWS, GCP</li>
+          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA </li>
+          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Prometheus </li>
         </ul>
 
-        <!-- Contact -->
-        <h2 class="text-2xl text-blue mb-2">📞 Contact</h2>
-        <p class="mb-6">
-          {{ email  }} (My email address is hidden in ROT47)
-        </p>
       </div>
     </div>
 
