@@ -2,35 +2,32 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   modules: [
-    "@nuxtjs/tailwindcss",
+    "@nuxt/ui",
     "@nuxt/content",
     "@nuxt/image",
-    "@nuxtjs/mdc",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "@nuxtjs/color-mode",
-    "@vesp/nuxt-fontawesome",
   ],
 
-  css: ["@/assets/styles/main.css"],
+  css: ["~/assets/styles/main.css", "~/assets/styles/animations.css"],
 
-  extends: ["@nuxt-themes/typography"],
-
-  colorMode: {
-    preference: 'system',
-    fallback: 'light',
-    classSuffix: '',
-  },
-
-  content: {
-    highlight: {
-      theme: 'github-light',
-      langs: ['python', 'docker', 'nginx', 'typescript', 'shell', 'js', 'json', 'yml', 'bash'],
-      wrapperStyle: true,
+  icon: {
+    mode: 'css',
+    serverBundle: {
+      collections: ['lucide', 'simple-icons'],
+    },
+    clientBundle: {
+      scan: true,
+      includeCustomCollections: true,
+      sizeLimitKb: 256,
     },
   },
 
   ssr: true,
+
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
 
   nitro: {
     compressPublicAssets: true,
@@ -52,15 +49,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    cacheMaxAgeSeconds: 3600 // 1 hour
-  },
-
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-      ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
-    }
+    cacheMaxAgeSeconds: 3600
   },
 
   compatibilityDate: "2024-07-18"

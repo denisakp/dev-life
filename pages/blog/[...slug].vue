@@ -1,54 +1,62 @@
 <script setup>
-import { useRoute } from "nuxt/app";
+import Giscus from "@giscus/vue";
 
-import Giscus from '@giscus/vue'
-import 'giscus';
-
-import PrevNext from "~/components/PrevNext";
+import PrevNext from "~/components/PrevNext.vue";
 
 const { path } = useRoute();
-
 const reviewedPath = path.replace("/blog", "");
 
-const article = await queryContent().where({ _path: reviewedPath }).findOne();
+const { data: article } = await useAsyncData(`article-${reviewedPath}`, () =>
+  queryCollection("content").path(reviewedPath).first()
+);
 
-const [prev, next] = await queryContent()
-  .only(['_path', 'title'])
-  .findSurround(reviewedPath);
+const { data: surround } = await useAsyncData(`surround-${reviewedPath}`, () =>
+  queryCollectionItemSurroundings("content", reviewedPath, {
+    fields: ["title", "path"],
+  })
+);
+
+const prev = computed(() => surround.value?.[0] ?? null);
+const next = computed(() => surround.value?.[1] ?? null);
+
+const colorMode = useColorMode();
+const giscusTheme = computed(() =>
+  colorMode.value === "dark" ? "dark" : "light"
+);
 
 useSeoMeta({
-  title: article.title,
-  description: article.description,
-  keywords: article.tags.toString(),
+  title: () => article.value?.title,
+  description: () => article.value?.description,
+  keywords: () => article.value?.tags?.toString(),
 
-  ogTitle: article.title + " - Denis AKPAGNONITE",
-  ogDescription: article.description,
-  ogImage: article.img,
+  ogTitle: () => (article.value?.title ?? "") + " - Denis AKPAGNONITE",
+  ogDescription: () => article.value?.description,
+  ogImage: () => article.value?.img,
   ogUrl: "https://denisakp.me" + path,
 
   twitterCard: "summary_large_image",
-  twitterTitle: article.title + " - Denis AKPAGNONITE",
-  twitterDescription: article.description,
-  twitterImage: article.img
+  twitterTitle: () => (article.value?.title ?? "") + " - Denis AKPAGNONITE",
+  twitterDescription: () => article.value?.description,
+  twitterImage: () => article.value?.img,
 });
-
 </script>
 
 <template>
-  <div class="reading-area w-full">
-    <div class="">
-      <h3 class="text-3xl text-blue font-bold mt-0 my-2">{{ article.title }}</h3>
+  <div class="reading-area w-full" v-if="article">
+    <div>
+      <h3 class="text-3xl text-primary-600 dark:text-primary-400 font-bold mt-0 my-2">
+        {{ article.title }}
+      </h3>
     </div>
 
-    <div class="max-w-none lg:prose-lg prose">
-      <content-renderer :value="article">
+    <div class="max-w-none lg:prose-lg prose dark:prose-invert">
+      <ContentRenderer :value="article">
         <template #empty>
           <p>No content found.</p>
         </template>
-      </content-renderer>
+      </ContentRenderer>
     </div>
 
-    <!-- Comments -->
     <Giscus
       id="comments"
       repo="denisakp/dev-life"
@@ -59,14 +67,12 @@ useSeoMeta({
       reactionsenabled="1"
       emitmetadata="0"
       inputposition="bottom"
-      theme="light"
+      :theme="giscusTheme"
       lang="en"
       loading="lazy"
       crossorigin="anonymous"
-      />
+    />
 
-    <!-- PrevNext Component -->
     <PrevNext :prev="prev" :next="next" />
-
   </div>
 </template>

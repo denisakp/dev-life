@@ -7,6 +7,13 @@ const projects = [
     github: "https://github.com/denisakp/denisakp.github.io"
   },
   {
+    title: "Ogoune",
+    description: "An open-source monitoring tool for SSL certificates, domain expirations, TCP services, and cronjobs — with alerting and status pages. ",
+    date: "April 2025",
+    tags: ["golang", "Vue3", "monitoring"],
+    github: "https://github.com/denisakp/ogoune",
+  },
+  {
     title: "Obscura",
     description: " A client-side password generator built with Vue 3 and Vite. It allows users to create strong, customizable passwords based on best security practices. ",
     date: "April 2025",

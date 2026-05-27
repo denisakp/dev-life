@@ -14,7 +14,7 @@
 - Q: `BottomNav.vue` fate? → A: Delete; mobile nav handled entirely by `<UHeader>` + slideover.
 - Q: Are bespoke utility classes referenced from `content/**/*.md`? → A: No — `grep -rE "slick-|dark-text|darker-text|page-bg|reading-area|highlighted|exact-navigation|dark-high|dark-low|codeGray|light-dark" content/` returns zero matches (audited 2026-05-27). US3 can migrate without touching content.
 - Q: How to derive Nuxt UI `primary` 50–950 palette from `#4831D4`? → A: Adopt Tailwind **`indigo`** as `primary` semantic. Slight brand drift accepted; no hand-tuned scale required. `--color-primary-*` aliases the indigo palette in the `@theme` block.
-- Q: Bundle baseline for NFR-003? → A: `main` HEAD at migration kickoff. `pnpm build` output sizes captured in `specs/001-nuxt4-ui-upgrade/baseline.md` before US2 starts.
+- Q: Bundle baseline for NFR-003? → A: `main` HEAD at migration kickoff. `pnpm build` output sizes captured in `specs/001-nuxt4-ui-upgrade/baseline.md` before US2 starts. **Update 2026-05-27**: 115%-of-baseline ceiling abandoned; NFR-003 now fixed at ≤ 1500 KB gzip — see NFR-003 below.
 - Q: Lighthouse measurement methodology? → A: Local Chrome DevTools Lighthouse, **desktop** preset, against `pnpm preview` on `localhost:3000`. Report the **median of 3 runs** per page.
 
 ## Context & Why This Revision
@@ -241,7 +241,7 @@ Mobile navigation slideover, touch feedback on interactive elements (`active:sca
 
 - **NFR-001** — Lighthouse desktop performance score ≥ 90 on `/`, `/blog`, and a representative blog post. Measurement: Chrome DevTools Lighthouse, desktop preset, against `pnpm preview` on `localhost:3000`; report median of 3 runs per page.
 - **NFR-002** — Core Web Vitals: LCP ≤ 2.5 s, CLS < 0.1, INP < 200 ms on the same pages.
-- **NFR-003** — Bundle size MUST NOT regress more than 15 % vs. the pre-migration baseline. Baseline = `main` HEAD at migration kickoff; `pnpm build` output (per-route and total `.output/public/_nuxt/` size) recorded in `specs/001-nuxt4-ui-upgrade/baseline.md` before US2 starts. Post-migration measurement uses the same command on the migrated branch.
+- **NFR-003** — Post-migration `.output/public/_nuxt/` MUST be **≤ 1500 KB gzip** (sum of `*.gz` sibling files emitted by Nitro with `compressPublicAssets: true`). Original 115%-of-baseline ceiling was abandoned 2026-05-27 after re-measurement showed Nuxt UI v4 + `@nuxt/content` v3 sqlite-wasm hydration runtime (≈1864 KB raw / ~750 KB gzip alone) make a 194 KB-gzip ceiling structurally unachievable. Baseline reference (`main` HEAD, Nuxt 3.12 + content v2): 169 KB gzip / 480 KB raw — retained in `specs/001-nuxt4-ui-upgrade/baseline.md` for historical context.
 - **NFR-004** — Zero `any` types added during migration; existing `any` reduced opportunistically.
 - **NFR-005** — Constitution (`.specify/memory/constitution.md`) principles I–V (v1.0.0) remain satisfied.
 

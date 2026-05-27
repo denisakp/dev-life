@@ -2,49 +2,39 @@
 import Pagination from "~/components/shared/Pagination.vue";
 import {
   DEFAULT_PAGINATION_LIMIT,
-  DEFAULT_PAGINATION_SORT, META_DESCRIPTION, META_IMAGE
+  META_DESCRIPTION,
+  META_IMAGE,
 } from "~/utils/config";
-
-const loadContent = async (skip, limit) =>
-  queryContent()
-    .skip(skip)
-    .limit(limit)
-    .sort({ date: DEFAULT_PAGINATION_SORT })
-    .find();
 
 const perPage = DEFAULT_PAGINATION_LIMIT;
 const currentPage = ref(1);
 
-const totalArticles = ref((await queryContent("/").find()).length);
-const totalPages = ref(Math.ceil(totalArticles.value / perPage));
-const lastPageCount = ref(
-  totalArticles.value % perPage !== 0
-    ? totalArticles.value % perPage
-    : totalArticles.value - perPage
+const { data: totalArticles } = await useAsyncData("blog-count", () =>
+  queryCollection("content").count()
 );
 
-let skipNumber = ref(
-  currentPage.value === 1
-    ? 0
-    : currentPage.value === totalPages.value
-      ? totalArticles.value - lastPageCount.value
-      : (currentPage.value - 1) * perPage
+const totalPages = computed(() =>
+  Math.ceil((totalArticles.value ?? 0) / perPage)
 );
 
-let articles = ref(await loadContent(skipNumber.value, perPage));
+const loadContent = (skip, limit) =>
+  queryCollection("content")
+    .order("date", "DESC")
+    .skip(skip)
+    .limit(limit)
+    .all();
+
+const skipFor = (page) => (page - 1) * perPage;
+
+const { data: articles } = await useAsyncData(
+  () => `blog-list-${currentPage.value}`,
+  () => loadContent(skipFor(currentPage.value), perPage),
+  { watch: [currentPage] }
+);
 
 const onPageChanged = async (page) => {
   currentPage.value = page;
-
-  const skip =
-    page === 1
-      ? 0
-      : page === totalPages.value
-        ? totalArticles.value - lastPageCount.value
-        : (page - 1) * perPage;
-
-  articles.value = await loadContent(skip, perPage);
-  window.scrollTo(0, 0);
+  if (import.meta.client) window.scrollTo(0, 0);
 };
 
 onMounted(() => {
@@ -63,7 +53,7 @@ useSeoMeta({
   twitterCard: "summary_large_image",
   twitterTitle: "Blog - Denis AKPAGNONITE",
   twitterDescription: META_DESCRIPTION,
-  twitterImage: META_IMAGE
+  twitterImage: META_IMAGE,
 });
 </script>
 
@@ -71,12 +61,12 @@ useSeoMeta({
   <div class="container">
     <h5 class="text-2xl">
       A total of
-      <span class="highlighted"> {{ totalArticles }} </span> posts
+      <span class="highlighted"> {{ totalArticles ?? 0 }} </span> posts
     </h5>
     <div class="flex flex-wrap my-4">
       <div
         class="p-2 lg:w-1/2 w-full"
-        v-for="(post, index) in articles"
+        v-for="(post, index) in articles ?? []"
         :key="index"
       >
         <Post :post="post" />
@@ -84,7 +74,7 @@ useSeoMeta({
     </div>
 
     <Pagination
-      :total="totalArticles"
+      :total="totalArticles ?? 0"
       :total-pages="totalPages"
       :per-page="perPage"
       :current-page="currentPage"

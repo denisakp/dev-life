@@ -1,10 +1,5 @@
 <script setup>
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
-import {faGithub, faLinkedin, faXTwitter} from '@fortawesome/free-brands-svg-icons'
-
-const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation()
-);
 
 // email hidden in ROT47
 const email = `2<A28?@?:E65o8>2:=]4@>`
@@ -36,19 +31,18 @@ useSeoMeta({
         </p>
 
         <!-- Social Links -->
-        <div class="mt-6 flex space-x-4">
-          <nuxt-link to="https://github.com/denisakp" target="_blank" >
-            <font-awesome :icon="faGithub" />
+        <div class="mt-6 flex space-x-4 text-2xl">
+          <nuxt-link to="https://github.com/denisakp" target="_blank" aria-label="GitHub">
+            <UIcon name="i-simple-icons-github" />
           </nuxt-link>
 
-          <nuxt-link to="https://x.com/N1BBzerLZXT" target="_blank">
-            <font-awesome :icon="faXTwitter" />
+          <nuxt-link to="https://x.com/N1BBzerLZXT" target="_blank" aria-label="X (Twitter)">
+            <UIcon name="i-simple-icons-x" />
           </nuxt-link>
 
-          <nuxt-link to="https://linkedin.com/in/denis-akpagnonite" target="_blank">
-            <font-awesome :icon="faLinkedin" />
+          <nuxt-link to="https://linkedin.com/in/denis-akpagnonite" target="_blank" aria-label="LinkedIn">
+            <UIcon name="i-simple-icons-linkedin" />
           </nuxt-link>
-
         </div>
       </div>
 
@@ -57,25 +51,24 @@ useSeoMeta({
         <h2 class="text-2xl text-blue font-bold mb-6">👀 About</h2>
 
         <p class="mb-6">
-          Passionate about DevOps, Cloud Native technologies, and distributed systems. I specialize in leveraging
-          open-source tools to solve challenges in data consistency, fault tolerance, and security.
+            I'm Denis, a software engineer working mainly on cloud-native and distributed systems.
+            I spend my time time building and maintaining backend services, improving delivery pipelines, and helping teams adopt practical DevSecOps practices.
+            I share lessons learned through talks, writing, and open-source projects, and I try to approach engineering with pragmatism, curiosity, and a focus on long-term maintainability.
         </p>
 
         <p class="mb-10">
-          Currently, I'm a Backend & DevOps Engineer for <span class="highlighted">Mon Ami Albert</span>,
-          an online tutoring platform that connects teachers with students in need of academic support. I ensure secure,
-          reliable, and accessible platform operations, enabling seamless interactions.
+          Currently, I'm a Software Engineer (DevOps/SRE) at <span class="highlighted">Digi.job</span>, working on various projects involving cloud-native and distributed systems.
+        
         </p>
 
         <!-- Skills -->
         <h2 class="text-2xl text-blue font-bold mb-4">🛠️ Skills</h2>
         <ul class="list-disc ml-4 mb-10">
-          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Bash, PHP</li>
-          <li><b>CI/CD</b>: GitLab CI, GitHub Actions, Teamcity, Jenkins</li>
-          <li><b>DevOps & Cloud</b>: Docker, Kubernetes, Terraform, Ansible, ArgoCD, Helm, AWS, GCP</li>
-          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA, Wazuh</li>
-          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus </li>
-          <li><b>Other tools</b>: Nginx, Caddy Server, Traefik, Linux, Zabbix, Proxmox, N8N</li>
+          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Bash</li>
+          <li><b>CI/CD</b>: GitLab CI, GitHub Actions</li>
+          <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, Ansible, ArgoCD, Helm, AWS, GCP</li>
+          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
+          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
         </ul>
 
         <!-- Contact -->

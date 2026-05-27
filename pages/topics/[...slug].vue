@@ -1,63 +1,43 @@
 <script setup>
 import loadTopic from "~/utils/load-topic";
 import Pagination from "~/components/shared/Pagination.vue";
-import {
-  DEFAULT_PAGINATION_LIMIT,
-  DEFAULT_PAGINATION_SORT
-} from "~/utils/config";
+import { DEFAULT_PAGINATION_LIMIT } from "~/utils/config";
 
 const route = useRoute();
 const slug = ref(route.params.slug[0]);
 
-let techno = loadTopic(slug.value);
-
-const where = { topics: { $contains: slug.value } };
-const only = ["title", "description", "tags", "_path", "date"];
-const sort = { date: DEFAULT_PAGINATION_SORT };
-
-const loadContent = async (skip, limit) =>
-  queryContent("/")
-    .where(where)
-    .skip(skip)
-    .limit(limit)
-    .sort(sort)
-    .only(only)
-    .find();
+const techno = loadTopic(slug.value);
 
 const perPage = DEFAULT_PAGINATION_LIMIT;
 const currentPage = ref(1);
 
-const totalArticles = ref((await queryContent("/").where(where).find()).length);
-const totalPages = ref(Math.ceil(totalArticles.value / perPage));
+const baseQuery = () =>
+  queryCollection("content").where("topics", "LIKE", `%${slug.value}%`);
 
-const lastPageCount = ref(
-  totalArticles.value % perPage !== 0
-    ? totalArticles.value % perPage
-    : totalArticles.value - perPage
+const { data: totalArticles } = await useAsyncData(
+  `topic-count-${slug.value}`,
+  () => baseQuery().count()
 );
 
-let skipNumber = ref(
-  currentPage.value === 1
-    ? 0
-    : currentPage.value === totalPages.value
-      ? totalArticles.value - lastPageCount.value
-      : (currentPage.value - 1) * perPage
+const totalPages = computed(() =>
+  Math.ceil((totalArticles.value ?? 0) / perPage)
 );
 
-let articles = ref(await loadContent(skipNumber.value, perPage));
+const { data: articles } = await useAsyncData(
+  () => `topic-list-${slug.value}-${currentPage.value}`,
+  () =>
+    baseQuery()
+      .select("title", "description", "tags", "path", "date")
+      .order("date", "DESC")
+      .skip((currentPage.value - 1) * perPage)
+      .limit(perPage)
+      .all(),
+  { watch: [currentPage] }
+);
 
-const onPageChanged = async (page) => {
+const onPageChanged = (page) => {
   currentPage.value = page;
-
-  const skip =
-    page === 1
-      ? 0
-      : page === totalPages.value
-        ? totalArticles.value - lastPageCount.value
-        : (page - 1) * perPage;
-
-  articles.value = await loadContent(skip, perPage);
-  window.scrollTo(0, 0);
+  if (import.meta.client) window.scrollTo(0, 0);
 };
 
 onMounted(() => {
@@ -65,40 +45,40 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: techno.title,
-  description: techno.description,
+  title: techno?.title,
+  description: techno?.description,
 
-  ogTitle: techno.title + " - Denis AKPAGNONITE",
-  ogDescription: techno.description,
-  ogImage: techno.image,
-  ogUrl: "https://denisakp.me/topics/" + techno.title,
+  ogTitle: (techno?.title ?? "") + " - Denis AKPAGNONITE",
+  ogDescription: techno?.description,
+  ogImage: techno?.image,
+  ogUrl: "https://denisakp.me/topics/" + (techno?.title ?? ""),
 
   twitterCard: "summary_large_image",
-  twitterTitle: techno.title + " - Denis AKPAGNONITE",
-  twitterDescription: techno.description,
-  twitterImage: techno.image
+  twitterTitle: (techno?.title ?? "") + " - Denis AKPAGNONITE",
+  twitterDescription: techno?.description,
+  twitterImage: techno?.image,
 });
 </script>
 
 <template>
   <div class="container">
     <template v-if="techno">
-      <template v-if="totalArticles > 0">
+      <template v-if="(totalArticles ?? 0) > 0">
         <div class="container">
-          <section class="text-dark mb-12">
+          <section class="text-neutral-700 dark:text-neutral-300 mb-12">
             <div class="h-full flex items-center slick-border p-2 rounded-sm">
-              <div class="bg-dark-low p-4 mr-4 rounded-sm">
+              <div class="bg-neutral-100 dark:bg-neutral-900 p-4 mr-4 rounded-sm">
                 <img
-                  class="mx-auto h-16 w-16 lg:w-24 flex-shrink-0"
+                  class="mx-auto h-16 w-16 lg:w-24 shrink-0"
                   :src="techno.iconPath"
                   :alt="techno.title + ' logo'"
                 />
               </div>
-              <div class="flex-grow">
-                <h4 class="darker-text">
+              <div class="grow">
+                <h4 class="text-neutral-900 dark:text-neutral-100">
                   {{ techno.title }}
                 </h4>
-                <p class="dark-text">
+                <p class="text-neutral-700 dark:text-neutral-300">
                   {{ techno.description }}
                 </p>
               </div>
@@ -108,7 +88,7 @@ useSeoMeta({
           <div class="flex flex-wrap my-4">
             <div
               class="p-2 lg:w-1/2 w-full"
-              v-for="(post, index) in articles"
+              v-for="(post, index) in articles ?? []"
               :key="index"
             >
               <Post :post="post" />
@@ -119,7 +99,7 @@ useSeoMeta({
               :current-page="currentPage"
               :per-page="perPage"
               :total-pages="totalPages"
-              :total="totalArticles"
+              :total="totalArticles ?? 0"
               @page-changed="onPageChanged"
             />
           </div>
@@ -128,7 +108,7 @@ useSeoMeta({
 
       <template v-else>
         <div class="container">
-          <p class="text-4xl text-center">Sorry ! I'm not yet inspired for this topic 😮‍💨 </p>
+          <p class="text-4xl text-center">Sorry! I'm not yet inspired for this topic 😮‍💨</p>
         </div>
       </template>
     </template>

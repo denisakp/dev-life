@@ -1,8 +1,7 @@
 <script setup>
-import { SpeedInsights } from "@vercel/speed-insights/nuxt";
+//import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 
 import Header from "~/components/shared/Header.vue";
-import Bottom from "~/components/shared/BottomNav.vue";
 import Footer from "~/components/shared/Footer.vue";
 
 useHead({
@@ -69,15 +68,14 @@ useHead({
 </script>
 
 <template>
-  <div
-    class="w-full bg-white flex flex-col min-h-screen text-dark-high"
-  >
-    <SpeedInsights />
-    <Header />
-    <main class="md:pt-24 page-bg flex-grow">
-      <NuxtPage />
-    </main>
-    <Bottom />
-    <Footer />
-  </div>
+  <UApp>
+    <div class="w-full bg-white dark:bg-neutral-950 flex flex-col min-h-screen text-neutral-900 dark:text-neutral-100">
+      <!--<SpeedInsights />-->
+      <Header />
+      <main class="md:pt-24 grow">
+        <NuxtPage />
+      </main>
+      <Footer />
+    </div>
+  </UApp>
 </template>

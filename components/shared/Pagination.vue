@@ -102,16 +102,18 @@ const onLastPage = () => emit("pageChanged", props.totalPages);
 </template>
 
 <style scoped>
+@reference "~/assets/styles/main.css";
+
 .pagination-item {
-  @apply border border-dark-low text-dark px-3 py-1 md:px-5 md:py-3 cursor-pointer;
+  @apply border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 px-3 py-1 md:px-5 md:py-3 cursor-pointer;
 }
 
 .pagination-item:hover {
-  @apply bg-dark-low;
+  @apply bg-neutral-100 dark:bg-neutral-900;
 }
 
 .pagination-item.active {
-  @apply bg-blue font-bold text-white;
+  @apply bg-primary-600 font-bold text-white;
 }
 
 .pagination-item[disabled] {

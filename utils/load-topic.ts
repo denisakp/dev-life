@@ -1,11 +1,6 @@
 import topics from "~/data/topics";
 
-export default function loadTopic(slug: string) {
-  let data;
-  topics.map((el) => {
-    if (el.slug === slug.replace("/", "")) {
-      data = el;
-    }
-  });
-  return data;
+export default function loadTopic(slug: string | undefined | null) {
+  if (!slug) return undefined;
+  return topics.find((el) => el.slug === slug.replace(/^\//, ""));
 }
