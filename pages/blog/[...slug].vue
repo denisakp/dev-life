@@ -48,7 +48,7 @@ useSeoMeta({
   <div v-if="article" class="container">
     <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12 xl:gap-16">
       <article class="min-w-0">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-4 leading-tight break-words">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-4 leading-tight wrap-break-words">
           {{ article.title }}
         </h1>
 
