@@ -1,16 +1,12 @@
 <script setup>
 defineProps({
-  href: {
-    type: String,
-    required: true
-  },
-  text: {
-    type: String,
-    required: true
-  }
+  href: { type: String, required: true },
+  text: { type: String, required: true },
 });
 </script>
 
 <template>
-  <a :href="href" target="_blank">{{ text }}</a>
+  <ULink :to="href" external target="_blank" rel="noopener">
+    {{ text }}
+  </ULink>
 </template>

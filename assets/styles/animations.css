@@ -151,6 +151,40 @@
 }
 
 /* ============================================================================
+   NUXT PAGE TRANSITION (Vue <Transition name="page">)
+   Driven by nuxt.config.ts app.pageTransition.
+   ============================================================================ */
+
+.page-enter-active {
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.page-leave-active {
+  transition: opacity 100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* ============================================================================
+   THEME TOGGLE ICON SWAP (Vue <Transition name="theme-toggle">)
+   ============================================================================ */
+
+.theme-toggle-enter-active,
+.theme-toggle-leave-active {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle-enter-from {
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+.theme-toggle-leave-to {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* ============================================================================
    ACCESSIBILITY: Respect prefers-reduced-motion
    
    When user has prefers-reduced-motion enabled, all animations become instant.
@@ -167,7 +201,11 @@
   .animate-image-fade-in,
   .animate-scale-in,
   .animate-slide-in-up,
-  .animate-slide-out-up {
+  .animate-slide-out-up,
+  .page-enter-active,
+  .page-leave-active,
+  .theme-toggle-enter-active,
+  .theme-toggle-leave-active {
     animation-duration: 0ms !important;
     animation-delay: 0ms !important;
     transition-duration: 0ms !important;

@@ -23,21 +23,9 @@ const flattenLinks = (links) => {
         <NuxtLink
           :to="'#' + link.id"
           class="flex"
-          exact-active-class="text-red"
+          exact-active-class="text-error-600 dark:text-error-400"
         >
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              class="h-5 w-5 items-center mr-1"
-            >
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="currentColor"
-                d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
-              />
-            </svg>
-          </span>
+          <UIcon name="i-lucide-chevron-right" class="size-5 mr-1" />
           {{ link.text }}
         </NuxtLink>
       </li>

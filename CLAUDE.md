@@ -44,13 +44,14 @@ Static TS arrays in `data/`: `projects.ts`, `topics.ts`, `talks.ts`. Not markdow
 File-based: `pages/index.vue` (home), `pages/projects.vue`, `pages/blog/{index,[...slug]}.vue`, `pages/topics/{index,[...slug]}.vue`. `app.vue` wraps with shared `Header` / `BottomNav` / `Footer`.
 
 ### Styling
-- Tailwind via `@nuxtjs/tailwindcss` + `@tailwindcss/postcss` (Tailwind v4 PostCSS pipeline) + `@tailwindcss/typography`.
-- Custom theme colors (`dark-high`, `blue`, `green`, `yellow`, `red`, `codeGray`) and prose styles in `tailwind.config.js`. Dark mode: `class` strategy via `@nuxtjs/color-mode` (`classSuffix: ''`, preference `system`).
-- Global CSS entry: `assets/styles/main.css` (set in `nuxt.config.ts`). Animations live in `assets/styles/animations.css`.
+- Tailwind v4 + color-mode + prose bundled via `@nuxt/ui` (single module). No `tailwind.config.js`, no `@nuxtjs/tailwindcss`, no `@nuxtjs/color-mode`.
+- Theme config lives in CSS via `@theme static {...}` in `assets/styles/main.css` (imports `tailwindcss` + `@nuxt/ui` first). Semantic palettes selected by name in `app.config.ts` — `primary: 'indigo'`, `neutral: 'zinc'`. Bespoke utility classes (`highlighted`, `slick-*`, `reading-area`, `container*`, `exact-navigation`) declared under `@layer components` in `main.css`.
+- Dark mode: `class` strategy bundled by Nuxt UI; toggle composable = `useColorMode()` (re-exported by Nuxt UI). Wrap toggle button in `<ClientOnly>` to avoid hydration mismatch.
+- Animations: `assets/styles/animations.css` holds `@keyframes` + Vue `<Transition>` classes (`.page-*`, `.theme-toggle-*`) + `prefers-reduced-motion` guard. Timing constants in `utils/animation-config.ts`.
 - Fonts: IBM Plex Serif + Inter loaded from Google Fonts in `app.vue`.
 
 ### Icons
-Fontawesome via `@vesp/nuxt-fontawesome`. Import the specific icon (e.g. `faGithub` from `@fortawesome/free-brands-svg-icons`) and pass via `<font-awesome :icon="..." />`. Prose anchors/copy buttons use Phosphor icons configured in `app.config.ts`.
+All icons via `@nuxt/icon` (bundled by Nuxt UI). Collections: `@iconify-json/lucide` (UI glyphs) + `@iconify-json/simple-icons` (brand glyphs). Reference as `<UIcon name="i-lucide-<name>" />` or `i-simple-icons-<brand>`. `nuxt.config.ts` `icon` block sets `mode: 'css'`, `serverBundle.collections: ['lucide', 'simple-icons']`, `clientBundle.scan: true` — client ships only icons referenced in templates. Code-block language hints overridden in `app.config.ts` `ui.prose.codeIcon` (maps `typescript`/`yaml`/`bash`/etc. to lucide). No FontAwesome, no inline `<svg>`.
 
 ### SEO / prerender
 - Canonical host `https://denisakp.me` set in `runtimeConfig.public.siteUrl` and `site.url`.

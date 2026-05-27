@@ -1,13 +1,7 @@
 <script setup>
 const props = defineProps({
-  prev: {
-    type: Object,
-    default: null,
-  },
-  next: {
-    type: Object,
-    default: null,
-  },
+  prev: { type: Object, default: null },
+  next: { type: Object, default: null },
 });
 
 const nextPath = computed(() =>
@@ -27,36 +21,36 @@ const prevPath = computed(() =>
       'justify-end': !prevPath && nextPath,
     }"
   >
-    <NuxtLink
+    <UButton
       v-if="prevPath"
       :to="prevPath"
-      class="grow max-w-full md:max-w-[45%] slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
+      color="neutral"
+      variant="outline"
+      size="lg"
+      icon="i-lucide-chevron-left"
+      class="grow max-w-full md:max-w-[45%] justify-start"
+      :ui="{ leadingIcon: 'size-6' }"
     >
-      <div class="flex flex-row items-center space-x-4">
-        <UIcon name="i-lucide-chevron-left" class="size-6 text-neutral-700 dark:text-neutral-300" />
-        <div class="overflow-hidden">
-          <p class="text-neutral-700 dark:text-neutral-300 text-xs">Previous</p>
-          <p class="text-neutral-900 dark:text-neutral-100 truncate" :title="props.prev.title">
-            {{ props.prev.title }}
-          </p>
-        </div>
+      <div class="overflow-hidden text-left ml-2">
+        <p class="text-neutral-500 text-xs">Previous</p>
+        <p class="truncate" :title="props.prev.title">{{ props.prev.title }}</p>
       </div>
-    </NuxtLink>
+    </UButton>
 
-    <NuxtLink
+    <UButton
       v-if="nextPath"
       :to="nextPath"
-      class="grow max-w-full md:max-w-[45%] slick-border slick-hover px-4 py-4 cursor-pointer text-sm"
+      color="neutral"
+      variant="outline"
+      size="lg"
+      trailing-icon="i-lucide-chevron-right"
+      class="grow max-w-full md:max-w-[45%] justify-end"
+      :ui="{ trailingIcon: 'size-6' }"
     >
-      <div class="flex flex-row items-center justify-end space-x-4">
-        <div class="overflow-hidden text-right">
-          <p class="text-neutral-700 dark:text-neutral-300 text-xs">Next</p>
-          <p class="text-neutral-900 dark:text-neutral-100 truncate" :title="props.next.title">
-            {{ props.next.title }}
-          </p>
-        </div>
-        <UIcon name="i-lucide-chevron-right" class="size-6 text-neutral-700 dark:text-neutral-300" />
+      <div class="overflow-hidden text-right mr-2">
+        <p class="text-neutral-500 text-xs">Next</p>
+        <p class="truncate" :title="props.next.title">{{ props.next.title }}</p>
       </div>
-    </NuxtLink>
+    </UButton>
   </div>
 </template>

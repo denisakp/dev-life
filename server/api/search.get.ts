@@ -1,3 +1,5 @@
+import { queryCollection } from "@nuxt/content/server";
+
 export default defineEventHandler(async (event) => {
   const q = (getQuery(event).q as string | undefined)?.trim() ?? "";
   if (q.length < 4) return [];

@@ -6,10 +6,7 @@ const mobileNavOpen = ref(false);
 
 const searchModal = () => (modalState.value = !modalState.value);
 
-const colorMode = useColorMode();
-const toggleColorMode = () => {
-  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
-};
+const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
 
 watch(query, async (newValue) => {
   if (!newValue || newValue.length < 4) {
@@ -55,12 +52,20 @@ const navLinks = [
       <div class="flex justify-center items-center space-x-2 md:space-x-3">
         <ClientOnly>
           <UButton
-            :icon="colorMode.value === 'dark' ? 'i-lucide-sun' : 'i-lucide-moon'"
             color="neutral"
             variant="ghost"
-            :aria-label="`Switch to ${colorMode.value === 'dark' ? 'light' : 'dark'} mode`"
+            :aria-label="`Switch to ${themeCurrent === 'dark' ? 'light' : 'dark'} mode`"
+            class="focus-visible:ring-2 focus-visible:ring-primary-500"
             @click="toggleColorMode"
-          />
+          >
+            <Transition name="theme-toggle" mode="out-in">
+              <UIcon
+                :key="themeCurrent"
+                :name="themeCurrent === 'dark' ? 'i-lucide-sun' : 'i-lucide-moon'"
+                class="size-5"
+              />
+            </Transition>
+          </UButton>
           <template #fallback>
             <div class="size-8" />
           </template>
