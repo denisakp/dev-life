@@ -20,6 +20,9 @@ const navLinks = [
   { to: "/blog", label: "Blog", icon: "i-lucide-book-open" },
   { to: "/topics", label: "Topics", icon: "i-lucide-tag" },
   { to: "/projects", label: "Projects", icon: "i-lucide-folder-git-2" },
+  { to: "/talks", label: "Talks", icon: "i-lucide-presentation" },
+  { to: "/teaching", label: "Teaching", icon: "i-lucide-graduation-cap" },
+  { to: "/about", label: "About", icon: "i-lucide-user" },
 ];
 </script>
 

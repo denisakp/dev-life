@@ -1,0 +1,153 @@
+<script setup lang="ts">
+import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
+import talks from "~/data/talks";
+import { formatDate } from "~/utils/format-date";
+
+// email hidden in ROT47 (matches pages/index.vue convention)
+const email = `2<A28?@?:E65o8>2:=]4@>`;
+
+const latestTalks = computed(() =>
+  [...talks].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)
+);
+
+useSeoMeta({
+  title: "About",
+  description: META_DESCRIPTION,
+  ogTitle: "About — Denis AKPAGNONITE",
+  ogDescription: META_DESCRIPTION,
+  ogImage: META_IMAGE,
+  ogUrl: "https://denisakp.me/about",
+  twitterCard: "summary_large_image",
+  twitterTitle: "About — Denis AKPAGNONITE",
+  twitterDescription: META_DESCRIPTION,
+  twitterImage: META_IMAGE,
+});
+</script>
+
+<template>
+  <main class="container py-8 lg:py-12">
+    <!-- Section 1: Header -->
+    <header class="flex flex-col items-center text-center gap-4 mb-12">
+      <div
+        class="size-32 rounded-full bg-primary-500 text-white flex items-center justify-center text-4xl font-bold shrink-0"
+        aria-label="Denis AKPAGNONITE"
+      >DA</div>
+      <div>
+        <h1 class="text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mb-2">
+          Denis AKPAGNONITE
+        </h1>
+        <p class="text-lg text-neutral-700 dark:text-neutral-300">
+          Software Engineer 👨🏽‍💻 | Cloud Native Engineer ☁️ | Thinker ⎈
+        </p>
+      </div>
+    </header>
+
+    <!-- Section 2: Bio (mirrors homepage About content) -->
+    <section class="prose dark:prose-invert max-w-none mb-12 prose-p:text-justify prose-p:hyphens-auto">
+      <p>
+        I'm Denis, a software engineer working mainly on cloud-native and distributed systems.
+        I spend my time building and maintaining backend services, improving delivery pipelines,
+        and helping teams adopt practical DevSecOps practices.
+      </p>
+      <p>
+        I share lessons learned through talks, writing, and open-source projects, and I try to
+        approach engineering with pragmatism, curiosity, and a focus on long-term maintainability.
+      </p>
+    </section>
+
+    <!-- Section 3: Current focus -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+        Currently
+      </h2>
+      <p class="text-neutral-700 dark:text-neutral-300">
+        I'm a DevOps Architect at
+        <span class="highlighted">Digi.job</span>, working on various projects involving
+        cloud-native and distributed systems. Outside of work I build open-source tools like
+        <NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
+          Sentinel, Ogoune, and Obscura
+        </NuxtLink>.
+      </p>
+    </section>
+
+    <!-- Section: Teaching -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+        👨🏽‍🏫 Teaching
+      </h2>
+      <p class="text-neutral-700 dark:text-neutral-300 mb-3">
+        Adjunct lecturer — I teach the following courses at university level:
+      </p>
+      <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+        <li>GIS &amp; Machine Learning Modeling</li>
+        <li>Distributed Programming with Java</li>
+        <li>Database Fundamentals</li>
+        <li>Introduction to DBMS</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Skills snapshot -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+        🛠️ Skills
+      </h2>
+      <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+        <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Zig</li>
+        <li><b>CI/CD</b>: GitLab CI, GitHub Actions</li>
+        <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, Ansible, ArgoCD, Helm</li>
+        <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
+        <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
+      </ul>
+    </section>
+
+    <!-- Section 5: Talks teaser -->
+    <section class="mb-12">
+      <div class="flex items-baseline justify-between mb-4">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+          🎤 Talks
+        </h2>
+        <NuxtLink to="/talks" class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+          See all →
+        </NuxtLink>
+      </div>
+      <ul class="space-y-3">
+        <li
+          v-for="talk in latestTalks"
+          :key="`${talk.date}-${talk.title}`"
+          class="text-neutral-700 dark:text-neutral-300"
+        >
+          <div class="font-medium text-neutral-900 dark:text-neutral-100">
+            {{ talk.title }}
+          </div>
+          <div class="text-sm text-neutral-500">
+            {{ talk.venue }} · {{ formatDate(talk.date) }}
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Section 6: Contact CTA -->
+    <section id="contact" class="mb-12">
+      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+        📞 Get in touch
+      </h2>
+      <div class="flex space-x-4 text-2xl mb-3">
+        <NuxtLink to="https://github.com/denisakp" target="_blank" aria-label="GitHub">
+          <UIcon name="i-simple-icons-github" />
+        </NuxtLink>
+        <NuxtLink to="https://x.com/N1BBzerLZXT" target="_blank" aria-label="X (Twitter)">
+          <UIcon name="i-simple-icons-x" />
+        </NuxtLink>
+        <NuxtLink to="https://linkedin.com/in/denis-akpagnonite" target="_blank" aria-label="LinkedIn">
+          <UIcon name="i-simple-icons-linkedin" />
+        </NuxtLink>
+      </div>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400">
+        Email: <span class="font-mono">{{ email }}</span> (ROT47-encoded — decode at
+        <NuxtLink to="https://rot47.net" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline">
+          rot47.net
+        </NuxtLink>)
+      </p>
+    </section>
+  </main>
+</template>

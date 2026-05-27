@@ -1,5 +1,5 @@
 <script setup>
-import formatDate from "../utils/date-formating";
+import { formatDate } from "~/utils/format-date";
 
 const props = defineProps({
   post: {

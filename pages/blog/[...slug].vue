@@ -3,6 +3,7 @@ import Giscus from "@giscus/vue";
 
 import PrevNext from "~/components/PrevNext.vue";
 import Toc from "~/components/Toc.vue";
+import { formatDate } from "~/utils/format-date";
 
 const { path } = useRoute();
 const reviewedPath = path.replace("/blog", "");
@@ -21,6 +22,9 @@ const prev = computed(() => surround.value?.[0] ?? null);
 const next = computed(() => surround.value?.[1] ?? null);
 
 const tocLinks = computed(() => article.value?.body?.toc?.links ?? []);
+
+const displayDate = computed(() => formatDate(article.value?.date));
+const reading = computed(() => useReadingTime(article.value?.body ?? {}));
 
 const colorMode = useColorMode();
 const giscusTheme = computed(() =>
@@ -48,9 +52,12 @@ useSeoMeta({
   <div v-if="article" class="container">
     <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12 xl:gap-16">
       <article class="min-w-0">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-4 leading-tight wrap-break-words">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-2 leading-tight wrap-break-words">
           {{ article.title }}
         </h1>
+        <p class="text-sm text-neutral-500 mb-6">
+          <span v-if="displayDate">{{ displayDate }} · </span>{{ reading.label }}
+        </p>
 
         <div class="max-w-none lg:prose-lg prose dark:prose-invert">
           <ContentRenderer :value="article">

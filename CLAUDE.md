@@ -41,7 +41,11 @@ Two independent taxonomies:
 Static TS arrays in `data/`: `projects.ts`, `topics.ts`, `talks.ts`. Not markdown-backed. Edit these files to change the projects page or topic chips.
 
 ### Routing
-File-based: `pages/index.vue` (home), `pages/projects.vue`, `pages/blog/{index,[...slug]}.vue`, `pages/topics/{index,[...slug]}.vue`. `app.vue` wraps with shared `Header` / `BottomNav` / `Footer`.
+File-based: `pages/index.vue` (home), `pages/about.vue`, `pages/talks.vue`, `pages/projects.vue`, `pages/blog/{index,[...slug]}.vue`, `pages/topics/{index,[...slug]}.vue`. `error.vue` at repo root handles 404/500. `app.vue` wraps with shared `Header` / `Footer` (BottomNav deleted in phase 001).
+
+### Helpers
+- `utils/format-date.ts` — `formatDate(input)` via `Intl.DateTimeFormat('en-US', { dateStyle: 'long' })`. Null-safe; returns `""` on falsy/invalid.
+- `composables/useReadingTime.ts` — `useReadingTime(body)` walks MDC AST, skips `code`/`pre` nodes, returns `{ words, minutes, label }`. 200 wpm; min 1 minute.
 
 ### Styling
 - Tailwind v4 + color-mode + prose bundled via `@nuxt/ui` (single module). No `tailwind.config.js`, no `@nuxtjs/tailwindcss`, no `@nuxtjs/color-mode`.
@@ -77,6 +81,7 @@ Branch `001-nuxt4-ui-upgrade` (current) is mid Nuxt 3 → Nuxt 4 migration + UI 
 `.specify/` and `.github/agents/speckit.*.agent.md` are the [Spec Kit](https://github.com/github/spec-kit) workflow (specify → plan → tasks → implement). When a user invokes a `/speckit.*` slash command, follow the corresponding agent prompt file rather than improvising.
 
 <!-- SPECKIT START -->
-Current plan: [specs/001-nuxt4-ui-upgrade/plan.md](specs/001-nuxt4-ui-upgrade/plan.md)
+Current plan: [specs/002-content-surfaces/plan.md](specs/002-content-surfaces/plan.md)
 (spec → research → data-model → contracts → quickstart in the same folder).
+Roadmap: [phases.md](phases.md). Prior phase: specs/001-nuxt4-ui-upgrade/.
 <!-- SPECKIT END -->
