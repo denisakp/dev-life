@@ -1,37 +1,50 @@
-# Implementation Plan: Nuxt 4 Migration & UI Smoothness Enhancement
+# Implementation Plan: Nuxt 4 + Nuxt UI Migration
 
-**Branch**: `001-nuxt4-ui-upgrade` | **Date**: 2025-01-27 | **Spec**: [spec.md](spec.md)
+**Branch**: `001-nuxt4-ui-upgrade` | **Date**: 2026-05-27 | **Spec**: [spec.md](./spec.md)
 **Input**: Feature specification from `/specs/001-nuxt4-ui-upgrade/spec.md`
 
 ## Summary
 
-Upgrade Dev-Life portfolio from Nuxt 3 to Nuxt 4 with zero breaking changes, then enhance UI smoothness through page transition animations (fade/slide <300ms), dark mode toggle transitions (200-300ms), image fade-in effects, and mobile touch feedback. Framework migration is prerequisite for all UI improvements. All existing content continues to display identically. Final outcome: professional, modern feel with 60 fps animations, Lighthouse ≥90, Core Web Vitals compliance (LCP <2.5s, CLS <0.1).
+Complete the in-progress Nuxt 3 → Nuxt 4 framework upgrade, then adopt
+`@nuxt/ui` v3 as the component foundation: migrate Tailwind to CSS-first
+theming (no `tailwind.config.js`), unify all icons on Iconify (Lucide +
+Simple-Icons), replace bespoke components (`Header`, `Pagination`, `Post`,
+`PrevNext`, `Topics`, `Project`, `ExternalLink`) with Nuxt UI primitives,
+delete `BottomNav`, sync Giscus theme with color mode, and layer motion
+polish (page transitions, image fade-in) respecting `prefers-reduced-motion`.
+Free tier only — Pro-only components fall back to free primitives. Primary
+palette = Tailwind `indigo`. Lighthouse desktop ≥ 90 (median of 3 local
+`pnpm preview` runs).
 
 ## Technical Context
 
-**Language/Version**: TypeScript 5.x, Node 20+, Vue 3 Composition API  
-**Primary Dependencies**: Nuxt 4 (latest), Tailwind CSS v4, NuxtContent 3.x, @nuxtjs/color-mode, @nuxt/image, @vesp/nuxt-fontawesome  
-**Storage**: N/A (content via NuxtContent from markdown files, theme preference via localStorage)  
-**Testing**: Vitest (unit), Playwright (e2e), Chrome DevTools (performance), Lighthouse (SEO/performance metrics)  
-**Target Platform**: Web browsers, modern ES2020+, Node 20+ server-side rendering  
-**Project Type**: Full-stack web application (Nuxt 4 SSR + static generation)  
-**Performance Goals**: Page transitions <300ms, animations 60 fps constant, LCP <2.5s, CLS <0.1, Lighthouse ≥90 desktop  
-**Constraints**: Zero breaking changes to existing content/pages, graceful degradation for users with `prefers-reduced-motion`, work within existing component architecture (shared/, content/, project/)  
-**Scale/Scope**: 1 framework upgrade + 5 UI improvement features, ~50 existing blog posts/pages remain unchanged, ~8-12 component enhancements
+**Language/Version**: TypeScript 5.x, Vue 3.5+, Node ≥ 20 (Nuxt 4 requirement)
+**Primary Dependencies**: Nuxt 4.3.x, `@nuxt/ui` v3.3.x, Tailwind v4 (CSS-first via `@theme`), `@nuxt/content` v3.11.x, `@nuxt/image`, `@iconify-json/lucide`, `@iconify-json/simple-icons`
+**Storage**: Markdown content under `content/` (no DB). `localStorage` for color mode (key `nuxt-color-mode`).
+**Testing**: Manual verification (no test runner). `nuxi typecheck` is the only automated gate. Lighthouse: Chrome DevTools desktop preset against `pnpm preview`, median of 3 runs per page.
+**Target Platform**: Modern evergreen browsers (Chromium, Firefox, Safari, mobile Safari/Chrome). SSR + prerender output served as static assets (Vercel).
+**Project Type**: Web application (Nuxt single-app, no separate backend).
+**Performance Goals**: Lighthouse desktop ≥ 90 on `/`, `/blog`, representative blog post. LCP ≤ 2.5 s, CLS < 0.1, INP < 200 ms. Page transitions < 300 ms at 60 fps.
+**Constraints**: Bundle size ≤ 115 % of `main`-HEAD baseline (per NFR-003). No `any` types added. All animations honor `prefers-reduced-motion`. No content migrations (markdown untouched).
+**Scale/Scope**: ~40 markdown posts across 5 category folders, ~15 components, 6 top-level routes. Single maintainer; no concurrent contributors.
 
 ## Constitution Check
 
-**GATE: Pass (no violations)**
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-✅ **Principle I: Content-First Architecture** — Feature preserves all existing content without modification. Animation enhancements support (not interfere with) content discoverability. Dark mode transitions maintain readability.
+Reference: [`.specify/memory/constitution.md`](../../.specify/memory/constitution.md) v1.0.0.
 
-✅ **Principle II: Performance & Accessibility (NON-NEGOTIABLE)** — Feature directly enforces Core Web Vitals targets. Page transitions designed for <300ms (supporting LCP requirement). Dark mode continues via @nuxtjs/color-mode. All animations respect reduced-motion preference.
+| Principle | Status | Notes |
+|---|---|---|
+| **I. Type Safety & Validated Boundaries** | ✅ PASS | TS preserved; `@nuxt/content` schema (Zod) untouched; no new `any` introduced. |
+| **II. Optimized Images Only** | ✅ PASS | `<NuxtImg>` retained in `PostImage.vue`; substitution table explicitly keeps it. No raw `<img>` added. |
+| **III. Accessible, Semantic, Dark-Mode-Complete UI** | ✅ PASS | Nuxt UI primitives are WCAG-conformant by default; dark mode handled by Nuxt UI's bundled color-mode. US3/US7 explicitly verify dark parity. |
+| **IV. Context-Grouped Components** | ✅ PASS | `components/shared/`, `components/content/`, `components/project/` directories retained. No new top-level group. `BottomNav.vue` deletion stays within `shared/`. |
+| **V. Content & Performance Discipline** | ✅ PASS | Frontmatter format unchanged (`YYYY-MM-DD`); `content.config.ts` schema preserved (FR-008); Lighthouse ≥ 90 gate explicit in NFR-001 / SC-009. |
 
-✅ **Principle III: Type Safety Throughout** — TypeScript upgrade to Nuxt 4 enforces type safety. Animation timing/config will use typed interfaces. No `any` types permitted.
+**Gate Status**: ✅ PASS — Proceed to Phase 0. No `Complexity Tracking` entries required.
 
-✅ **Principle IV: Component Modularity & Reusability** — Animations implemented within existing component structure (shared/, content/, project/). No prop drilling required. Transitions use Vue built-in `<Transition>` components.
-
-**Technology Stack Alignment**: ✅ Uses Nuxt 4 (core framework), Tailwind CSS v4 (animations), existing @nuxtjs/color-mode (dark mode), @nuxt/image (image optimization). No new external dependencies.
+Re-check post Phase 1: ✅ PASS (no design decision introduces a violation).
 
 ## Project Structure
 
@@ -39,189 +52,75 @@ Upgrade Dev-Life portfolio from Nuxt 3 to Nuxt 4 with zero breaking changes, the
 
 ```text
 specs/001-nuxt4-ui-upgrade/
-├── spec.md                           # Feature specification ✅
-├── plan.md                           # This file
-├── research.md                       # Phase 0 research (TBD)
-├── data-model.md                     # Phase 1 data models (TBD)
-├── quickstart.md                     # Phase 1 implementation quickstart (TBD)
-├── contracts/                        # Phase 1 API contracts (TBD)
-├── tasks.md                          # Phase 2 task list (TBD)
-└── checklists/
-    └── requirements.md               # Spec validation checklist ✅
+├── plan.md              # This file
+├── research.md          # Phase 0 output
+├── data-model.md        # Phase 1 output
+├── quickstart.md        # Phase 1 output
+├── contracts/           # Phase 1 output (component + module contracts)
+│   ├── index.md
+│   └── requirements.md
+├── checklists/          # Quality checklists
+└── tasks.md             # Phase 2 output (regenerate via /speckit-tasks)
 ```
 
 ### Source Code (repository root)
 
 ```text
-# Web application structure (existing)
+assets/
+├── styles/
+│   ├── main.css                 # @import "tailwindcss"; @import "@nuxt/ui"; + @theme block
+│   └── animations.css           # @keyframes + prefers-reduced-motion guards
+
 components/
-  shared/                             # Update: Header (dark mode toggle animation)
-    Header.vue
-    BottomNav.vue
-  content/                            # Update: Image fade-in animation
-    PostImage.vue
-    ExternalLink.vue
-  project/                            # Existing, no changes required
-    Project.vue
+├── shared/
+│   ├── Header.vue               # → <UHeader> + <UNavigationMenu> + <UModal> (search) + <USlideover> (mobile)
+│   ├── Footer.vue               # Plain markup or <UFooter> if free
+│   └── Pagination.vue           # → <UPagination> wrapper
+├── Post.vue                     # (top-level) → <UCard> (NuxtImg preserved)
+├── PrevNext.vue                 # (top-level) → pair of <UButton variant="outline">
+├── Toc.vue                      # (top-level) Bespoke (Pro-only <UContentToc> not licensed)
+├── Topics.vue                   # (top-level) → <UBadge> chips inside <ULink>
+├── content/
+│   ├── PostImage.vue            # NuxtImg + optional fade-in
+│   └── ExternalLink.vue         # → <ULink to external target="_blank">
+└── project/
+    └── Project.vue              # → <UCard> + <UButton> + <UBadge>
+# components/shared/BottomNav.vue DELETED — clarified 2026-05-27
 
-pages/
-  index.vue                           # Update: page transition animation
-  blog/
-    [...slug].vue                     # Update: page transition animation
-  projects.vue                        # Update: page transition animation
-  topics/
-    [...slug].vue                     # Update: page transition animation
+# Note: Post.vue, PrevNext.vue, Toc.vue, Topics.vue are pre-existing
+# top-level files. Constitution Principle IV applies to new components only;
+# moving these is out of scope for this migration.
 
-app.vue                               # Update: Root layout transition wrapper
-layouts/                              # Existing layouts (no changes)
-
-# New or updated files for animations
 composables/
-  usePageTransition.ts               # New: page transition composable
-  useThemeTransition.ts              # New: dark mode transition composable
+├── usePageTransition.ts         # Page fade in/out + reduced-motion guard
+├── useThemeTransition.ts        # Wraps useColorMode() + animated toggle
+└── useImageFadeIn.ts            # IntersectionObserver fade-in
 
 utils/
-  animation-config.ts                 # New: animation timing constants
+└── animation-config.ts          # Timing/easing constants
 
-nuxt.config.ts                        # Update: Nuxt 4 config, build targets
-package.json                          # Update: Nuxt 4 dependencies
-tsconfig.json                         # Update: TypeScript 5.x config
-tailwind.config.ts                    # Update: Tailwind v4 config, animation utilities
+pages/
+├── index.vue
+├── projects.vue
+├── blog/{index,[...slug]}.vue   # Giscus theme bound to useColorMode()
+└── topics/{index,[...slug]}.vue
+
+app.vue                          # <UApp> wrapper around <NuxtPage>
+app.config.ts                    # ui: { colors: { primary: 'indigo', neutral: 'zinc' } }
+nuxt.config.ts                   # modules: ['@nuxt/ui', '@nuxt/content', '@nuxt/image', '@nuxtjs/sitemap', '@nuxtjs/robots']
+
+# DELETED:
+# - tailwind.config.js
+# - tokens.config.ts
+# - any inline <svg> in components/pages
 ```
 
-**Structure Decision**: Web application structure—single Nuxt 4 application with existing component organization. Framework upgrade requires:
-1. Dependency updates (Nuxt 3→4, dependencies, build config)
-2. TypeScript config updates (5.x)
-3. Tailwind v4 migration
-4. Component animation enhancements in-place (no restructuring)
-
-New files focus on animation utilities and composables rather than restructuring existing code.
-
-## Key Design Decisions
-
-### 1. **Nuxt 4 Upgrade Strategy (US1 - P1)**
-   - **Approach**: Incremental upgrade following Nuxt docs with regression testing
-   - **Order**: 1) Update nuxt, 2) Update dependencies, 3) Run typecheck, 4) Test pages, 5) Production build
-   - **Risk Mitigation**: Test each existing page after upgrade; maintain git history to revert if needed
-   - **Validation**: `pnpm dev` succeeds, all pages load, `pnpm build` succeeds, `nuxi typecheck` passes
-
-### 2. **Page Transition Implementation (US2 - P1)**
-   - **Approach**: Use Nuxt `<NuxtPage>` with Vue `<Transition>` wrapper + Tailwind CSS animations
-   - **Timing**: 300ms duration (fade in 200ms, fade out 100ms for quick feel)
-   - **Easing**: `ease-in-out` cubic bezier for smooth natural feel
-   - **Reduced Motion**: Instant transitions if user has `prefers-reduced-motion` enabled
-   - **No Layout Shift**: Transition CSS uses opacity/transform only (GPU-accelerated, no layout reflow)
-
-### 3. **Dark Mode Toggle Animation (US3 - P1)**
-   - **Approach**: CSS transitions on color variables + button rotation animation
-   - **Timing**: 200-300ms for color transitions, 150ms for button rotation
-   - **Button Feedback**: Small 90° rotation or scale animation to indicate action
-   - **No Flash**: Pre-render theme on mount to prevent FOUC (Flash of Unstyled Content)
-   - **Persistence**: Continue using localStorage via @nuxtjs/color-mode
-
-### 4. **Image Fade-in (US4 - P2)**
-   - **Approach**: Use @nuxt/image component with blur placeholder + CSS fade-in
-   - **Timing**: 300ms fade-in as image loads
-   - **Lazy Loading**: Images load on scroll via Nuxt Image native lazy loading
-   - **No Layout Shift**: Image dimensions defined in markdown frontmatter to reserve space
-
-### 5. **Mobile Touch Feedback (US5 - P2)**
-   - **Approach**: Tailwind active/focus states + subtle scale/opacity changes on touch
-   - **Timing**: 100-150ms feedback response
-   - **No Jank**: Use `transform` and `opacity` only (GPU-accelerated)
-   - **Tested on**: iPhone 14, Galaxy S20 emulation in DevTools
-
-## Phase 0: Research (TBD)
-
-**Unknowns to resolve**:
-- Nuxt 4 breaking changes specific to this codebase (custom plugins, modules, server middleware)
-- @nuxtjs/color-mode compatibility with Nuxt 4 (latest version required)
-- Tailwind CSS v4 animation utility syntax changes from v3
-- NuxtContent v3 compatibility verification
-- Performance impact of page transitions on mobile networks
-
-**Research tasks** (to be generated via subagent):
-1. Identify all Nuxt 3→4 breaking changes affecting this specific project
-2. Review @nuxtjs/color-mode Nuxt 4 compatibility and latest best practices
-3. Document Tailwind v4 animation syntax and available transition utilities
-4. Verify NuxtContent 3.x works seamlessly with Nuxt 4
-5. Research browser support for CSS transitions and animation performance (CLS, jank prevention)
-
-**Output**: research.md with findings and specific migration steps.
-
-## Phase 1: Design & Contracts
-
-**Deliverables**:
-1. **data-model.md**: Animation configuration models (duration, easing, trigger points)
-2. **contracts/** (if applicable): Animation API contracts (composable function signatures)
-3. **quickstart.md**: Implementation quickstart with code examples for each animation type
-4. **Agent context update**: Run update-agent-context.sh to embed Nuxt 4 + animation patterns
-
-**Key Design Artifacts**:
-
-### Animation Configuration (data-model.md)
-```typescript
-// Page transitions
-PageTransitionConfig = {
-  duration: 300,
-  enterEasing: 'ease-in-out',
-  exitEasing: 'ease-in-out',
-  respectReducedMotion: true
-}
-
-// Dark mode transitions
-ThemeTransitionConfig = {
-  colorDuration: 250,
-  buttonDuration: 150,
-  respectReducedMotion: true
-}
-
-// Image fade-in
-ImageTransitionConfig = {
-  duration: 300,
-  easing: 'ease-out',
-  triggerPoint: 'on-load'
-}
-```
-
-### Composable Contracts (contracts/)
-- `usePageTransition()` — Provides transition state for page navigation
-- `useThemeTransition()` — Manages dark mode toggle animation
-- `useImageFadeIn()` — Handles lazy image fade-in effect
-
-## Phase 2: Implementation Tasks (TBD)
-
-**Output**: tasks.md with breakdown by user story
-
-Tasks will be organized as:
-- **Phase 1: Setup** — Update Nuxt to v4, TypeScript, Tailwind, dependencies
-- **Phase 2: Foundation** — TypeScript migration complete, build passes, no errors
-- **Phase 3: US1 (Framework Upgrade)** — All pages work, tests pass
-- **Phase 3: US2 (Page Transitions)** — Transition animations implemented, performance verified
-- **Phase 3: US3 (Dark Mode Toggle)** — Theme transitions smooth, no flash
-- **Phase 3: US4 (Image Fade-in)** — Images fade in on load, no layout shift
-- **Phase 3: US5 (Mobile)** — Mobile animations tested, touch feedback working
-
-## Risks & Mitigation
-
-| Risk | Impact | Mitigation |
-|------|--------|-----------|
-| Nuxt 4 breaking changes in custom code | High | Phase 0 research identifies all breaking changes; systematic testing after each change |
-| Dependency incompatibility (color-mode, etc.) | Medium | Verify latest versions; test in dev before production |
-| Animation janking on slow devices | Medium | Use GPU-accelerated properties (transform, opacity) only; test on low-end hardware |
-| Reduced motion preference missed | Medium | Test with DevTools `prefers-reduced-motion` toggle; automated test coverage |
-| Layout shift during transitions | Low | Use opacity/transform CSS only; no DOM reflow; verify CLS metric <0.1 |
+**Structure Decision**: Web application (single Nuxt project). Existing
+context-grouped component layout (`shared/`, `content/`, `project/`)
+preserved per Constitution Principle IV. `BottomNav.vue` deleted (clarified
+2026-05-27). All Tailwind/theme config moves from `tailwind.config.js` into
+`assets/styles/main.css` via Tailwind v4's `@theme` directive.
 
 ## Complexity Tracking
 
-> **No Constitution violations—no complexity justification needed**
-
-All work aligns with all four core principles. No alternative approaches required.
-
-## Next Steps
-
-1. ✅ **Spec**: Complete and validated
-2. ⏳ **Phase 0 Research**: Run research agent to resolve unknowns
-3. ⏳ **Phase 1 Design**: Generate data-model.md, contracts/, quickstart.md
-4. ⏳ **Agent Context**: Update copilot context with Nuxt 4 + animation patterns
-5. ⏳ **Phase 2 Tasks**: Generate tasks.md for implementation and parallel development
+> No Constitution violations — section intentionally empty.

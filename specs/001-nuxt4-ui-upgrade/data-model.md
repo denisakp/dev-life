@@ -1,486 +1,245 @@
-# Phase 1 Design: Data Models & Animation Configuration
+# Phase 1 Design: Data Models & Module Configuration
 
-**Feature**: `001-nuxt4-ui-upgrade`  
-**Date**: 2025-01-27  
-**Purpose**: Define animation configuration data models and composable contracts
+**Feature**: `001-nuxt4-ui-upgrade`
+**Date**: 2026-05-27
+**Purpose**: Define the static configuration objects, theme tokens, and
+composable signatures that the migration introduces. No runtime entities
+(no DB) — these models are TypeScript constants / config shapes only.
 
 ---
 
-## Data Models
+## 1. Theme Token Set
 
-### 1. PageTransitionConfig
+CSS variables exposed in `assets/styles/main.css` under `@theme static`.
 
-Defines timing and behavior for page-to-page navigation animations.
-
-```typescript
-export interface PageTransitionConfig {
-  // Duration in milliseconds
-  enterDuration: number;    // Time for new page to fade in (200ms)
-  exitDuration: number;     // Time for old page to fade out (100ms)
-  
-  // Easing functions for natural feel
-  enterEasing: string;      // CSS easing: 'ease-in-out', 'cubic-bezier(...)'
-  exitEasing: string;
-  
-  // Accessibility
-  respectReducedMotion: boolean;  // Instant if prefers-reduced-motion enabled
-  
-  // Animation type
-  animationType: 'fade' | 'slide' | 'fade-slide';  // 'fade' by default
+```css
+@theme static {
+  --font-sans: "Inter", "IBM Plex Serif", ui-sans-serif, system-ui, sans-serif;
 }
+```
 
-// Default configuration
-export const DEFAULT_PAGE_TRANSITION: PageTransitionConfig = {
+Semantic palettes are selected by name in `app.config.ts`:
+
+```ts
+// app.config.ts
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: 'indigo',   // Maps to Tailwind `indigo` 50–950
+      neutral: 'zinc',     // Maps to Tailwind `zinc` 50–950
+    },
+  },
+});
+```
+
+| Token | Value | Consumers |
+|---|---|---|
+| `primary` semantic | Tailwind `indigo` (50–950) | `<UButton>`, `<UBadge>`, prose links, `highlighted` class |
+| `neutral` semantic | Tailwind `zinc` (50–950) | Backgrounds, borders, body text, `reading-area` |
+| `error`, `success`, `warning`, `info` | Nuxt UI defaults (red, green, amber, blue) | Status surfaces (unused on site today; available for future) |
+| `--font-sans` | Inter + IBM Plex Serif stack | `body`, all components |
+
+---
+
+## 2. Animation Configuration
+
+`utils/animation-config.ts` — single source for durations + easing.
+File already exists on this branch; data model below documents the
+canonical shape to align with. All durations are milliseconds.
+
+```ts
+export const PAGE_TRANSITION = {
   enterDuration: 200,
   exitDuration: 100,
-  enterEasing: 'ease-in-out',
-  exitEasing: 'ease-in-out',
-  respectReducedMotion: true,
-  animationType: 'fade',
-};
-```
-
-**Usage**: Determines how pages animate during navigation. Configured once, applied globally to all route changes.
-
----
-
-### 2. ThemeTransitionConfig
-
-Defines dark mode toggle animation behavior and timing.
-
-```typescript
-export interface ThemeTransitionConfig {
-  // Color transition timing
-  colorTransitionDuration: number;  // 250ms for color changes
-  
-  // Button animation timing
-  buttonAnimationDuration: number;   // 150ms for toggle button
-  
-  // Button animation type
-  buttonAnimationType: 'rotate' | 'scale' | 'fade' | 'combined';  // 'rotate' by default
-  
-  // Easing
-  easing: string;  // 'ease-in-out' standard
-  
-  // Accessibility
-  respectReducedMotion: boolean;  // Instant if prefers-reduced-motion enabled
-  
-  // Theme preference storage
-  storageKey: string;  // localStorage key: 'nuxt-color-mode'
-  useSystemPreference: boolean;  // Respect system dark/light preference
-}
-
-// Default configuration
-export const DEFAULT_THEME_TRANSITION: ThemeTransitionConfig = {
-  colorTransitionDuration: 250,
-  buttonAnimationDuration: 150,
-  buttonAnimationType: 'rotate',
+  totalDuration: 300,
   easing: 'ease-in-out',
-  respectReducedMotion: true,
+  animationType: 'fade',
+} as const;
+
+export const THEME_TRANSITION = {
+  colorDuration: 250,
+  buttonDuration: 150,
+  buttonRotation: 90,
+  easing: 'ease-in-out',
+  buttonAnimation: 'rotate',
   storageKey: 'nuxt-color-mode',
-  useSystemPreference: true,
-};
-```
+} as const;
 
-**Usage**: Controls how color scheme changes are animated. Applied to Header.vue dark mode toggle and all theme-sensitive elements.
-
----
-
-### 3. ImageFadeConfig
-
-Defines lazy image loading and fade-in animation behavior.
-
-```typescript
-export interface ImageFadeConfig {
-  // Fade-in timing
-  fadeInDuration: number;  // 300ms fade-in duration
-  
-  // Easing for natural feel
-  easing: string;  // 'ease-out' for images (starts fast, slows down)
-  
-  // Placeholder behavior
-  showPlaceholder: boolean;  // Show blur placeholder while loading
-  placeholderBlur: number;   // Blur intensity: 10 (pixels)
-  
-  // Lazy loading
-  lazyLoadThreshold: string;  // Intersection Observer threshold: '0px'
-  
-  // Accessibility
-  respectReducedMotion: boolean;  // Instant display if prefers-reduced-motion
-}
-
-// Default configuration
-export const DEFAULT_IMAGE_FADE: ImageFadeConfig = {
-  fadeInDuration: 300,
+export const IMAGE_TRANSITION = {
+  duration: 300,
   easing: 'ease-out',
-  showPlaceholder: true,
-  placeholderBlur: 10,
+  blurIntensity: 10,
   lazyLoadThreshold: '0px',
-  respectReducedMotion: true,
-};
+} as const;
+
+export type AnimationConfig =
+  | typeof PAGE_TRANSITION
+  | typeof THEME_TRANSITION
+  | typeof IMAGE_TRANSITION;
 ```
 
-**Usage**: Applied to all NuxtImg components in blog posts via PostImage.vue wrapper. Ensures consistent image loading experience.
+Consumed by `assets/styles/animations.css` (mirrored as CSS custom
+properties) and the three composables below.
 
 ---
 
-### 4. AnimationState
+## 3. Composable Contracts
 
-Represents the current animation state for a page or element.
+### 3.1 `useThemeTransition()`
 
-```typescript
-export interface AnimationState {
-  // Page animation state
-  isTransitioning: boolean;  // True during page transition
-  transitionType: 'enter' | 'exit' | 'idle';  // Current animation phase
-  
-  // Theme animation state
-  themeTransitionActive: boolean;  // True during theme toggle
-  currentTheme: 'light' | 'dark' | 'system';  // Current theme
-  
-  // Motion preference
-  prefersReducedMotion: boolean;  // User's system preference
-  respectMotionPreference: boolean;  // Whether to honor it
-  
-  // Image animation state
-  imagesLoading: Map<string, boolean>;  // Track which images are loading
+Wraps Nuxt UI's `useColorMode()` and adds an animated toggle.
+
+```ts
+export interface UseThemeTransition {
+  /** Current resolved mode: 'light' | 'dark'. */
+  current: ComputedRef<'light' | 'dark'>;
+  /** True while the cross-fade is in flight. */
+  isAnimating: Readonly<Ref<boolean>>;
+  /** True if user requested reduced motion. */
+  prefersReducedMotion: ComputedRef<boolean>;
+  /** Toggle and animate (instant if reduced motion). */
+  toggle(): Promise<void>;
 }
-
-// Initial state
-export const INITIAL_ANIMATION_STATE: AnimationState = {
-  isTransitioning: false,
-  transitionType: 'idle',
-  themeTransitionActive: false,
-  currentTheme: 'system',
-  prefersReducedMotion: false,
-  respectMotionPreference: true,
-  imagesLoading: new Map(),
-};
 ```
 
-**Usage**: Provides reactive state for composables to determine current animation context. Used in templates for conditional rendering.
+Persistence key: `nuxt-color-mode` (Nuxt UI default).
 
----
+### 3.2 `usePageTransition()`
 
-### 5. PerformanceTargets
+Surface for the page-level fade. Backed by Nuxt's `app.pageTransition` —
+this composable just exposes reactive state for templates that want to
+gate UI on the in-flight transition.
 
-Measurable performance goals for animations.
-
-```typescript
-export interface PerformanceTargets {
-  // Timing targets
-  pageTransitionMaxDuration: number;  // 300ms max
-  imageLoadMaxDuration: number;  // 300ms max
-  buttonAnimationMaxDuration: number;  // 150ms max
-  
-  // Visual targets
-  targetFPS: number;  // 60 fps required
-  maxCLS: number;  // Cumulative Layout Shift < 0.1
-  maxLCP: number;  // Largest Contentful Paint < 2500ms
-  minLighthouse: number;  // Lighthouse score >= 90
-  
-  // Testing environments
-  testDevices: string[];  // ['iPhone 14', 'Galaxy S20', 'Desktop']
-  networkProfiles: string[];  // ['Fast 4G', 'Slow 4G', 'Offline']
-}
-
-// Performance targets
-export const PERFORMANCE_TARGETS: PerformanceTargets = {
-  pageTransitionMaxDuration: 300,
-  imageLoadMaxDuration: 300,
-  buttonAnimationMaxDuration: 150,
-  targetFPS: 60,
-  maxCLS: 0.1,
-  maxLCP: 2500,
-  minLighthouse: 90,
-  testDevices: ['iPhone 14', 'Galaxy S20', 'Desktop'],
-  networkProfiles: ['Fast 4G', 'Slow 4G'],
-};
-```
-
-**Usage**: Reference during performance testing and validation. All animations must meet these targets.
-
----
-
-## Configuration File Structure
-
-### `utils/animation-config.ts`
-
-```typescript
-// Export all configs and defaults
-export * from './animation-config/page-transition';
-export * from './animation-config/theme-transition';
-export * from './animation-config/image-fade';
-export * from './animation-config/animation-state';
-export * from './animation-config/performance-targets';
-
-// Merged configuration object
-export interface AnimationConfigs {
-  page: PageTransitionConfig;
-  theme: ThemeTransitionConfig;
-  image: ImageFadeConfig;
-  state: AnimationState;
-  performance: PerformanceTargets;
-}
-
-export const ANIMATION_CONFIGS: AnimationConfigs = {
-  page: DEFAULT_PAGE_TRANSITION,
-  theme: DEFAULT_THEME_TRANSITION,
-  image: DEFAULT_IMAGE_FADE,
-  state: INITIAL_ANIMATION_STATE,
-  performance: PERFORMANCE_TARGETS,
-};
-```
-
----
-
-## Composable Contracts
-
-### `composables/usePageTransition.ts`
-
-```typescript
-export function usePageTransition() {
-  // State
-  const isTransitioning = ref(false);
-  const transitionType = ref<'enter' | 'exit' | 'idle'>('idle');
-  
-  // Methods
-  const enterTransition = async () => { ... };  // Start page enter animation
-  const exitTransition = async () => { ... };   // Start page exit animation
-  const resetTransition = () => { ... };         // Reset to idle
-  
-  // Computed
-  const shouldShowAnimation = computed(() => {
-    return !useMediaQuery('(prefers-reduced-motion: reduce)').value;
-  });
-  
-  return {
-    isTransitioning: readonly(isTransitioning),
-    transitionType: readonly(transitionType),
-    shouldShowAnimation,
-    enterTransition,
-    exitTransition,
-    resetTransition,
-  };
-}
-
-// Type signature
+```ts
 export interface UsePageTransition {
   isTransitioning: Readonly<Ref<boolean>>;
-  transitionType: Readonly<Ref<'enter' | 'exit' | 'idle'>>;
-  shouldShowAnimation: ComputedRef<boolean>;
-  enterTransition(): Promise<void>;
-  exitTransition(): Promise<void>;
-  resetTransition(): void;
+  phase: Readonly<Ref<'enter' | 'leave' | 'idle'>>;
+  prefersReducedMotion: ComputedRef<boolean>;
 }
 ```
 
-**Usage in `app.vue`**:
-```vue
-<template>
-  <div class="app-container">
-    <NuxtPage 
-      :key="$route.path"
-      :class="{ 'animate-fade-in': isTransitioning && transitionType === 'enter' }"
-    />
-  </div>
-</template>
+### 3.3 `useImageFadeIn(imageRef)`
 
-<script setup lang="ts">
-const { isTransitioning, transitionType, enterTransition, shouldShowAnimation } = usePageTransition();
-</script>
-```
-
----
-
-### `composables/useThemeTransition.ts`
-
-```typescript
-export function useThemeTransition() {
-  // State
-  const colorMode = useColorMode();
-  const isTransitioning = ref(false);
-  
-  // Methods
-  const toggleTheme = async () => {
-    // Trigger color transition
-    // Trigger button animation
-    // Update localStorage via @nuxtjs/color-mode
-  };
-  
-  const hasReducedMotionPreference = computed(() => {
-    return useMediaQuery('(prefers-reduced-motion: reduce)').value;
-  });
-  
-  return {
-    currentTheme: computed(() => colorMode.value),
-    isTransitioning: readonly(isTransitioning),
-    hasReducedMotionPreference,
-    toggleTheme,
-  };
-}
-
-// Type signature
-export interface UseThemeTransition {
-  currentTheme: ComputedRef<string>;
-  isTransitioning: Readonly<Ref<boolean>>;
-  hasReducedMotionPreference: ComputedRef<boolean>;
-  toggleTheme(): Promise<void>;
-}
-```
-
-**Usage in `components/shared/Header.vue`**:
-```vue
-<template>
-  <button 
-    @click="toggleTheme"
-    :class="{ 'animate-rotate': isTransitioning && !hasReducedMotionPreference }"
-    aria-label="Toggle dark mode"
-  >
-    <Icon :icon="currentTheme === 'dark' ? 'sun' : 'moon'" />
-  </button>
-</template>
-
-<script setup lang="ts">
-const { currentTheme, isTransitioning, toggleTheme, hasReducedMotionPreference } = useThemeTransition();
-</script>
-```
-
----
-
-### `composables/useImageFadeIn.ts`
-
-```typescript
-export function useImageFadeIn(imageRef: Ref<HTMLImageElement | null>) {
-  // State
-  const isLoaded = ref(false);
-  const isInView = ref(false);
-  
-  // Methods
-  const triggerFadeIn = () => {
-    // Mark as loaded, apply fade-in CSS class
-  };
-  
-  // Intersection Observer for lazy loading
-  const { stop: stopObserver } = useIntersectionObserver(
-    imageRef,
-    ([{ isIntersecting }]) => {
-      if (isIntersecting) {
-        isInView.value = true;
-      }
-    },
-    { threshold: 0 }
-  );
-  
-  return {
-    isLoaded: readonly(isLoaded),
-    isInView: readonly(isInView),
-    triggerFadeIn,
-    stopObserver,
-  };
-}
-
-// Type signature
+```ts
 export interface UseImageFadeIn {
   isLoaded: Readonly<Ref<boolean>>;
   isInView: Readonly<Ref<boolean>>;
+  /** Set isLoaded=true; idempotent. */
   triggerFadeIn(): void;
-  stopObserver(): void;
+  /** Tear down the IntersectionObserver. */
+  stop(): void;
 }
-```
 
-**Usage in `components/content/PostImage.vue`**:
-```vue
-<template>
-  <figure>
-    <NuxtImg 
-      ref="imageRef"
-      :src="src"
-      :alt="alt"
-      :class="{ 'animate-fade-in': isLoaded }"
-      @load="triggerFadeIn"
-    />
-    <figcaption v-if="alt">{{ alt }}</figcaption>
-  </figure>
-</template>
-
-<script setup lang="ts">
-const props = defineProps<{ src: string; alt: string }>();
-const imageRef = ref<HTMLImageElement | null>(null);
-const { isLoaded, triggerFadeIn } = useImageFadeIn(imageRef);
-</script>
+export function useImageFadeIn(
+  imageRef: Ref<HTMLImageElement | null>
+): UseImageFadeIn;
 ```
 
 ---
 
-## CSS Animation Classes (Tailwind)
+## 4. Module Configuration Shape
 
-To be added to `tailwind.config.js` or global CSS:
+`nuxt.config.ts` modules array post-migration:
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    '@nuxt/ui',          // bundles Tailwind v4 + color-mode + Iconify
+    '@nuxt/content',
+    '@nuxt/image',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+    '@vercel/speed-insights/nuxt',
+  ],
+  css: ['~/assets/styles/main.css', '~/assets/styles/animations.css'],
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
+  // REMOVED: '@nuxtjs/tailwindcss', '@nuxtjs/color-mode',
+  //          '@vesp/nuxt-fontawesome', '@nuxt-themes/typography',
+  //          '@nuxt-themes/tokens'
+});
+```
+
+`package.json` deltas:
+
+| Added | Removed |
+|---|---|
+| `@nuxt/ui` ^3.3.0 | `@nuxtjs/tailwindcss` |
+| `@iconify-json/lucide` ^1.x | `@nuxtjs/color-mode` |
+| `@iconify-json/simple-icons` ^1.x | `@vesp/nuxt-fontawesome` |
+|  | `@fortawesome/fontawesome-svg-core` |
+|  | `@fortawesome/free-brands-svg-icons` |
+|  | `@fortawesome/free-solid-svg-icons` |
+|  | `@nuxt-themes/typography` |
+|  | `@nuxt-themes/tokens` |
+|  | `@tailwindcss/typography` |
+|  | `@tailwindcss/postcss` |
+|  | `tailwindcss` (direct dep — now transitive via `@nuxt/ui`) |
+
+---
+
+## 5. Custom Component-Layer Utilities
+
+Declared in `assets/styles/main.css`:
 
 ```css
-/* Page transitions */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.2s ease-in-out forwards;
-}
-
-.animate-fade-out {
-  animation: fadeOut 0.1s ease-in-out forwards;
-}
-
-/* Theme transition */
-@keyframes rotateCw {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(90deg); }
-}
-
-.animate-rotate {
-  animation: rotateCw 0.15s ease-in-out forwards;
-}
-
-/* Image fade-in */
-.animate-image-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-/* Reduced motion respect */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-in,
-  .animate-fade-out,
-  .animate-rotate,
-  .animate-image-fade-in {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+@layer components {
+  .highlighted {
+    @apply text-primary-600 dark:text-primary-400 font-medium;
+  }
+  .slick-border {
+    @apply border border-neutral-200 dark:border-neutral-800;
+  }
+  .slick-hover {
+    @apply hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors;
+  }
+  .slick-hover-blue {
+    @apply hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+  }
+  .exact-navigation {
+    @apply text-primary-600 dark:text-primary-400;
+  }
+  .reading-area {
+    @apply max-w-3xl mx-auto px-4 sm:px-6;
   }
 }
 ```
 
+(The `dark-text`, `darker-text`, `page-bg`, `light-dark`, `dark-low-bg`,
+`bg-light-dark` classes are inlined as Tailwind utilities at their call
+sites — no `@layer` entry.)
+
 ---
 
-## Summary
+## 6. Substitution Mapping (drives task generation)
 
-| Data Model | Purpose | Used By | Default Timing |
-|------------|---------|---------|-----------------|
-| PageTransitionConfig | Page navigation animations | app.vue, router | 300ms total (200ms enter, 100ms exit) |
-| ThemeTransitionConfig | Dark mode toggle animations | Header.vue | 250ms colors, 150ms button |
-| ImageFadeConfig | Lazy image fade-in | PostImage.vue | 300ms fade-in |
-| AnimationState | Current animation state | All composables | Reactive state |
-| PerformanceTargets | Validation metrics | Testing/CI | 60 fps, CLS <0.1, LCP <2.5s |
+| Bespoke file | Replacement | Status |
+|---|---|---|
+| `components/shared/Header.vue` | `<UHeader>` + `<UNavigationMenu>` + `<UModal>` + `<USlideover>` | Rewrite |
+| `components/shared/BottomNav.vue` | — | **Delete** |
+| `components/shared/Footer.vue` | Plain markup | Restyle |
+| `components/shared/Pagination.vue` | `<UPagination>` wrapper | Rewrite |
+| `components/Post.vue` | `<UCard>` + `<NuxtImg>` | Rewrite |
+| `components/PrevNext.vue` | Pair `<UButton variant="outline" :to>` | Rewrite |
+| `components/Toc.vue` | — | Keep bespoke (Pro-only fallback) |
+| `components/Topics.vue` | `<UBadge>` inside `<ULink>` | Rewrite |
+| `components/project/Project.vue` | `<UCard>` + `<UButton>` + `<UBadge>` | Rewrite |
+| `components/content/ExternalLink.vue` | `<ULink to external target="_blank">` | Rewrite |
+| `components/content/PostImage.vue` | `<NuxtImg>` + `useImageFadeIn` | Keep + extend |
 
-All configurations follow Constitution Principle II (Performance & Accessibility) by:
-- ✅ Respecting `prefers-reduced-motion`
-- ✅ Using GPU-accelerated properties only (transform, opacity)
-- ✅ Keeping animations under 300ms
-- ✅ Targeting 60 fps constant
-- ✅ Supporting accessibility first
+---
 
+## 7. Validation Rules
+
+- `assets/styles/main.css` MUST contain exactly two `@import` lines
+  (`tailwindcss` then `@nuxt/ui`) before any `@theme` or `@layer` block.
+- `app.config.ts` `ui.colors.primary` MUST equal `'indigo'`.
+- `app.vue` template MUST wrap `<NuxtPage>` in `<UApp>`.
+- Zero `<svg viewBox=` literals in `components/` or `pages/` (Iconify
+  enforcement).
+- Zero `@fortawesome/*` imports anywhere.
+- `tailwind.config.js` and `tokens.config.ts` MUST NOT exist.
+
+These rules are checkable via grep + `ls` — codified in
+`contracts/requirements.md`.

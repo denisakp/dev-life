@@ -1,217 +1,244 @@
-# Phase 0 Research: Nuxt 4 Migration & UI Smoothness
+# Phase 0 Research: Nuxt 4 + Nuxt UI Migration
 
-**Feature**: `001-nuxt4-ui-upgrade`  
-**Date**: 2025-01-27  
-**Purpose**: Resolve all unknowns identified in plan.md before proceeding to design phase
+**Feature**: `001-nuxt4-ui-upgrade`
+**Date**: 2026-05-27
+**Purpose**: Resolve open technical decisions before Phase 1 design. Inputs
+from spec.md (revised) + Clarifications session 2026-05-27.
 
-## Research Findings
+## R1 — Nuxt UI v3 install + bundled module surface
 
-### Unknown 1: Nuxt 4 Breaking Changes Affecting This Codebase
+**Decision**: Install `@nuxt/ui` v3.3.x. Register as a Nuxt module in
+`nuxt.config.ts`; do **not** also register `@nuxtjs/tailwindcss` or
+`@nuxtjs/color-mode` — Nuxt UI bundles both.
 
-**Initial Question**: What are the specific Nuxt 3→4 breaking changes that impact this project's custom code, plugins, or server middleware?
+**Rationale**: `@nuxt/ui` v3 bundles Tailwind v4 + `@nuxtjs/color-mode` +
+`@iconify-json/lucide` (default icon set) + reka-ui primitives. Adding the
+standalone modules causes double-registration warnings and theme conflicts.
 
-**Research Findings**:
+**Alternatives considered**:
+- Keep `@nuxtjs/color-mode` separate: rejected (duplicate registration, no
+  benefit since Nuxt UI re-exports `useColorMode()`).
+- Stay on bespoke Tailwind without `@nuxt/ui`: rejected (defeats the purpose
+  of this feature; substitution table assumes Nuxt UI primitives).
 
-#### Key Breaking Changes in Nuxt 4 (from official migration docs):
+## R2 — Tailwind v4 CSS-first config via `@theme`
 
-1. **Auto-imports**: ✅ **No impact** — Feature uses auto-imports already (pages/, components/, composables/)
-2. **App Config**: ✅ **Minor impact** — `app.config.ts` syntax unchanged; @nuxtjs/tailwindcss integrated differently
-3. **Server Routes**: ✅ **No impact** — This project has no server/ middleware
-4. **Nitro Server**: ✅ **No impact** — No custom server logic
-5. **Layouts**: ✅ **No impact** — Existing layouts compatible
-6. **Middleware**: ✅ **No impact** — No middleware files detected
-7. **Plugins**: ⚠️ **Check required** — Verify @vesp/nuxt-fontawesome registration (likely via nuxt.config.ts)
-8. **Module Resolution**: ✅ **No impact** — Standard Nuxt modules auto-resolved
+**Decision**: Delete `tailwind.config.js`. Put all theme config in
+`assets/styles/main.css`:
 
-#### Audit Required on:
-- `@vesp/nuxt-fontawesome` — Verify v2.0.0 supports Nuxt 4
-- `@nuxtjs/color-mode` — Confirm latest version Nuxt 4-compatible
-- `@nuxt/content` — Verify v3.11.0+ supports Nuxt 4 fully
-- `@nuxtjs/tailwindcss` — Check v6.14.0+ Nuxt 4 compatibility
+```css
+@import "tailwindcss";
+@import "@nuxt/ui";
 
-#### Decision:
-**Action**: No critical breaking changes expected. Upgrade path is straightforward:
-1. Update nuxt to latest v4
-2. Verify all primary dependencies have Nuxt 4 support
-3. Run `nuxi typecheck` and `pnpm dev` immediately after upgrade
-4. Test all page routes (homepage, blog, projects, topics)
+@theme static {
+  --font-sans: "Inter", "IBM Plex Serif", ui-sans-serif, system-ui, sans-serif;
+  /* No --color-primary-* / --color-neutral-* declared here.
+     Palettes are selected by name in app.config.ts (see R3). */
+}
+```
 
-**Risk Level**: LOW
+**Rationale**: Tailwind v4 reads config from CSS via `@theme`. JS config is
+deprecated. Nuxt UI v3 explicitly requires this layout. Per Clarification
+2026-05-27, `primary` = stock `indigo`, `neutral` = `zinc`; selecting by
+name in `app.config.ts` avoids redeclaring 11 shades per palette.
 
----
+**Alternatives considered**:
+- Define `--color-primary-50..950` manually with custom hex values: rejected
+  (clarification chose stock `indigo` to avoid hand-tuning + WCAG drift).
+- Keep `tailwind.config.js` alongside CSS-first: rejected (Tailwind v4 only
+  reads one source; mixing causes silent overrides).
 
-### Unknown 2: @nuxtjs/color-mode Nuxt 4 Compatibility
+## R3 — Nuxt UI palette selection in `app.config.ts`
 
-**Initial Question**: Is @nuxtjs/color-mode v4.0.0 compatible with Nuxt 4? Any configuration changes required?
+**Decision**: Configure semantic palettes by name:
 
-**Research Findings**:
+```ts
+// app.config.ts
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: 'indigo',
+      neutral: 'zinc',
+      // 'error', 'success', 'warning', 'info' keep Nuxt UI defaults
+    },
+  },
+});
+```
 
-#### Compatibility Status:
-- **Current version in project**: v4.0.0 (already latest)
-- **Nuxt 4 support**: ✅ **CONFIRMED** — v4.0.0 explicitly targets Nuxt 4
-- **Configuration changes**: ✅ **MINIMAL** — Config in `nuxt.config.ts` unchanged
-- **localStorage handling**: ✅ **UNCHANGED** — localStorage API identical
-- **Composable API**: ✅ **COMPATIBLE** — `useColorMode()` composable works identically
+**Rationale**: Nuxt UI resolves these names against its bundled Tailwind
+palettes at build time. No CSS declarations needed for the scales — they
+ship with `@nuxt/ui`.
 
-#### Verification Steps:
-1. Check `node_modules/@nuxtjs/color-mode/package.json` for Nuxt 4 peer dependency ✅
-2. Verify `nuxt.config.ts` integration still valid ✅
-3. Test dark mode toggle after upgrade ✅
+**Alternatives considered**: Per-component theme overrides via `ui` prop —
+deferred unless a specific component fails the dark-mode parity check (US3).
 
-#### Decision:
-**Action**: No changes required. @nuxtjs/color-mode v4.0.0 is already Nuxt 4-ready.
+## R4 — Iconify migration (FontAwesome + inline SVG → `<UIcon>`)
 
-**Risk Level**: MINIMAL
+**Decision**:
+- Install `@iconify-json/lucide` (Nuxt UI default) and
+  `@iconify-json/simple-icons` (brand glyphs: GitHub, X, LinkedIn).
+- Replace `<font-awesome :icon="faGithub" />` → `<UIcon name="i-simple-icons-github" />`.
+- Replace inline `<svg viewBox=...>` in header nav / modal close →
+  `<UIcon name="i-lucide-<glyph>" />` (menu, x, search, sun, moon, chevron-*).
+- Remove `@vesp/nuxt-fontawesome` + all `@fortawesome/*` packages from
+  `package.json`.
 
----
+**Rationale**: Iconify ships JSON collections bundled at build time
+(tree-shaken to the icons actually referenced). Nuxt UI resolves
+`i-<collection>-<name>` automatically. Unifies maintenance and inherits
+text color via CSS `currentColor`.
 
-### Unknown 3: Tailwind CSS v4 Animation Syntax Changes
+**Alternatives considered**:
+- Keep FontAwesome for brand icons only: rejected (mixed icon systems
+  duplicate bundle weight and break Tailwind sizing utilities).
+- Use `<NuxtIcon>` from `@nuxt/icon`: rejected (Nuxt UI already provides
+  `<UIcon>` with the same backend; avoid two icon modules).
 
-**Initial Question**: What are the syntax and utility changes from Tailwind v3 to v4 for animations and transitions?
+## R5 — Custom utility class reconciliation
 
-**Research Findings**:
+**Decision**: Migrate via three buckets:
 
-#### Animation Utilities Changes (v3 → v4):
+| Class | Action |
+|---|---|
+| `highlighted`, `slick-border`, `slick-hover`, `slick-hover-blue` | Re-declare under `@layer components` in `main.css`, referencing `--color-primary-*` and `--color-neutral-*`. |
+| `dark-text`, `darker-text`, `page-bg`, `reading-area`, `light-dark`, `dark-low-bg`, `bg-light-dark` | Replace inline with Tailwind utility classes + `dark:` variants (`text-(neutral-700)` / `dark:text-(neutral-200)` etc.). Remove originals. |
+| `exact-navigation` | Re-declare under `@layer components` (used by `Header.vue`; survives until US5 rewrites header). |
 
-| Feature | Tailwind v3 | Tailwind v4 | Impact |
-|---------|------------|-----------|--------|
-| **Duration** | `duration-300` | `duration-300` | ✅ No change |
-| **Easing** | `ease-in-out` | `ease-in-out` | ✅ No change |
-| **Opacity** | `opacity-100` | `opacity-100` | ✅ No change |
-| **Transform** | `transform` | *implicit* | ⚠️ Minor: `transform` class no longer needed in v4; transforms auto-applied |
-| **Transition** | `transition` + `duration-X` | `transition` + `duration-X` | ✅ No change |
-| **Custom animations** | `@keyframes` in CSS | `@keyframes` in CSS | ✅ No change |
-| **CSS Grid/Flex** | Unchanged | Unchanged | ✅ No change |
+Content audit (clarified 2026-05-27): no markdown files reference any of
+these classes, so the migration is template-only.
 
-#### Key Syntax Changes:
-1. **CSS-in-JS approach**: Tailwind v4 uses `@apply` directive (unchanged)
-2. **Custom animation config**: Still defined in `tailwind.config.js` (no syntax change)
-3. **animation property**: Unchanged—still use `animate-*` utilities
-4. **transition utilities**: Unchanged—`transition` + `duration-X` + `ease-*` still work
+**Rationale**: Splitting by reuse vs one-off keeps `main.css` small and
+favors Tailwind utilities for one-shot styling.
 
-#### Code Changes Needed:
-- **Minimal**: Remove explicit `transform` class (handled automatically in v4)
-- **Examples**:
-  ```jsx
-  // v3: <div class="transform scale-100 transition duration-300 ease-in-out">
-  // v4: <div class="scale-100 transition duration-300 ease-in-out">
-  ```
+**Alternatives considered**: Keep all classes in CSS — rejected (most are
+one-off; pure utility classes are easier to dark-mode-tune).
 
-#### Decision:
-**Action**: Tailwind v4 animation utilities are largely backward-compatible. Audit task:
-1. Review custom animation definitions in `tailwind.config.js`
-2. Remove explicit `transform` class from dynamic classes (if any)
-3. Test animation output in browser after upgrade
+## R6 — Color-mode handoff (`@nuxtjs/color-mode` → Nuxt UI bundled)
 
-**Risk Level**: LOW
+**Decision**: Remove the standalone `@nuxtjs/color-mode` module entry from
+`nuxt.config.ts`. Keep `useColorMode()` call sites unchanged — Nuxt UI
+re-exports the identical composable. Toggle stays in `Header.vue`; wrap in
+`<ClientOnly>` to avoid hydration mismatch.
 
----
+**Rationale**: Identical API surface; only registration changes. Avoids
+flash-of-wrong-theme by relying on Nuxt UI's SSR-aware color script
+injected into `<head>`.
 
-### Unknown 4: NuxtContent v3.11.0+ Nuxt 4 Compatibility
+**Alternatives considered**: Roll a custom composable — rejected (zero
+benefit vs Nuxt UI's bundled one).
 
-**Initial Question**: Does NuxtContent v3.11.0 fully support Nuxt 4? Any content processing or frontmatter parsing changes?
+## R7 — Prose styling without `@nuxt-themes/typography`
 
-**Research Findings**:
+**Decision**: Rely on Nuxt UI's built-in prose styles (it bundles
+`@tailwindcss/typography` equivalents). Remove `@nuxt-themes/typography`,
+`@nuxt-themes/tokens`, `tokens.config.ts`, `@tailwindcss/typography` from
+`package.json`. Customize prose via the `ui.prose.*` slots in
+`app.config.ts` if defaults diverge from the current look.
 
-#### Compatibility Status:
-- **Current version in project**: v3.11.0
-- **Nuxt 4 support**: ✅ **CONFIRMED** — v3.x supports Nuxt 4 fully
-- **Breaking changes from v2→v3**: Not applicable (already on v3)
-- **Frontmatter parsing**: ✅ **UNCHANGED** — YAML frontmatter parsing identical
-- **Content organization**: ✅ **UNCHANGED** — `content/` directory structure preserved
+**Rationale**: One less dependency; consistent with the rest of the Nuxt UI
+theme system; `@nuxt-themes/*` is unmaintained.
 
-#### Verification Areas:
-1. **Markdown processing**: Uses unified/remark plugins (unchanged) ✅
-2. **Composables**: `useAsyncData()` + `queryContent()` unchanged ✅
-3. **Dynamic routes**: `[...slug].vue` pattern unchanged ✅
-4. **Components in markdown**: Works identically with Vue 3 ✅
-5. **Custom components**: PostImage.vue, ExternalLink.vue still work ✅
+**Alternatives considered**: Keep `@tailwindcss/typography` standalone —
+rejected (Nuxt UI bundles it; double-registration risks).
 
-#### Content Safety:
-- ✅ No migrations needed for existing markdown files
-- ✅ No changes to frontmatter format
-- ✅ All existing blog posts/pages load identically
+## R8 — Giscus theme reactivity
 
-#### Decision:
-**Action**: No changes required. NuxtContent v3.11.0 continues to work without modification.
+**Decision**: Bind Giscus `theme` prop to `useColorMode().value`:
 
-**Risk Level**: MINIMAL
+```vue
+<Giscus
+  :theme="colorMode.value === 'dark' ? 'dark' : 'light'"
+  ...
+/>
+```
 
----
+Giscus re-posts the theme to its iframe via `postMessage` when the prop
+changes; iframe handles the swap asynchronously. First-toggle flicker is
+acceptable per spec Edge Cases.
 
-### Unknown 5: Browser Support for CSS Transitions and Animation Performance
+**Rationale**: Simplest reactive binding; Giscus prop is officially
+supported.
 
-**Initial Question**: What are the browser support requirements for CSS transitions (60 fps, CLS, LCP metrics), and how to verify performance on different devices?
+**Alternatives considered**: Manual `window.postMessage` from a watcher —
+rejected (the Giscus Vue component already does it).
 
-**Research Findings**:
+## R9 — Page transition pattern
 
-#### CSS Transitions Browser Support:
-- ✅ **All modern browsers**: Fully supported (Chrome 26+, Firefox 16+, Safari 9+, Edge 12+)
-- ✅ **ES2020+ browsers**: All support CSS transitions natively
-- ✅ **Mobile browsers**: iOS Safari 9+, Chrome Mobile 26+ all support
+**Decision**: Enable Nuxt's built-in route transitions in `nuxt.config.ts`:
 
-#### Performance Metrics & Measurement:
+```ts
+app: {
+  pageTransition: { name: 'page', mode: 'out-in' },
+}
+```
 
-| Metric | Target | How to Test | Browser Tool |
-|--------|--------|------------|--------------|
-| **Page Transition Duration** | <300ms | Navigate pages, measure in Performance tab | Chrome DevTools |
-| **Animation FPS** | 60 fps constant | Monitor FPS in Performance → Rendering tab | Chrome DevTools |
-| **Cumulative Layout Shift (CLS)** | <0.1 | Run Lighthouse or Web Vitals extension | Lighthouse / PageSpeed |
-| **Largest Contentful Paint (LCP)** | <2.5s | Run Lighthouse | Lighthouse |
-| **First Input Delay (FID)** | <100ms | Monitor in Performance → Interactions | Chrome DevTools |
+Define the `.page-enter-*` / `.page-leave-*` classes in
+`assets/styles/animations.css` (opacity fade, 200 ms in / 100 ms out,
+`ease-in-out`). Wrap in `@media (prefers-reduced-motion: reduce)` for
+instant swap.
 
-#### Performance Optimization Techniques:
-1. **GPU Acceleration**: Use `transform` and `opacity` only (not `left`, `width`, `height`) ✅
-2. **Will-change CSS**: Can add `will-change: transform, opacity` for heavy animations ✓
-3. **Reduced Motion**: Honor `prefers-reduced-motion` media query ✅
-4. **Debouncing**: Throttle scroll listeners to 60 fps intervals ✓
+**Rationale**: Native Vue `<Transition>` with no JS overhead. Constants
+(durations, easing) live in `utils/animation-config.ts` per data-model.
 
-#### Testing Strategy:
-1. **Desktop**: Test on modern Chrome/Firefox (latest versions)
-2. **Mobile**: Use Chrome DevTools Device Emulation (iPhone 14, Galaxy S20)
-3. **Network**: Use DevTools throttling (4G, slow 4G) to test on slow networks
-4. **Devices**: Test on actual low-end device if available (e.g., old Android phone)
+**Alternatives considered**: GSAP / @vueuse/motion — rejected (Assumption:
+no external animation library).
 
-#### Decision:
-**Action**: Use built-in CSS transitions for animations (no external library). Test process:
-1. After implementing each animation, run Chrome DevTools Performance profiler
-2. Verify 60 fps in "Rendering" tab during transitions
-3. Use Lighthouse to verify LCP/CLS metrics
-4. Test with `prefers-reduced-motion` toggle in DevTools
-5. Test on mobile emulation and slow network simulation
+## R10 — Image fade-in pattern for `<NuxtImg>`
 
-**Risk Level**: LOW — CSS transitions are well-supported and performant
+**Decision**: Wrap `<NuxtImg>` in `PostImage.vue` with an
+IntersectionObserver via `useImageFadeIn(imageRef)` composable. Apply
+`opacity-0` initial, `transition-opacity duration-300 ease-out`, flip to
+`opacity-100` on the `load` event. Skip the transition when
+`prefers-reduced-motion: reduce`.
 
----
+**Rationale**: `<NuxtImg>` already does lazy loading; the composable just
+adds the fade and reduced-motion guard. No layout-shifting — opacity-only
+keeps CLS = 0.
 
-## Summary of Resolutions
+**Alternatives considered**: Use `placeholder` prop with blur-data — kept
+as future enhancement; not required for spec acceptance.
 
-| Unknown | Finding | Risk | Next Step |
-|---------|---------|------|-----------|
-| Nuxt 3→4 breaking changes | No critical changes; minor plugin/config audits needed | LOW | Verify @vesp/nuxt-fontawesome, @nuxtjs/color-mode, @nuxt/content on upgrade |
-| @nuxtjs/color-mode Nuxt 4 support | ✅ v4.0.0 already Nuxt 4-ready; no changes needed | MINIMAL | Proceed with upgrade; test dark mode toggle |
-| Tailwind v4 animation syntax | Mostly backward-compatible; remove explicit `transform` class | LOW | Update custom animations; test output in browser |
-| NuxtContent v3.11.0+ support | ✅ Fully compatible; no content migrations needed | MINIMAL | Upgrade without content changes; all posts preserved |
-| CSS transitions/animation performance | ✅ Well-supported; use transform/opacity only; test via DevTools | LOW | Implement animations following GPU-acceleration best practices; validate with Lighthouse |
+## R11 — Bundle baseline (NFR-003)
+
+**Decision**: Before any US2 work, check out `main`, run `pnpm install &&
+pnpm build`, and record:
+- Total `.output/public/_nuxt/` size (`du -sk`).
+- Per-route HTML+JS+CSS size from Nitro's build summary.
+
+Write into `specs/001-nuxt4-ui-upgrade/baseline.md` (committed). Post-
+migration compare against the same numbers; flag any route > 115 % delta.
+
+**Rationale**: Reproducible; uses tools already in the project; cheap.
+
+**Alternatives considered**: Vercel deployment analytics — rejected
+(requires deploy, slower iteration).
+
+## R12 — Pro vs free component fallback (clarification confirmed)
+
+**Decision**: Free tier only.
+
+| Component | Free fallback |
+|---|---|
+| `<UPageCard>` (Pro) | `<UCard>` |
+| `<UContentToc>` (Pro) | Keep bespoke `Toc.vue` |
+| `<UFooter>` (Pro) | Plain semantic `<footer>` markup |
+| `<UPageLinks>` (Pro) | Pair of `<UButton variant="outline" :to>` |
+
+**Rationale**: Clarification 2026-05-27 — no Pro license.
 
 ## Constitution Re-Check (Post-Research)
 
-All four core principles remain aligned post-research:
+| Principle | Status |
+|---|---|
+| I. Type Safety & Validated Boundaries | ✅ — No `any` introduced by any decision. |
+| II. Optimized Images Only | ✅ — `<NuxtImg>` retained in `PostImage.vue`. |
+| III. Accessible, Semantic, Dark-Mode-Complete UI | ✅ — Nuxt UI primitives WCAG-conformant; dark parity via R3+R6; reduced-motion in R9+R10. |
+| IV. Context-Grouped Components | ✅ — Component layout unchanged. |
+| V. Content & Performance Discipline | ✅ — Lighthouse method codified in spec; bundle baseline in R11. |
 
-✅ **Principle I: Content-First** — Research confirms zero content migrations needed; all pages display identically  
-✅ **Principle II: Performance & Accessibility** — Research identifies performance measurement tools and optimization strategies  
-✅ **Principle III: Type Safety** — TypeScript 5.x upgrade included in Nuxt 4 framework  
-✅ **Principle IV: Modularity** — Existing component structure unchanged; animations use built-in Vue/Tailwind  
-
-**Gate Status**: ✅ **PASS** — Proceed to Phase 1 Design
-
----
+**Gate Status**: ✅ PASS — Proceed to Phase 1 Design.
 
 ## Outcomes
 
-All unknowns resolved. Ready for Phase 1 (Design & Contracts):
-1. ✅ No blocking issues identified
-2. ✅ All dependencies confirmed compatible
-3. ✅ Performance testing strategy established
-4. ✅ Constitution remains aligned
-5. ⏳ Next: Generate data-model.md, contracts/, quickstart.md
+All 12 research items resolved. Phase 1 artifacts (data-model.md,
+contracts/, quickstart.md) reflect these decisions.
