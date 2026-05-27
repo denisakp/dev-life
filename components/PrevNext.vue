@@ -14,7 +14,7 @@ const prevPath = computed(() =>
 
 <template>
   <div
-    class="mt-6 md:mt-12 mx-4 flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
+    class="mt-6 md:mt-12 mb-12 md:mb-16 mx-4 flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0"
     :class="{
       'justify-between': prevPath && nextPath,
       'justify-start': prevPath && !nextPath,

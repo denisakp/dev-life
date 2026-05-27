@@ -72,7 +72,7 @@ useHead({
     <div class="w-full bg-white dark:bg-neutral-950 flex flex-col min-h-screen text-neutral-900 dark:text-neutral-100">
       <!--<SpeedInsights />-->
       <Header />
-      <main class="md:pt-24 grow">
+      <main class="pt-16 md:pt-24 grow">
         <NuxtPage />
       </main>
       <Footer />

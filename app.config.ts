@@ -11,6 +11,12 @@ export default defineAppConfig({
           'transition-colors [&>code]:transition-colors',
         ],
       },
+      p: {
+        base: 'text-justify hyphens-auto',
+      },
+      li: {
+        base: 'hyphens-auto',
+      },
       codeIcon: {
         typescript: 'i-lucide-braces',
         ts: 'i-lucide-braces',

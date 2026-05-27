@@ -2,6 +2,7 @@
 import Giscus from "@giscus/vue";
 
 import PrevNext from "~/components/PrevNext.vue";
+import Toc from "~/components/Toc.vue";
 
 const { path } = useRoute();
 const reviewedPath = path.replace("/blog", "");
@@ -18,6 +19,8 @@ const { data: surround } = await useAsyncData(`surround-${reviewedPath}`, () =>
 
 const prev = computed(() => surround.value?.[0] ?? null);
 const next = computed(() => surround.value?.[1] ?? null);
+
+const tocLinks = computed(() => article.value?.body?.toc?.links ?? []);
 
 const colorMode = useColorMode();
 const giscusTheme = computed(() =>
@@ -42,37 +45,45 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="reading-area w-full" v-if="article">
-    <div>
-      <h3 class="text-3xl text-primary-600 dark:text-primary-400 font-bold mt-0 my-2">
-        {{ article.title }}
-      </h3>
+  <div v-if="article" class="container">
+    <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12 xl:gap-16">
+      <article class="min-w-0">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-4 leading-tight break-words">
+          {{ article.title }}
+        </h1>
+
+        <div class="max-w-none lg:prose-lg prose dark:prose-invert">
+          <ContentRenderer :value="article">
+            <template #empty>
+              <p>No content found.</p>
+            </template>
+          </ContentRenderer>
+        </div>
+
+        <Giscus
+          id="comments"
+          repo="denisakp/dev-life"
+          repoid="R_kgDOJyrfLg"
+          category="Comments"
+          categoryid="DIC_kwDOJyrfLs4CkWjU"
+          mapping="title"
+          reactionsenabled="1"
+          emitmetadata="0"
+          inputposition="bottom"
+          :theme="giscusTheme"
+          lang="en"
+          loading="lazy"
+          crossorigin="anonymous"
+        />
+
+        <PrevNext :prev="prev" :next="next" />
+      </article>
+
+      <aside v-if="tocLinks.length" class="hidden lg:block">
+        <div class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
+          <Toc :links="tocLinks" />
+        </div>
+      </aside>
     </div>
-
-    <div class="max-w-none lg:prose-lg prose dark:prose-invert">
-      <ContentRenderer :value="article">
-        <template #empty>
-          <p>No content found.</p>
-        </template>
-      </ContentRenderer>
-    </div>
-
-    <Giscus
-      id="comments"
-      repo="denisakp/dev-life"
-      repoid="R_kgDOJyrfLg"
-      category="Comments"
-      categoryid="DIC_kwDOJyrfLs4CkWjU"
-      mapping="title"
-      reactionsenabled="1"
-      emitmetadata="0"
-      inputposition="bottom"
-      :theme="giscusTheme"
-      lang="en"
-      loading="lazy"
-      crossorigin="anonymous"
-    />
-
-    <PrevNext :prev="prev" :next="next" />
   </div>
 </template>

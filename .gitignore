@@ -26,3 +26,4 @@ specs
 .specify
 .vscode/
 docs/
+.data
