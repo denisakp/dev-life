@@ -184,4 +184,24 @@ const { data: related } = await useAsyncData(
       </aside>
     </div>
   </div>
+
+  <div v-else-if="isFr" class="container py-16 text-center">
+    <h1 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-3">
+      Pas encore traduit
+    </h1>
+    <p class="text-neutral-600 dark:text-neutral-400 mb-6 max-w-md mx-auto">
+      Cet article n'a pas encore de version française. Vous pouvez le lire en anglais.
+    </p>
+    <UButton
+      v-if="siblingHref"
+      color="primary"
+      :to="siblingHref"
+      icon="i-lucide-book-open"
+    >
+      Lire la version anglaise
+    </UButton>
+    <UButton v-else color="neutral" variant="outline" to="/fr/blog">
+      Retour au blog
+    </UButton>
+  </div>
 </template>

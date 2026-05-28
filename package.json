@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@giscus/vue": "3.1.1",
+    "@iconify-json/vscode-icons": "^1.2.52",
     "@nuxt/content": "^3.11.0",
     "@nuxt/devtools": "latest",
     "@nuxt/fonts": "^0.14.0",

@@ -134,6 +134,7 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
+        '@giscus/vue',
         '@vueuse/core',
         'zod',
       ]
