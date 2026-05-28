@@ -3,6 +3,7 @@ import Giscus from "@giscus/vue";
 
 import PrevNext from "~/components/PrevNext.vue";
 import Toc from "~/components/Toc.vue";
+import RelatedPosts from "~/components/RelatedPosts.vue";
 import { formatDate } from "~/utils/format-date";
 
 const { path } = useRoute();
@@ -46,6 +47,43 @@ useSeoMeta({
   twitterDescription: () => article.value?.description,
   twitterImage: () => article.value?.img,
 });
+
+defineOgImage("Post", {
+  title: article.value?.title ?? "",
+  date: article.value?.date ?? "",
+});
+
+const { data: related } = await useAsyncData(
+  () => `related-${reviewedPath}`,
+  async () => {
+    if (!article.value) return [];
+    const all = await queryCollection("content")
+      .select("path", "title", "description", "date", "tags", "topics")
+      .all();
+    const currentTags = new Set(article.value.tags ?? []);
+    const currentTopics = new Set(article.value.topics ?? []);
+    return all
+      .filter((p) => p.path !== reviewedPath)
+      .map((p) => ({
+        post: p,
+        score:
+          (p.tags ?? []).filter((t) => currentTags.has(t)).length +
+          (p.topics ?? []).filter((t) => currentTopics.has(t)).length,
+      }))
+      .filter((x) => x.score > 0)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        const dCmp =
+          new Date(b.post.date ?? 0).getTime() -
+          new Date(a.post.date ?? 0).getTime();
+        if (dCmp !== 0) return dCmp;
+        return (a.post.path ?? "").localeCompare(b.post.path ?? "");
+      })
+      .slice(0, 3)
+      .map((x) => x.post);
+  },
+  { watch: [article] }
+);
 </script>
 
 <template>
@@ -66,6 +104,8 @@ useSeoMeta({
             </template>
           </ContentRenderer>
         </div>
+
+        <RelatedPosts :posts="related ?? []" />
 
         <Giscus
           id="comments"

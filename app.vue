@@ -40,6 +40,12 @@ useHead({
     },
     { rel: "manifest", href: "/favicon/site.webmanifest" },
     {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "Denis AKPAGNONITE",
+      href: "https://denisakp.me/rss.xml",
+    },
+    {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;700&family=Inter:wght@400;600;700&display=swap"
     }

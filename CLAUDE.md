@@ -41,7 +41,12 @@ Two independent taxonomies:
 Static TS arrays in `data/`: `projects.ts`, `topics.ts`, `talks.ts`. Not markdown-backed. Edit these files to change the projects page or topic chips.
 
 ### Routing
-File-based: `pages/index.vue` (home), `pages/about.vue`, `pages/talks.vue`, `pages/projects.vue`, `pages/blog/{index,[...slug]}.vue`, `pages/topics/{index,[...slug]}.vue`. `error.vue` at repo root handles 404/500. `app.vue` wraps with shared `Header` / `Footer` (BottomNav deleted in phase 001).
+File-based: `pages/index.vue` (home), `pages/about.vue`, `pages/talks.vue`, `pages/teaching.vue`, `pages/projects.vue`, `pages/blog/{index,[...slug]}.vue`, `pages/topics/{index,[...slug]}.vue`. `error.vue` at repo root handles 404/500. `app.vue` wraps with shared `Header` / `Footer`. `server/routes/rss.xml.ts` emits the RSS 2.0 feed (prerendered to `.output/public/rss.xml`).
+
+### SEO / sharing (phase 003)
+- `nuxt-og-image` module + `@takumi-rs/core` renderer generate per-post Open Graph PNGs at build time. Templates: `components/OgImage/Post.takumi.vue` (blog posts, takes `title` + `date` props) and `components/OgImage/Default.takumi.vue` (non-blog fallback, takes `title`). `defineOgImage("Post", { title, date })` called inside `pages/blog/[...slug].vue` setup. Default component referenced via `ogImage.defaults.component = "Default"` in `nuxt.config.ts`. Both templates use **inline styles** (takumi doesn't process Tailwind classes).
+- RSS auto-discovery `<link rel="alternate" type="application/rss+xml" href="https://denisakp.me/rss.xml">` injected in `app.vue` `useHead`.
+- Footer has a visible RSS icon link (`i-lucide-rss`).
 
 ### Helpers
 - `utils/format-date.ts` — `formatDate(input)` via `Intl.DateTimeFormat('en-US', { dateStyle: 'long' })`. Null-safe; returns `""` on falsy/invalid.
@@ -81,7 +86,7 @@ Branch `001-nuxt4-ui-upgrade` (current) is mid Nuxt 3 → Nuxt 4 migration + UI 
 `.specify/` and `.github/agents/speckit.*.agent.md` are the [Spec Kit](https://github.com/github/spec-kit) workflow (specify → plan → tasks → implement). When a user invokes a `/speckit.*` slash command, follow the corresponding agent prompt file rather than improvising.
 
 <!-- SPECKIT START -->
-Current plan: [specs/002-content-surfaces/plan.md](specs/002-content-surfaces/plan.md)
+Current plan: [specs/003-social-discovery/plan.md](specs/003-social-discovery/plan.md)
 (spec → research → data-model → contracts → quickstart in the same folder).
-Roadmap: [phases.md](phases.md). Prior phase: specs/001-nuxt4-ui-upgrade/.
+Roadmap: [phases.md](phases.md). Prior phases: specs/001-nuxt4-ui-upgrade/, specs/002-content-surfaces/.
 <!-- SPECKIT END -->

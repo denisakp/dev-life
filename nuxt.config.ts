@@ -7,9 +7,18 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
+    "nuxt-og-image",
   ],
 
   css: ["~/assets/styles/main.css", "~/assets/styles/animations.css"],
+
+  ogImage: {
+    defaults: { component: "Default" },
+    // Zero-runtime mode: all OG images generated at build time only,
+    // served as static .png from .output/public/_og/. No runtime endpoint,
+    // no signing secret needed, no spoofable image requests.
+    zeroRuntime: true,
+  },
 
   icon: {
     mode: 'css',
@@ -42,6 +51,7 @@ export default defineNuxtConfig({
         'simple-icons:github',
         'simple-icons:x',
         'simple-icons:linkedin',
+        'lucide:rss',
       ],
     },
   },
@@ -56,7 +66,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/sitemap.xml", "/robots.txt"],
+      routes: ["/", "/sitemap.xml", "/robots.txt", "/rss.xml"],
     }
   },
 
