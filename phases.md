@@ -269,7 +269,7 @@ traffic.
 | 001 | `001-nuxt4-ui-upgrade` | Feature-complete (8 human tasks pending) | — | — |
 | 002 | `002-content-surfaces` | Not started | — | — |
 | 003 | `003-social-discovery` | Not started | — | — |
-| 004 | `004-search-v2` | Not started | — | — |
+| 004 | `004-search-v2` | In review (2 human tasks: Lighthouse + browser smoke walk). Runtime bundle: 95.4 KB gz (< 100 KB cap). Shards on disk: 384 KB. | 2026-05-28 | — |
 | 005 | `005-engagement` | Not started | — | — |
 | 006 | `006-privacy-i18n` | Not started (optional) | — | — |
 | 007 | `007-pwa-a11y` | Not started (optional) | — | — |

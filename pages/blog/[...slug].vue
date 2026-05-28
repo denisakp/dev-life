@@ -89,7 +89,7 @@ const { data: related } = await useAsyncData(
 <template>
   <div v-if="article" class="container">
     <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12 xl:gap-16">
-      <article class="min-w-0">
+      <article class="min-w-0" data-pagefind-body>
         <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-2 leading-tight wrap-break-words">
           {{ article.title }}
         </h1>
@@ -105,25 +105,27 @@ const { data: related } = await useAsyncData(
           </ContentRenderer>
         </div>
 
-        <RelatedPosts :posts="related ?? []" />
+        <div data-pagefind-ignore="all">
+          <RelatedPosts :posts="related ?? []" />
 
-        <Giscus
-          id="comments"
-          repo="denisakp/dev-life"
-          repoid="R_kgDOJyrfLg"
-          category="Comments"
-          categoryid="DIC_kwDOJyrfLs4CkWjU"
-          mapping="title"
-          reactionsenabled="1"
-          emitmetadata="0"
-          inputposition="bottom"
-          :theme="giscusTheme"
-          lang="en"
-          loading="lazy"
-          crossorigin="anonymous"
-        />
+          <Giscus
+            id="comments"
+            repo="denisakp/dev-life"
+            repoid="R_kgDOJyrfLg"
+            category="Comments"
+            categoryid="DIC_kwDOJyrfLs4CkWjU"
+            mapping="title"
+            reactionsenabled="1"
+            emitmetadata="0"
+            inputposition="bottom"
+            :theme="giscusTheme"
+            lang="en"
+            loading="lazy"
+            crossorigin="anonymous"
+          />
 
-        <PrevNext :prev="prev" :next="next" />
+          <PrevNext :prev="prev" :next="next" />
+        </div>
       </article>
 
       <aside v-if="tocLinks.length" class="hidden lg:block">

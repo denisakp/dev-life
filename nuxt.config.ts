@@ -52,6 +52,7 @@ export default defineNuxtConfig({
         'simple-icons:x',
         'simple-icons:linkedin',
         'lucide:rss',
+        'lucide:loader-2',
       ],
     },
   },
@@ -67,7 +68,34 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ["/", "/sitemap.xml", "/robots.txt", "/rss.xml"],
-    }
+    },
+  },
+
+  hooks: {
+    "nitro:init"(nitro) {
+      nitro.hooks.hook("prerender:done", async () => {
+        const { spawnSync } = await import("node:child_process");
+        const { existsSync } = await import("node:fs");
+        const bin = "node_modules/.bin/pagefind";
+        if (!existsSync(bin)) {
+          throw new Error(
+            "[pagefind] binary not found at " + bin + " — run `pnpm install`."
+          );
+        }
+        // eslint-disable-next-line no-console
+        console.log("[pagefind] indexing .output/public/blog/**/*.html ...");
+        const result = spawnSync(
+          bin,
+          ["--site", ".output/public", "--glob", "blog/**/*.html"],
+          { stdio: "inherit" }
+        );
+        if (result.status !== 0) {
+          throw new Error(
+            "[pagefind] indexing failed with exit code " + result.status
+          );
+        }
+      });
+    },
   },
 
   runtimeConfig: {
@@ -85,5 +113,14 @@ export default defineNuxtConfig({
     cacheMaxAgeSeconds: 3600
   },
 
-  compatibilityDate: "2024-07-18"
+  compatibilityDate: "2024-07-18",
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vueuse/core',
+        'zod',
+      ]
+    }
+  }
 });

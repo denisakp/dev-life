@@ -1,20 +1,11 @@
 <script setup>
-const query = ref("");
-const posts = ref([]);
-const modalState = ref(false);
-const mobileNavOpen = ref(false);
+import { ref } from "vue";
+import SharedSearchModal from "~/components/shared/SearchModal.vue";
 
-const searchModal = () => (modalState.value = !modalState.value);
+const mobileNavOpen = ref(false);
+const searchModalRef = ref(null);
 
 const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
-
-watch(query, async (newValue) => {
-  if (!newValue || newValue.length < 4) {
-    posts.value = [];
-    return;
-  }
-  posts.value = await $fetch("/api/search", { query: { q: newValue } });
-});
 
 const navLinks = [
   { to: "/blog", label: "Blog", icon: "i-lucide-book-open" },
@@ -24,6 +15,10 @@ const navLinks = [
   { to: "/teaching", label: "Teaching", icon: "i-lucide-graduation-cap" },
   { to: "/about", label: "About", icon: "i-lucide-user" },
 ];
+
+function openSearch() {
+  searchModalRef.value?.openModal();
+}
 </script>
 
 <template>
@@ -77,13 +72,25 @@ const navLinks = [
         <button
           type="button"
           class="hidden md:flex items-center p-2 cursor-pointer slick-hover rounded-full slick-border"
-          @click="searchModal"
+          aria-label="Open search"
+          aria-keyshortcuts="Meta+K Control+K /"
+          @click="openSearch"
         >
           <span class="flex space-x-2 items-center px-2">
             <span class="text-sm font-medium">Search posts</span>
             <UIcon name="i-lucide-search" class="size-5" />
+            <kbd class="hidden lg:inline-flex items-center px-1.5 py-0.5 text-xs rounded border border-neutral-300 dark:border-neutral-700 text-neutral-500">⌘K</kbd>
           </span>
         </button>
+
+        <UButton
+          class="md:hidden"
+          icon="i-lucide-search"
+          color="neutral"
+          variant="ghost"
+          aria-label="Open search"
+          @click="openSearch"
+        />
 
         <UButton
           class="md:hidden"
@@ -129,7 +136,7 @@ const navLinks = [
             icon="i-lucide-search"
             @click="
               mobileNavOpen = false;
-              searchModal();
+              openSearch();
             "
           >
             Search posts
@@ -138,38 +145,6 @@ const navLinks = [
       </template>
     </USlideover>
 
-    <UModal v-model:open="modalState" :ui="{ content: 'max-w-2xl' }">
-      <template #content>
-        <div class="p-6 md:p-8">
-          <div class="mb-8 flex items-center justify-between">
-            <h3 class="font-bold text-2xl">Searching</h3>
-            <UButton
-              icon="i-lucide-x"
-              color="neutral"
-              variant="ghost"
-              aria-label="Close"
-              @click="searchModal"
-            />
-          </div>
-          <UInput
-            id="modal_search_input"
-            v-model.trim="query"
-            type="search"
-            autocomplete="off"
-            placeholder="Start typing your query here"
-            icon="i-lucide-search"
-            size="lg"
-            class="w-full"
-            autofocus
-          />
-          <p class="mt-2 text-xs md:text-sm text-neutral-600 dark:text-neutral-400">
-            Search results
-          </p>
-          <section class="space-y-4 mt-8">
-            <Post v-for="(post, index) in posts" :key="index" :post="post" />
-          </section>
-        </div>
-      </template>
-    </UModal>
+    <SharedSearchModal ref="searchModalRef" />
   </nav>
 </template>

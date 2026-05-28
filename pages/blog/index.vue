@@ -58,7 +58,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" data-pagefind-ignore="all">
     <h5 class="text-2xl">
       A total of
       <span class="highlighted"> {{ totalArticles ?? 0 }} </span> posts

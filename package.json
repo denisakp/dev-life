@@ -25,6 +25,7 @@
     "hast-util-to-html": "^9.0.5",
     "nuxt": "^4.3.0",
     "nuxt-og-image": "^6.5.1",
+    "pagefind": "^1.5.2",
     "prettier": "3.8.1",
     "sass": "^1.97.3",
     "sass-loader": "^16.0.6",
