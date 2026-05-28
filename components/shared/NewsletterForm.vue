@@ -4,6 +4,7 @@ const props = withDefaults(
   { placement: "blog" }
 );
 
+const { t } = useI18n();
 const config = useRuntimeConfig();
 const username = (config.public.buttondownUsername as string) ?? "";
 const actionUrl = computed(
@@ -16,12 +17,16 @@ const email = ref("");
 const state = ref<"idle" | "submitting" | "success" | "error">("idle");
 const errorMessage = ref("");
 
-const heading =
-  props.placement === "about" ? "Stay in touch" : "Subscribe to future posts";
-const helper =
+const heading = computed(() =>
   props.placement === "about"
-    ? "A short email when something new ships. No spam."
-    : "Get future posts in your inbox. No spam, unsubscribe any time.";
+    ? t("newsletter.headingAbout")
+    : t("newsletter.headingBlog")
+);
+const helper = computed(() =>
+  props.placement === "about"
+    ? t("newsletter.helperAbout")
+    : t("newsletter.helperBlog")
+);
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,7 +37,7 @@ async function onSubmit(event: Event) {
   const value = email.value.trim();
   if (!emailRegex.test(value)) {
     state.value = "error";
-    errorMessage.value = "Please enter a valid email address.";
+    errorMessage.value = t("newsletter.errorInvalid");
     return;
   }
 
@@ -51,7 +56,7 @@ async function onSubmit(event: Event) {
     state.value = "success";
   } catch {
     state.value = "error";
-    errorMessage.value = "Something went wrong — please try again.";
+    errorMessage.value = t("newsletter.errorTransport");
   }
 }
 </script>
@@ -73,7 +78,7 @@ async function onSubmit(event: Event) {
 
     <template v-if="!username">
       <p class="text-sm text-neutral-500 italic">
-        Newsletter signup coming soon.
+        {{ t('newsletter.comingSoon') }}
       </p>
     </template>
 
@@ -82,7 +87,7 @@ async function onSubmit(event: Event) {
         class="text-sm text-primary-600 dark:text-primary-400 font-medium"
         role="status"
       >
-        Thanks — check your inbox to confirm your subscription.
+        {{ t('newsletter.success') }}
       </p>
       <p class="mt-3 text-xs text-neutral-400">
         <a
@@ -90,7 +95,7 @@ async function onSubmit(event: Event) {
           target="_blank"
           rel="noopener noreferrer"
           class="hover:underline"
-        >Powered by Buttondown.</a>
+        >{{ t('newsletter.poweredBy') }}</a>
       </p>
     </template>
 
@@ -101,7 +106,7 @@ async function onSubmit(event: Event) {
         class="flex flex-col sm:flex-row gap-2"
         @submit="onSubmit"
       >
-        <label :for="fieldId" class="sr-only">Email address</label>
+        <label :for="fieldId" class="sr-only">{{ t('newsletter.emailLabel') }}</label>
         <input
           :id="fieldId"
           v-model="email"
@@ -119,7 +124,7 @@ async function onSubmit(event: Event) {
           :disabled="state === 'submitting'"
           class="rounded-md bg-primary-600 hover:bg-primary-700 disabled:opacity-60 text-white text-sm font-medium px-4 py-2 transition-colors"
         >
-          {{ state === "submitting" ? "Subscribing…" : "Subscribe" }}
+          {{ state === "submitting" ? t('newsletter.submitting') : t('newsletter.submit') }}
         </button>
       </form>
       <p
@@ -136,7 +141,7 @@ async function onSubmit(event: Event) {
           target="_blank"
           rel="noopener noreferrer"
           class="hover:underline"
-        >Powered by Buttondown.</a>
+        >{{ t('newsletter.poweredBy') }}</a>
       </p>
     </template>
   </section>

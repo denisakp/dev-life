@@ -1,4 +1,6 @@
 <script setup>
+defineI18nRoute({ locales: ["en"] });
+
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 
 const { data: navigation } = await useAsyncData("topics-nav", () =>

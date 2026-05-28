@@ -4,6 +4,8 @@ import talks from "~/data/talks";
 import { formatDate } from "~/utils/format-date";
 import NewsletterForm from "~/components/shared/NewsletterForm.vue";
 
+const { locale } = useI18n();
+
 const certifications = [
   { name: "Kubernetes and Cloud Native Associate (KCNA)", badgeId: "41b1229b-a850-47d5-9f63-ea71843026b3" },
   { name: "FinOps Certified Practitioner", badgeId: "c1ebfa20-4f6d-474f-ac33-726ca3b70679" },
@@ -61,63 +63,120 @@ useSeoMeta({
       </div>
     </header>
 
-    <!-- Section 2: Bio (mirrors homepage About content) -->
-    <section class="prose dark:prose-invert max-w-none mb-12 prose-p:text-justify prose-p:hyphens-auto">
-      <p>
-        I'm Denis, a software engineer working mainly on cloud-native and distributed systems.
-        I spend my time building and maintaining backend services, improving delivery pipelines,
-        and helping teams adopt practical DevSecOps practices.
-      </p>
-      <p>
-        I share lessons learned through talks, writing, and open-source projects, and I try to
-        approach engineering with pragmatism, curiosity, and a focus on long-term maintainability.
-      </p>
-    </section>
+    <!-- Section 2: Bio (locale-aware) -->
+    <template v-if="locale === 'fr'">
+      <section class="prose dark:prose-invert max-w-none mb-12 prose-p:text-justify prose-p:hyphens-auto">
+        <p>
+          Je suis Denis, ingénieur logiciel spécialisé dans les systèmes cloud-natifs et
+          distribués. Je passe mon temps à concevoir et maintenir des services backend,
+          à améliorer les chaînes de livraison et à accompagner les équipes dans
+          l'adoption de pratiques DevSecOps pragmatiques.
+        </p>
+        <p>
+          Je partage mes apprentissages via des conférences, des articles et des projets
+          open source, avec une approche pragmatique, curieuse, et orientée maintenabilité
+          long terme.
+        </p>
+      </section>
 
-    <!-- Section 3: Current focus -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
-        Currently
-      </h2>
-      <p class="text-neutral-700 dark:text-neutral-300">
-        I'm a DevOps Architect at
-        <span class="highlighted">Digi.job</span>, working on various projects involving
-        cloud-native and distributed systems. Outside of work I build open-source tools like
-        <NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
-          Sentinel, Ogoune, and Obscura
-        </NuxtLink>.
-      </p>
-    </section>
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          En ce moment
+        </h2>
+        <p class="text-neutral-700 dark:text-neutral-300">
+          Architecte DevOps chez <span class="highlighted">Digi.job</span>, je travaille
+          sur des projets autour du cloud-native et des systèmes distribués. En dehors du
+          travail, je développe des outils open source comme
+          <NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
+            Sentinel, Ogoune et Obscura
+          </NuxtLink>.
+        </p>
+      </section>
 
-    <!-- Section: Teaching -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
-        👨🏽‍🏫 Teaching
-      </h2>
-      <p class="text-neutral-700 dark:text-neutral-300 mb-3">
-        Adjunct lecturer - I teach the following courses at university level:
-      </p>
-      <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
-        <li>GIS &amp; Machine Learning Modeling</li>
-        <li>Distributed Programming with Java</li>
-        <li>Database Fundamentals</li>
-        <li>Introduction to DBMS</li>
-      </ul>
-    </section>
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          👨🏽‍🏫 Enseignement
+        </h2>
+        <p class="text-neutral-700 dark:text-neutral-300 mb-3">
+          Vacataire universitaire — j'enseigne les cours suivants :
+        </p>
+        <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+          <li>SIG &amp; modélisation par apprentissage automatique</li>
+          <li>Programmation distribuée en Java</li>
+          <li>Fondamentaux des bases de données</li>
+          <li>Introduction aux SGBD</li>
+        </ul>
+      </section>
 
-    <!-- Section 4: Skills snapshot -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
-        🛠️ Skills
-      </h2>
-      <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
-        <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Zig</li>
-        <li><b>CI/CD</b>: GitLab CI, GitHub Actions</li>
-        <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, Ansible, ArgoCD, Helm</li>
-        <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
-        <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
-      </ul>
-    </section>
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          🛠️ Compétences
+        </h2>
+        <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+          <li><b>Langages</b> : Go, Python, TypeScript, C/C++, Zig</li>
+          <li><b>CI/CD</b> : GitLab CI, GitHub Actions</li>
+          <li><b>DevOps &amp; Cloud</b> : Kubernetes, Terraform, Ansible, ArgoCD, Helm</li>
+          <li><b>SecOps &amp; IAM</b> : OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
+          <li><b>Observabilité</b> : OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
+        </ul>
+      </section>
+    </template>
+
+    <template v-else>
+      <section class="prose dark:prose-invert max-w-none mb-12 prose-p:text-justify prose-p:hyphens-auto">
+        <p>
+          I'm Denis, a software engineer working mainly on cloud-native and distributed systems.
+          I spend my time building and maintaining backend services, improving delivery pipelines,
+          and helping teams adopt practical DevSecOps practices.
+        </p>
+        <p>
+          I share lessons learned through talks, writing, and open-source projects, and I try to
+          approach engineering with pragmatism, curiosity, and a focus on long-term maintainability.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          Currently
+        </h2>
+        <p class="text-neutral-700 dark:text-neutral-300">
+          I'm a DevOps Architect at
+          <span class="highlighted">Digi.job</span>, working on various projects involving
+          cloud-native and distributed systems. Outside of work I build open-source tools like
+          <NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
+            Sentinel, Ogoune, and Obscura
+          </NuxtLink>.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          👨🏽‍🏫 Teaching
+        </h2>
+        <p class="text-neutral-700 dark:text-neutral-300 mb-3">
+          Adjunct lecturer - I teach the following courses at university level:
+        </p>
+        <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+          <li>GIS &amp; Machine Learning Modeling</li>
+          <li>Distributed Programming with Java</li>
+          <li>Database Fundamentals</li>
+          <li>Introduction to DBMS</li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+          🛠️ Skills
+        </h2>
+        <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
+          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, Zig</li>
+          <li><b>CI/CD</b>: GitLab CI, GitHub Actions</li>
+          <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, Ansible, ArgoCD, Helm</li>
+          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
+          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
+        </ul>
+      </section>
+    </template>
 
     <!-- Section: Certifications -->
     <section class="mb-12">

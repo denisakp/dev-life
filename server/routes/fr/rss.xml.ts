@@ -2,7 +2,7 @@ import { queryCollection } from "@nuxt/content/server";
 
 const SITE_URL = "https://denisakp.me";
 const SITE_TITLE = "Denis AKPAGNONITE";
-const SITE_DESC = "Cloud-native, DevOps, SRE, and distributed systems.";
+const SITE_DESC = "Cloud-native, DevOps, SRE, et systèmes distribués.";
 
 function escapeXml(s: string): string {
   return s
@@ -22,14 +22,19 @@ function rfc822(date: string | Date | undefined): string {
 
 export default defineEventHandler(async (event) => {
   const posts = await queryCollection(event, "content")
-    .where("path", "NOT LIKE", "%.fr")
+    .where("path", "LIKE", "%.fr")
     .select("path", "title", "description", "date", "tags", "topics")
     .order("date", "DESC")
     .all();
 
+  if (posts.length === 0) {
+    throw createError({ statusCode: 404, statusMessage: "No French posts yet" });
+  }
+
   const items = posts
     .map((p) => {
-      const link = `${SITE_URL}/blog${p.path ?? ""}`;
+      const basePath = (p.path ?? "").replace(/\.fr$/, "");
+      const link = `${SITE_URL}/fr/blog${basePath}`;
       const cats = [
         ...((p.tags as string[] | undefined) ?? []),
         ...((p.topics as string[] | undefined) ?? []),
@@ -51,10 +56,10 @@ ${cats}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>${escapeXml(SITE_TITLE)}</title>
-  <link>${SITE_URL}</link>
+  <link>${SITE_URL}/fr/</link>
   <description>${escapeXml(SITE_DESC)}</description>
-  <language>en</language>
-  <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
+  <language>fr</language>
+  <atom:link href="${SITE_URL}/fr/rss.xml" rel="self" type="application/rss+xml" />
   <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${items}
 </channel>

@@ -1,4 +1,6 @@
 <script setup>
+defineI18nRoute({ locales: ["en"] });
+
 import loadTopic from "~/utils/load-topic";
 import Pagination from "~/components/shared/Pagination.vue";
 import { DEFAULT_PAGINATION_LIMIT } from "~/utils/config";

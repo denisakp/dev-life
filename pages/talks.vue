@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineI18nRoute({ locales: ["en"] });
+
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 import talks from "~/data/talks";
 import { formatDate } from "~/utils/format-date";

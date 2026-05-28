@@ -4,14 +4,37 @@
 import Header from "~/components/shared/Header.vue";
 import Footer from "~/components/shared/Footer.vue";
 
+const { locale } = useI18n();
+const localeHead = useLocaleHead({ addSeoAttributes: true });
+const config = useRuntimeConfig();
+const umamiWebsiteId = config.public.umamiWebsiteId;
+
+const rssHref = computed(() =>
+  locale.value === "fr" ? "https://denisakp.me/fr/rss.xml" : "https://denisakp.me/rss.xml"
+);
+
+const scriptTags = computed(() => {
+  const tags = [];
+  if (umamiWebsiteId) {
+    tags.push({
+      src: "https://cloud.umami.is/script.js",
+      defer: true,
+      "data-website-id": umamiWebsiteId,
+      tagPosition: "bodyClose",
+    });
+  }
+  return tags;
+});
+
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - Denis AKPAGNONITE` : "Denis AKPAGNONITE";
   },
   htmlAttrs: {
-    lang: "en"
+    lang: () => locale.value
   },
-  link: [
+  link: () => [
+    ...(localeHead.value?.link ?? []),
     { rel: "canonical", href: "https://denisakp.me" },
     { rel: "preconnect", href: "https://fonts.gstatic.com" },
     {
@@ -43,14 +66,15 @@ useHead({
       rel: "alternate",
       type: "application/rss+xml",
       title: "Denis AKPAGNONITE",
-      href: "https://denisakp.me/rss.xml",
+      href: () => rssHref.value,
     },
     {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;700&family=Inter:wght@400;600;700&display=swap"
     }
   ],
-  meta: [
+  meta: () => [
+    ...(localeHead.value?.meta ?? []),
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "charset", content: "utf-8" },
     { name: "author", content: "Denis AKPAGNONITE" },
@@ -59,17 +83,7 @@ useHead({
     { name: "og:type", content: "website" },
     { name: "og:site_name", content: "Denis AKPAGNONITE"}
   ],
-  script: [
-    { src: "https://www.googletagmanager.com/gtag/js?id=G-D4WS1344ML", async: true },
-    {
-      children: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-D4WS1344ML');
-    `
-    }
-  ]
+  script: () => scriptTags.value
 });
 </script>
 

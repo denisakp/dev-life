@@ -3,12 +3,21 @@ import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 import topics from "~/data/topics";
 import projects from "~/data/projects";
 
-const { data: latestPosts } = await useAsyncData("latest-posts", () =>
-  queryCollection("content")
-    .select("path", "title", "description", "date", "tags")
-    .order("date", "DESC")
-    .limit(3)
-    .all()
+const { locale, t } = useI18n();
+const isFr = computed(() => locale.value === "fr");
+const blogPath = computed(() => (isFr.value ? "/fr/blog" : "/blog"));
+const aboutPath = computed(() => (isFr.value ? "/fr/about" : "/about"));
+
+const { data: latestPosts } = await useAsyncData(
+  () => `latest-posts-${locale.value}`,
+  () =>
+    queryCollection("content")
+      .where("path", isFr.value ? "LIKE" : "NOT LIKE", "%.fr")
+      .select("path", "title", "description", "date", "tags")
+      .order("date", "DESC")
+      .limit(3)
+      .all(),
+  { watch: [locale] }
 );
 
 const featuredProjects = computed(() => projects.filter((p) => p.featured));
@@ -54,18 +63,17 @@ useSeoMeta({
         &lt; Denis AKPAGNONITE /&gt;
       </h1>
       <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-1">
-        Software Engineer · Cloud Native · DevOps/SRE
+        {{ t('home.tagline') }}
       </p>
       <p class="text-sm text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-3">
-        I build and write about distributed systems, observability,
-        and supply-chain security.
+        {{ t('home.intro') }}
       </p>
       <div class="flex flex-wrap justify-center items-center gap-2 mb-2">
-        <UButton to="/blog" color="primary" size="sm" icon="i-lucide-book-open">
-          Read the blog
+        <UButton :to="blogPath" color="primary" size="sm" icon="i-lucide-book-open">
+          {{ t('home.readBlog') }}
         </UButton>
-        <UButton to="/about" color="neutral" variant="outline" size="sm" icon="i-lucide-user">
-          About me
+        <UButton :to="aboutPath" color="neutral" variant="outline" size="sm" icon="i-lucide-user">
+          {{ t('home.aboutMe') }}
         </UButton>
       </div>
     </section>
@@ -74,11 +82,11 @@ useSeoMeta({
     <section v-if="(latestPosts ?? []).length" class="container mt-2 mb-6 lg:mt-3 lg:mb-8">
       <div class="flex items-baseline justify-between mb-3">
         <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
-          Latest writing
+          {{ t('home.latestWriting') }}
         </h2>
-        <NuxtLink to="/blog"
+        <NuxtLink :to="blogPath"
           class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
-          See all →
+          {{ t('home.seeAll') }}
         </NuxtLink>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -90,11 +98,11 @@ useSeoMeta({
     <section v-if="popularTopics.length" class="container my-6 lg:my-8">
       <div class="flex items-baseline justify-between mb-3">
         <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
-          Explore by topic
+          {{ t('home.exploreByTopic') }}
         </h2>
         <NuxtLink to="/topics"
           class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
-          See all →
+          {{ t('home.seeAll') }}
         </NuxtLink>
       </div>
       <div class="flex flex-nowrap gap-2 overflow-x-auto -mx-4 px-4 pb-1">
@@ -129,11 +137,11 @@ useSeoMeta({
     <section v-if="featuredProjects.length" class="container my-6 lg:my-8">
       <div class="flex items-baseline justify-between mb-3">
         <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
-          Featured projects
+          {{ t('home.featuredProjects') }}
         </h2>
         <NuxtLink to="/projects"
           class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
-          See all →
+          {{ t('home.seeAll') }}
         </NuxtLink>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

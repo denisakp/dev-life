@@ -6,19 +6,54 @@ import Toc from "~/components/Toc.vue";
 import MobileToc from "~/components/content/MobileToc.vue";
 import RelatedPosts from "~/components/RelatedPosts.vue";
 import NewsletterForm from "~/components/shared/NewsletterForm.vue";
-import { formatDate } from "~/utils/format-date";
+import { formatDate, dateLocaleFor } from "~/utils/format-date";
 
+const { locale, t } = useI18n();
 const { path } = useRoute();
-const reviewedPath = path.replace("/blog", "");
-
-const { data: article } = await useAsyncData(`article-${reviewedPath}`, () =>
-  queryCollection("content").path(reviewedPath).first()
+// path looks like "/blog/foo" (en) or "/fr/blog/foo" (fr)
+const basePath = computed(() =>
+  path.replace(/^\/fr\/blog/, "").replace(/^\/blog/, "")
+);
+const isFr = computed(() => locale.value === "fr");
+const contentPath = computed(() =>
+  isFr.value ? `${basePath.value}.fr` : basePath.value
 );
 
-const { data: surround } = await useAsyncData(`surround-${reviewedPath}`, () =>
-  queryCollectionItemSurroundings("content", reviewedPath, {
-    fields: ["title", "path"],
-  })
+const { data: article } = await useAsyncData(
+  () => `article-${locale.value}-${basePath.value}`,
+  () => queryCollection("content").path(contentPath.value).first(),
+  { watch: [locale] }
+);
+
+// Sibling lookup — the OTHER locale variant
+const { data: sibling } = await useAsyncData(
+  () => `article-sibling-${locale.value}-${basePath.value}`,
+  () =>
+    queryCollection("content")
+      .path(isFr.value ? basePath.value : `${basePath.value}.fr`)
+      .first(),
+  { watch: [locale] }
+);
+
+const siblingHref = computed(() => {
+  if (!sibling.value) return null;
+  return isFr.value ? `/blog${basePath.value}` : `/fr/blog${basePath.value}`;
+});
+const siblingLabel = computed(() =>
+  isFr.value ? t("site.switchToEnglish") : t("site.switchToFrench")
+);
+
+const pathFilter = computed(() =>
+  isFr.value ? ["LIKE", "%.fr"] : ["NOT LIKE", "%.fr"]
+);
+
+const { data: surround } = await useAsyncData(
+  () => `surround-${locale.value}-${basePath.value}`,
+  () =>
+    queryCollectionItemSurroundings("content", contentPath.value, {
+      fields: ["title", "path"],
+    }),
+  { watch: [locale] }
 );
 
 const prev = computed(() => surround.value?.[0] ?? null);
@@ -26,7 +61,9 @@ const next = computed(() => surround.value?.[1] ?? null);
 
 const tocLinks = computed(() => article.value?.body?.toc?.links ?? []);
 
-const displayDate = computed(() => formatDate(article.value?.date));
+const displayDate = computed(() =>
+  formatDate(article.value?.date, dateLocaleFor(locale.value))
+);
 const reading = computed(() => useReadingTime(article.value?.body ?? {}));
 
 const colorMode = useColorMode();
@@ -56,16 +93,17 @@ defineOgImage("Post", {
 });
 
 const { data: related } = await useAsyncData(
-  () => `related-${reviewedPath}`,
+  () => `related-${locale.value}-${basePath.value}`,
   async () => {
     if (!article.value) return [];
     const all = await queryCollection("content")
+      .where("path", pathFilter.value[0], pathFilter.value[1])
       .select("path", "title", "description", "date", "tags", "topics")
       .all();
     const currentTags = new Set(article.value.tags ?? []);
     const currentTopics = new Set(article.value.topics ?? []);
     return all
-      .filter((p) => p.path !== reviewedPath)
+      .filter((p) => p.path !== contentPath.value)
       .map((p) => ({
         post: p,
         score:
@@ -97,6 +135,11 @@ const { data: related } = await useAsyncData(
         </h1>
         <p class="text-sm text-neutral-500 mb-6">
           <span v-if="displayDate">{{ displayDate }} · </span>{{ reading.label }}
+          <NuxtLink
+            v-if="siblingHref"
+            :to="siblingHref"
+            class="ml-2 text-primary-600 dark:text-primary-400 hover:underline"
+          >· {{ siblingLabel }}</NuxtLink>
         </p>
 
         <MobileToc :links="tocLinks" />
@@ -125,7 +168,7 @@ const { data: related } = await useAsyncData(
             emitmetadata="0"
             inputposition="bottom"
             :theme="giscusTheme"
-            lang="en"
+            :lang="locale"
             loading="lazy"
             crossorigin="anonymous"
           />

@@ -6,13 +6,54 @@ const props = defineProps<{
   error: { statusCode: number; statusMessage?: string; message?: string };
 }>();
 
-const is404 = computed(() => props.error.statusCode === 404);
+const route = useRoute();
+const isFr = computed(() => (route?.path ?? "").startsWith("/fr"));
 
-const handleError = () => clearError({ redirect: "/" });
+// Try useI18n; fall back to manual dictionaries if plugin not yet initialized.
+let tFn: ((key: string) => string) | null = null;
+try {
+  const i18n = useI18n();
+  tFn = (k: string) => i18n.t(k);
+} catch {
+  tFn = null;
+}
+
+const fallback = {
+  en: {
+    "error.404.title": "Page not found",
+    "error.404.description": "The page you are looking for does not exist.",
+    "error.404.back": "Go home",
+    "error.404.latest": "Latest posts",
+    "error.500.title": "Something went wrong",
+    "error.500.description": "An unexpected error occurred.",
+    "error.500.back": "Go home",
+  },
+  fr: {
+    "error.404.title": "Page introuvable",
+    "error.404.description": "La page que vous cherchez n'existe pas.",
+    "error.404.back": "Aller à l'accueil",
+    "error.404.latest": "Derniers articles",
+    "error.500.title": "Une erreur est survenue",
+    "error.500.description": "Une erreur inattendue s'est produite.",
+    "error.500.back": "Aller à l'accueil",
+  },
+} as const;
+
+function t(key: string): string {
+  if (tFn) return tFn(key);
+  const dict = isFr.value ? fallback.fr : fallback.en;
+  return (dict as Record<string, string>)[key] ?? key;
+}
+
+const is404 = computed(() => props.error.statusCode === 404);
+const homePath = computed(() => (isFr.value ? "/fr/" : "/"));
+const blogPath = computed(() => (isFr.value ? "/fr/blog" : "/blog"));
+
+const handleError = () => clearError({ redirect: homePath.value });
 
 useSeoMeta({
   title: () =>
-    is404.value ? "404 — Page not found" : "Something went wrong",
+    is404.value ? t("error.404.title") : t("error.500.title"),
 });
 </script>
 
@@ -25,18 +66,18 @@ useSeoMeta({
           {{ error.statusCode }}
         </p>
         <h1 class="text-2xl font-bold mb-2">
-          {{ is404 ? "Page not found" : "Something went wrong" }}
+          {{ is404 ? t("error.404.title") : t("error.500.title") }}
         </h1>
         <p class="text-neutral-600 dark:text-neutral-400 mb-8 max-w-md">
-          {{
-            is404
-              ? "The page you're looking for doesn't exist or has moved."
-              : "An unexpected error occurred. Please try again or head back home."
-          }}
+          {{ is404 ? t("error.404.description") : t("error.500.description") }}
         </p>
         <div class="flex gap-3">
-          <UButton color="primary" @click="handleError">Go home</UButton>
-          <UButton color="neutral" variant="outline" to="/blog">Latest posts</UButton>
+          <UButton color="primary" @click="handleError">
+            {{ is404 ? t("error.404.back") : t("error.500.back") }}
+          </UButton>
+          <UButton v-if="is404" color="neutral" variant="outline" :to="blogPath">
+            {{ t("error.404.latest") }}
+          </UButton>
         </div>
       </main>
       <Footer />

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineI18nRoute({ locales: ["en"] });
+
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 import courses, { type CourseMaterial } from "~/data/courses";
 import { formatDate } from "~/utils/format-date";

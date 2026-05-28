@@ -1,4 +1,6 @@
 <script setup>
+defineI18nRoute({ locales: ["en"] });
+
 import projects from "../data/projects";
 import { META_DESCRIPTION, META_IMAGE, DEFAULT_PAGINATION_LIMIT } from "~/utils/config";
 import Pagination from "~/components/shared/Pagination.vue";

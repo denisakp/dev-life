@@ -5,10 +5,17 @@ const props = defineProps({
   topics: { type: Array, default: () => [] },
 });
 
+const { t, te } = useI18n();
+
 const items = computed(() =>
   (props.topics ?? [])
-    .filter((t) => t?.path && loadTopic(t.path))
-    .map((t) => ({ path: t.path, topic: loadTopic(t.path) }))
+    .filter((tp) => tp?.path && loadTopic(tp.path))
+    .map((tp) => {
+      const topic = loadTopic(tp.path);
+      const key = `topics.${topic.slug}.label`;
+      const label = te(key) ? t(key) : topic.title;
+      return { path: tp.path, topic, label };
+    })
 );
 </script>
 
@@ -29,9 +36,9 @@ const items = computed(() =>
         <nuxt-img
           class="h-4 w-4 shrink-0"
           :src="item.topic.iconPath"
-          :alt="`${item.topic.title} logo`"
+          :alt="`${item.label} logo`"
         />
-        {{ item.topic.title }}
+        {{ item.label }}
       </UBadge>
     </ULink>
   </div>

@@ -7,8 +7,22 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
+    "@nuxtjs/i18n",
     "nuxt-og-image",
   ],
+
+  i18n: {
+    defaultLocale: "en",
+    strategy: "prefix_except_default",
+    locales: [
+      { code: "en", language: "en-US", file: "en.json", name: "English" },
+      { code: "fr", language: "fr-FR", file: "fr.json", name: "Français" },
+    ],
+    langDir: "locales/",
+    baseUrl: "https://denisakp.me",
+    detectBrowserLanguage: false,
+    customRoutes: "page",
+  },
 
   css: ["~/assets/styles/main.css", "~/assets/styles/animations.css"],
 
@@ -101,7 +115,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: "https://denisakp.me",
-      buttondownUsername: process.env.BUTTONDOWN_USERNAME || ""
+      buttondownUsername: process.env.BUTTONDOWN_USERNAME || "",
+      umamiWebsiteId: process.env.UMAMI_WEBSITE_ID || "660709e9-04d6-4bb3-ae75-dc0937220012"
     }
   },
 

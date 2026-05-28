@@ -1,20 +1,22 @@
 <script setup>
 import { ref } from "vue";
 import SharedSearchModal from "~/components/shared/SearchModal.vue";
+import LocaleToggle from "~/components/shared/LocaleToggle.vue";
 
+const { t } = useI18n();
 const mobileNavOpen = ref(false);
 const searchModalRef = ref(null);
 
 const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
 
-const navLinks = [
-  { to: "/blog", label: "Blog", icon: "i-lucide-book-open" },
-  { to: "/topics", label: "Topics", icon: "i-lucide-tag" },
-  { to: "/projects", label: "Projects", icon: "i-lucide-folder-git-2" },
-  { to: "/talks", label: "Talks", icon: "i-lucide-presentation" },
-  { to: "/teaching", label: "Teaching", icon: "i-lucide-graduation-cap" },
-  { to: "/about", label: "About", icon: "i-lucide-user" },
-];
+const navLinks = computed(() => [
+  { to: "/blog", label: t("header.blog"), icon: "i-lucide-book-open" },
+  { to: "/topics", label: t("header.topics"), icon: "i-lucide-tag" },
+  { to: "/projects", label: t("header.projects"), icon: "i-lucide-folder-git-2" },
+  { to: "/talks", label: t("header.talks"), icon: "i-lucide-presentation" },
+  { to: "/teaching", label: t("header.teaching"), icon: "i-lucide-graduation-cap" },
+  { to: "/about", label: t("header.about"), icon: "i-lucide-user" },
+]);
 
 function openSearch() {
   searchModalRef.value?.openModal();
@@ -48,11 +50,13 @@ function openSearch() {
       </div>
 
       <div class="flex justify-center items-center space-x-2 md:space-x-3">
+        <LocaleToggle />
+
         <ClientOnly>
           <UButton
             color="neutral"
             variant="ghost"
-            :aria-label="`Switch to ${themeCurrent === 'dark' ? 'light' : 'dark'} mode`"
+            :aria-label="t('header.toggleTheme')"
             class="focus-visible:ring-2 focus-visible:ring-primary-500"
             @click="toggleColorMode"
           >
@@ -72,12 +76,12 @@ function openSearch() {
         <button
           type="button"
           class="hidden md:flex items-center p-2 cursor-pointer slick-hover rounded-full slick-border"
-          aria-label="Open search"
+          :aria-label="t('header.search')"
           aria-keyshortcuts="Meta+K Control+K /"
           @click="openSearch"
         >
           <span class="flex space-x-2 items-center px-2">
-            <span class="text-sm font-medium">Search posts</span>
+            <span class="text-sm font-medium">{{ t('header.search') }}</span>
             <UIcon name="i-lucide-search" class="size-5" />
             <kbd class="hidden lg:inline-flex items-center px-1.5 py-0.5 text-xs rounded border border-neutral-300 dark:border-neutral-700 text-neutral-500">⌘K</kbd>
           </span>
@@ -88,7 +92,7 @@ function openSearch() {
           icon="i-lucide-search"
           color="neutral"
           variant="ghost"
-          aria-label="Open search"
+          :aria-label="t('header.search')"
           @click="openSearch"
         />
 
@@ -97,7 +101,7 @@ function openSearch() {
           icon="i-lucide-menu"
           color="neutral"
           variant="ghost"
-          aria-label="Open menu"
+          :aria-label="t('header.openMenu')"
           @click="mobileNavOpen = true"
         />
       </div>
@@ -112,7 +116,7 @@ function openSearch() {
               icon="i-lucide-x"
               color="neutral"
               variant="ghost"
-              aria-label="Close menu"
+              :aria-label="t('header.closeMenu')"
               @click="mobileNavOpen = false"
             />
           </div>
@@ -139,7 +143,7 @@ function openSearch() {
               openSearch();
             "
           >
-            Search posts
+            {{ t('header.search') }}
           </UButton>
         </div>
       </template>
