@@ -100,7 +100,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      siteUrl: "https://denisakp.me"
+      siteUrl: "https://denisakp.me",
+      buttondownUsername: process.env.BUTTONDOWN_USERNAME || ""
     }
   },
 

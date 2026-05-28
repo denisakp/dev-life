@@ -3,7 +3,9 @@ import Giscus from "@giscus/vue";
 
 import PrevNext from "~/components/PrevNext.vue";
 import Toc from "~/components/Toc.vue";
+import MobileToc from "~/components/content/MobileToc.vue";
 import RelatedPosts from "~/components/RelatedPosts.vue";
+import NewsletterForm from "~/components/shared/NewsletterForm.vue";
 import { formatDate } from "~/utils/format-date";
 
 const { path } = useRoute();
@@ -97,6 +99,8 @@ const { data: related } = await useAsyncData(
           <span v-if="displayDate">{{ displayDate }} · </span>{{ reading.label }}
         </p>
 
+        <MobileToc :links="tocLinks" />
+
         <div class="max-w-none lg:prose-lg prose dark:prose-invert">
           <ContentRenderer :value="article">
             <template #empty>
@@ -106,6 +110,8 @@ const { data: related } = await useAsyncData(
         </div>
 
         <div data-pagefind-ignore="all">
+          <NewsletterForm placement="blog" />
+
           <RelatedPosts :posts="related ?? []" />
 
           <Giscus

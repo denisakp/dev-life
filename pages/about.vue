@@ -2,6 +2,25 @@
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 import talks from "~/data/talks";
 import { formatDate } from "~/utils/format-date";
+import NewsletterForm from "~/components/shared/NewsletterForm.vue";
+
+const certifications = [
+  { name: "Kubernetes and Cloud Native Associate (KCNA)", badgeId: "41b1229b-a850-47d5-9f63-ea71843026b3" },
+  { name: "FinOps Certified Practitioner", badgeId: "c1ebfa20-4f6d-474f-ac33-726ca3b70679" },
+  { name: "AWS Certified Cloud Practitioner", badgeId: "1a490efa-6214-427a-964a-eca1e6898685" },
+  { name: "Google Cloud Digital Leader", badgeId: "7bc1ca8f-86f9-400b-8dad-5fbfe1a7ce3f" },
+  { name: "GitHub Foundations", badgeId: "8a2601c2-bce0-43f1-8456-95983959d156" },
+];
+
+useHead({
+  script: [
+    {
+      src: "https://cdn.credly.com/assets/utilities/embed.js",
+      async: true,
+      tagPosition: "bodyClose",
+    },
+  ],
+});
 
 // email hidden in ROT47 (matches pages/index.vue convention)
 const email = `2<A28?@?:E65o8>2:=]4@>`;
@@ -76,7 +95,7 @@ useSeoMeta({
         👨🏽‍🏫 Teaching
       </h2>
       <p class="text-neutral-700 dark:text-neutral-300 mb-3">
-        Adjunct lecturer — I teach the following courses at university level:
+        Adjunct lecturer - I teach the following courses at university level:
       </p>
       <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
         <li>GIS &amp; Machine Learning Modeling</li>
@@ -98,6 +117,30 @@ useSeoMeta({
         <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA</li>
         <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Tempo, Loki, Mimir, Prometheus</li>
       </ul>
+    </section>
+
+    <!-- Section: Certifications -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+        🏅 Certifications
+      </h2>
+      <ClientOnly>
+        <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+          <div
+            v-for="cert in certifications"
+            :key="cert.name"
+            class="flex flex-col items-center"
+          >
+            <div
+              data-iframe-width="150"
+              data-iframe-height="270"
+              :data-share-badge-id="cert.badgeId"
+              data-share-badge-host="https://www.credly.com"
+            ></div>
+            <span class="sr-only">{{ cert.name }}</span>
+          </div>
+        </div>
+      </ClientOnly>
     </section>
 
     <!-- Section 5: Talks teaser -->
@@ -149,5 +192,7 @@ useSeoMeta({
         </NuxtLink>)
       </p>
     </section>
+
+    <NewsletterForm placement="about" />
   </main>
 </template>
