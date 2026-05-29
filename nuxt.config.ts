@@ -189,6 +189,7 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@giscus/vue',
+        '@vercel/speed-insights/nuxt',
         '@vueuse/core',
         'zod',
       ]
