@@ -1,87 +1,60 @@
-.container {
-    @apply  max-w-5xl 2xl:max-w-9xl px-4 sm:px-10 mx-auto;
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "./print.css";
+
+@theme static {
+  --font-sans: "Inter", "IBM Plex Serif", ui-sans-serif, system-ui, sans-serif;
 }
 
-.container-small {
-    @apply max-w-3xl  2xl:max-w-5xl px-4 sm:px-10 mx-auto;
-}
+@layer components {
+  .container {
+    @apply max-w-5xl px-4 sm:px-10 mx-auto;
+  }
 
-.reading-area {
-    @apply max-w-3xl 2xl:max-w-5xl px-6 sm:px-10 mx-auto justify-center;
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 90rem;
+    }
+  }
+
+  .container-small {
+    @apply max-w-3xl px-4 sm:px-10 mx-auto;
+  }
+
+  @media (min-width: 1536px) {
+    .container-small {
+      max-width: 64rem;
+    }
+  }
+
+  .reading-area {
+    @apply max-w-3xl px-6 sm:px-10 mx-auto justify-center;
     font-family: 'IBM Plex Serif', serif;
-}
+  }
 
-.page-bg {
-    @apply bg-white text-dark-high pb-20 md:pb-12;
-    font-family: 'IBM Plex Serif', serif;
-}
+  @media (min-width: 1536px) {
+    .reading-area {
+      max-width: 64rem;
+    }
+  }
 
-.bg-light-dark {
-    @apply bg-white text-dark-high;
-}
+  .highlighted {
+    @apply text-primary-600 dark:text-primary-400 font-medium;
+  }
 
-.exact-navigation {
-    @apply bg-blue text-white;
-}
+  .slick-border {
+    @apply border border-neutral-200 dark:border-neutral-800;
+  }
 
-.exact-navigation:hover {
-    @apply text-dark;
-}
+  .slick-hover {
+    @apply hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors;
+  }
 
-.slick-border {
-    @apply border-current border ;
-}
+  .slick-hover-blue {
+    @apply hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+  }
 
-.darker-text {
-    @apply text-dark-high ;
-}
-
-.dark-text {
-    @apply text-dark;
-}
-
-.dark-low-bg {
-    @apply bg-dark-low;
-}
-
-.slick-hover:hover {
-    @apply bg-dark-low;
-}
-
-.slick-hover-blue:hover {
-    @apply bg-blue bg-opacity-20;
-}
-
-.toc {
-    @apply list-none dark-text slick-border rounded-sm;
-}
-
-.toc, .toc-deep-2 {
-    @apply ml-1;
-}
-
-.toc, .toc-deep-2 {
-    @apply ml-2;
-}
-
-.toc, .toc-deep-3 {
-    @apply ml-4;
-}
-
-.toc, .toc-deep-plus {
-    @apply ml-6;
-}
-
-.highlighted {
-    @apply text-blue ;
-}
-
-*::selection {
-    @apply bg-green bg-opacity-40 /* WebKit/Blink Browsers */
-    ;
-}
-
-*::-moz-selection {
-    @apply bg-green bg-opacity-40/* Gecko Browsers */
-    ;
+  .exact-navigation {
+    @apply text-primary-600 dark:text-primary-400;
+  }
 }

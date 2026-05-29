@@ -1,0 +1,107 @@
+{
+  "site": {
+    "switchToFrench": "Lire en français",
+    "switchToEnglish": "Read in English",
+    "switchLanguage": "Changer de langue"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu"
+  },
+  "prevNext": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "toc": {
+    "onThisPage": "Sur cette page",
+    "contents": "Sommaire"
+  },
+  "tags": {
+    "indexTitle": "Étiquettes",
+    "posts": "{count} articles",
+    "emptyFr": "Aucun article en français avec cette étiquette — voir la version anglaise.",
+    "browse": "Parcourir les articles par étiquette"
+  },
+  "offline": {
+    "title": "Vous êtes hors ligne",
+    "message": "Cette page n'est pas disponible sans connexion. Les pages déjà visitées doivent rester accessibles.",
+    "backHome": "Aller à l'accueil"
+  },
+  "home": {
+    "tagline": "Ingénieur logiciel · Cloud Native · DevOps/SRE",
+    "intro": "Je conçois et j'écris sur les systèmes distribués, l'observabilité et la sécurité de la chaîne d'approvisionnement.",
+    "readBlog": "Lire le blog",
+    "aboutMe": "À propos",
+    "latestWriting": "Derniers articles",
+    "exploreByTopic": "Explorer par sujet",
+    "featuredProjects": "Projets phares",
+    "seeAll": "Voir tout →"
+  },
+  "about": {
+    "title": "À propos"
+  },
+  "header": {
+    "blog": "Blog",
+    "topics": "Sujets",
+    "talks": "Conférences",
+    "teaching": "Enseignement",
+    "projects": "Projets",
+    "about": "À propos",
+    "search": "Rechercher",
+    "toggleTheme": "Changer de thème",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "footer": {
+    "uses": "/uses",
+    "now": "/now",
+    "rss": "Flux RSS"
+  },
+  "blog": {
+    "indexTitle": "Articles",
+    "readingTime": "{minutes} min de lecture",
+    "emptyFr": "Pas encore d'articles en français — voir la version anglaise.",
+    "publishedOn": "Publié le {date}"
+  },
+  "newsletter": {
+    "headingBlog": "S'abonner aux prochains articles",
+    "headingAbout": "Restons en contact",
+    "helperBlog": "Recevez les nouveaux articles par e-mail. Pas de spam, désinscription à tout moment.",
+    "helperAbout": "Un court e-mail quand il y a du nouveau. Pas de spam.",
+    "submit": "S'abonner",
+    "submitting": "Inscription…",
+    "success": "Merci — vérifiez votre boîte de réception pour confirmer votre abonnement.",
+    "errorInvalid": "Veuillez saisir une adresse e-mail valide.",
+    "errorTransport": "Une erreur est survenue — veuillez réessayer.",
+    "comingSoon": "Inscription à la newsletter bientôt disponible.",
+    "poweredBy": "Propulsé par Buttondown.",
+    "emailLabel": "Adresse e-mail"
+  },
+  "topics": {
+    "dsa": { "label": "Structures de données" },
+    "cloud": { "label": "Cloud" },
+    "iac": { "label": "IaC" },
+    "devops": { "label": "DevOps" },
+    "kubernetes": { "label": "Kubernetes" },
+    "backend": { "label": "Backend" },
+    "ai": { "label": "IA" },
+    "observability": { "label": "Observabilité" },
+    "platform-engineering": { "label": "Platform Engineering" },
+    "gitops": { "label": "GitOps" },
+    "ebpf": { "label": "eBPF" },
+    "finops": { "label": "FinOps" },
+    "supply-chain": { "label": "Sécurité de la chaîne d'approvisionnement" }
+  },
+  "error": {
+    "404": {
+      "title": "Page introuvable",
+      "description": "La page que vous cherchez n'existe pas.",
+      "back": "Aller à l'accueil",
+      "latest": "Derniers articles"
+    },
+    "500": {
+      "title": "Une erreur est survenue",
+      "description": "Une erreur inattendue s'est produite.",
+      "back": "Aller à l'accueil"
+    }
+  }
+}

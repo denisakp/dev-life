@@ -1,0 +1,107 @@
+{
+  "site": {
+    "switchToFrench": "Lire en français",
+    "switchToEnglish": "Read in English",
+    "switchLanguage": "Switch language"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "prevNext": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "toc": {
+    "onThisPage": "On this page",
+    "contents": "Contents"
+  },
+  "tags": {
+    "indexTitle": "Tags",
+    "posts": "{count} posts",
+    "emptyFr": "No French articles tagged yet — see the English version.",
+    "browse": "Browse posts by tag"
+  },
+  "offline": {
+    "title": "You're offline",
+    "message": "This page isn't available without a connection. Already-visited pages should still work.",
+    "backHome": "Go home"
+  },
+  "home": {
+    "tagline": "Software Engineer · Cloud Native · DevOps/SRE",
+    "intro": "I build and write about distributed systems, observability, and supply-chain security.",
+    "readBlog": "Read the blog",
+    "aboutMe": "About me",
+    "latestWriting": "Latest writing",
+    "exploreByTopic": "Explore by topic",
+    "featuredProjects": "Featured projects",
+    "seeAll": "See all →"
+  },
+  "about": {
+    "title": "About"
+  },
+  "header": {
+    "blog": "Blog",
+    "topics": "Topics",
+    "talks": "Talks",
+    "teaching": "Teaching",
+    "projects": "Projects",
+    "about": "About",
+    "search": "Search",
+    "toggleTheme": "Toggle theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "uses": "/uses",
+    "now": "/now",
+    "rss": "RSS feed"
+  },
+  "blog": {
+    "indexTitle": "Articles",
+    "readingTime": "{minutes} min read",
+    "emptyFr": "No French articles yet — see the English version.",
+    "publishedOn": "Published on {date}"
+  },
+  "newsletter": {
+    "headingBlog": "Subscribe to future posts",
+    "headingAbout": "Stay in touch",
+    "helperBlog": "Get future posts in your inbox. No spam, unsubscribe any time.",
+    "helperAbout": "A short email when something new ships. No spam.",
+    "submit": "Subscribe",
+    "submitting": "Subscribing…",
+    "success": "Thanks — check your inbox to confirm your subscription.",
+    "errorInvalid": "Please enter a valid email address.",
+    "errorTransport": "Something went wrong — please try again.",
+    "comingSoon": "Newsletter signup coming soon.",
+    "poweredBy": "Powered by Buttondown.",
+    "emailLabel": "Email address"
+  },
+  "topics": {
+    "dsa": { "label": "Data Structure" },
+    "cloud": { "label": "Cloud" },
+    "iac": { "label": "IaC" },
+    "devops": { "label": "DevOps" },
+    "kubernetes": { "label": "Kubernetes" },
+    "backend": { "label": "Backend" },
+    "ai": { "label": "AI" },
+    "observability": { "label": "Observability" },
+    "platform-engineering": { "label": "Platform Engineering" },
+    "gitops": { "label": "GitOps" },
+    "ebpf": { "label": "eBPF" },
+    "finops": { "label": "FinOps" },
+    "supply-chain": { "label": "Supply Chain Security" }
+  },
+  "error": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist.",
+      "back": "Go home",
+      "latest": "Latest posts"
+    },
+    "500": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred.",
+      "back": "Go home"
+    }
+  }
+}

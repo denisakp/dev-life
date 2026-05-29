@@ -1,0 +1,62 @@
+@media print {
+  /* Force light palette regardless of on-screen theme */
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Hide site chrome */
+  nav.fixed,                          /* Header (the fixed top nav) */
+  footer,                             /* Site footer */
+  .mobile-toc,                        /* MobileToc drawer */
+  aside.hidden.lg\:block,             /* Desktop sticky TOC sidebar */
+  [data-pagefind-ignore],             /* Newsletter + Related + Giscus + PrevNext wrapper */
+  .skip-to-content,                   /* SkipToContent link */
+  [aria-label*="theme" i],            /* Theme toggle */
+  [aria-label*="language" i],         /* LocaleToggle */
+  [aria-label*="search" i],           /* Search trigger */
+  [aria-label*="menu" i],             /* Mobile menu trigger */
+  [aria-label*="rss" i],              /* RSS icon */
+  .copy-button,                       /* Code copy buttons */
+  button[class*="copy"],
+  [class*="code-copy"] {
+    display: none !important;
+  }
+
+  /* Article: keep body prose visible, clean palette */
+  article,
+  main {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Prevent breaking inside code blocks where possible */
+  pre,
+  code,
+  figure,
+  img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Reveal external link URLs alongside the link text */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  /* Citation line driven by --print-citation on body */
+  body::after {
+    content: var(--print-citation, "");
+    display: block;
+    margin: 3rem 0 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    text-align: center;
+  }
+}

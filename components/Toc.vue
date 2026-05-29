@@ -1,46 +1,84 @@
 <script setup>
-const props = defineProps(["links"]);
+import { useIntersectionObserver } from "@vueuse/core";
 
-const flattenLinks = (links) => {
-  return links
+const props = defineProps({
+  links: { type: Array, default: () => [] },
+});
+
+const { t } = useI18n();
+
+const flattenLinks = (links) =>
+  links
     .map((link) => {
-      let _link = [link];
-      if (link.children) {
-        let flattened = flattenLinks(link.children);
-        _link = [link, ...flattened];
-      }
-      return _link;
+      const flat = [link];
+      if (link.children?.length) flat.push(...flattenLinks(link.children));
+      return flat;
     })
-    .flat(1);
-};
+    .flat();
+
+const flatLinks = computed(() => flattenLinks(props.links ?? []));
+const activeId = ref("");
+
+let observers = [];
+
+function setupObservers() {
+  observers.forEach((s) => s.stop?.());
+  observers = [];
+  flatLinks.value.forEach((link) => {
+    const el = document.getElementById(link.id);
+    if (!el) return;
+    const { stop } = useIntersectionObserver(
+      el,
+      ([entry]) => {
+        if (entry?.isIntersecting) activeId.value = link.id;
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0 }
+    );
+    observers.push({ stop });
+  });
+}
+
+onMounted(() => {
+  nextTick(setupObservers);
+});
+
+watch(flatLinks, () => nextTick(setupObservers), { deep: true });
+
+onBeforeUnmount(() => observers.forEach((s) => s.stop?.()));
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  history.replaceState(null, "", `#${id}`);
+}
 </script>
 
 <template>
-  <div class="mt-2 mx-48 md:mt-8  p-2 toc">
-    <p class="text-base lg:text-2xl font-medium mb-2">Summary</p>
-    <template v-for="(link, index) of flattenLinks(props.links)" :key="index">
-      <li :class="`toc-deep-${link.depth}`">
-        <NuxtLink
-          :to="'#' + link.id"
-          class="flex"
-          exact-active-class="text-red"
+  <nav class="toc" aria-label="Table of contents">
+    <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500 mb-3">
+      {{ t('toc.onThisPage') }}
+    </p>
+    <ul class="space-y-1 text-sm border-l border-neutral-200 dark:border-neutral-800">
+      <li
+        v-for="link in flatLinks"
+        :key="link.id"
+        :class="`toc-deep-${link.depth}`"
+      >
+        <a
+          :href="`#${link.id}`"
+          class="block py-1 pl-3 -ml-px border-l-2 transition-colors"
+          :class="
+            activeId === link.id
+              ? 'border-primary-500 text-primary-600 dark:text-primary-400 font-medium'
+              : 'border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+          "
+          :style="{ paddingLeft: `${(link.depth - 1) * 12 + 12}px` }"
+          @click.prevent="scrollTo(link.id)"
         >
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              class="h-5 w-5 items-center mr-1"
-            >
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="currentColor"
-                d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
-              />
-            </svg>
-          </span>
           {{ link.text }}
-        </NuxtLink>
+        </a>
       </li>
-    </template>
-  </div>
+    </ul>
+  </nav>
 </template>

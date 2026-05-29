@@ -1,8 +1,15 @@
 <script setup>
+defineI18nRoute({ locales: ["en"] });
+
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
 
-const navigation = await fetchContentNavigation();
-const topics = navigation.filter((item) => item._path !== "/hello-world");
+const { data: navigation } = await useAsyncData("topics-nav", () =>
+  queryCollectionNavigation("content")
+);
+
+const topics = computed(() =>
+  (navigation.value ?? []).filter((item) => item.path !== "/hello-world")
+);
 
 useSeoMeta({
   title: "Topics",
@@ -16,15 +23,13 @@ useSeoMeta({
   twitterCard: "summary_large_image",
   twitterTitle: "Topics - Denis AKPAGNONITE",
   twitterDescription: META_DESCRIPTION,
-  twitterImage: META_IMAGE
+  twitterImage: META_IMAGE,
 });
 </script>
 
 <template>
   <div class="container">
-    <h1 class="text-3xl capitalize">
-      Available Subjects: {{ topics.length }}
-    </h1>
+    <h1 class="text-3xl capitalize">Available Subjects: {{ topics.length }}</h1>
     <Topics :topics="topics" />
   </div>
 </template>
