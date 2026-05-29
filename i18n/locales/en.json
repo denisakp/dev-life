@@ -7,6 +7,10 @@
   "a11y": {
     "skipToContent": "Skip to content"
   },
+  "prevNext": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "tags": {
     "indexTitle": "Tags",
     "posts": "{count} posts",

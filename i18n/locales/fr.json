@@ -7,6 +7,10 @@
   "a11y": {
     "skipToContent": "Aller au contenu"
   },
+  "prevNext": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "tags": {
     "indexTitle": "Étiquettes",
     "posts": "{count} articles",

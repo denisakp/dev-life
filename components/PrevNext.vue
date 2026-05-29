@@ -4,12 +4,20 @@ const props = defineProps({
   next: { type: Object, default: null },
 });
 
-const nextPath = computed(() =>
-  props.next?.path ? `/blog${props.next.path}` : null
-);
-const prevPath = computed(() =>
-  props.prev?.path ? `/blog${props.prev.path}` : null
-);
+const { t, locale } = useI18n();
+
+// Build a locale-aware blog URL from a content path.
+// Content paths look like "/devops/foo" (EN) or "/devops/foo.fr" (FR).
+// EN URL: /blog/devops/foo
+// FR URL: /fr/blog/devops/foo
+function toBlogUrl(path) {
+  if (!path) return null;
+  const cleaned = path.replace(/\.fr$/, "");
+  return locale.value === "fr" ? `/fr/blog${cleaned}` : `/blog${cleaned}`;
+}
+
+const nextPath = computed(() => toBlogUrl(props.next?.path));
+const prevPath = computed(() => toBlogUrl(props.prev?.path));
 </script>
 
 <template>
@@ -32,7 +40,7 @@ const prevPath = computed(() =>
       :ui="{ leadingIcon: 'size-6' }"
     >
       <div class="overflow-hidden text-left ml-2">
-        <p class="text-neutral-500 text-xs">Previous</p>
+        <p class="text-neutral-500 text-xs">{{ t('prevNext.previous') }}</p>
         <p class="truncate" :title="props.prev.title">{{ props.prev.title }}</p>
       </div>
     </UButton>
@@ -48,7 +56,7 @@ const prevPath = computed(() =>
       :ui="{ trailingIcon: 'size-6' }"
     >
       <div class="overflow-hidden text-right mr-2">
-        <p class="text-neutral-500 text-xs">Next</p>
+        <p class="text-neutral-500 text-xs">{{ t('prevNext.next') }}</p>
         <p class="truncate" :title="props.next.title">{{ props.next.title }}</p>
       </div>
     </UButton>
