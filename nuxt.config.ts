@@ -149,11 +149,23 @@ export default defineNuxtConfig({
             "[pagefind] binary not found at " + bin + " — run `pnpm install`."
           );
         }
+        // Vercel's Nitro preset writes to .vercel/output/static/; default is .output/public/.
+        const candidates = [".vercel/output/static", ".output/public"];
+        const publicDir = candidates.find((p) => existsSync(p + "/blog"));
+        if (!publicDir) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            "[pagefind] no prerendered /blog directory found in " +
+              candidates.join(" or ") +
+              " — skipping index"
+          );
+          return;
+        }
         // eslint-disable-next-line no-console
-        console.log("[pagefind] indexing .output/public/blog/**/*.html ...");
+        console.log("[pagefind] indexing " + publicDir + "/blog/**/*.html ...");
         const result = spawnSync(
           bin,
-          ["--site", ".output/public", "--glob", "blog/**/*.html"],
+          ["--site", publicDir, "--glob", "blog/**/*.html"],
           { stdio: "inherit" }
         );
         if (result.status !== 0) {
