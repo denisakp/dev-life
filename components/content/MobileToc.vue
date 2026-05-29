@@ -8,6 +8,8 @@ interface TocLink {
 
 const props = defineProps<{ links: TocLink[] }>();
 
+const { t } = useI18n();
+
 function flatten(items: TocLink[]): TocLink[] {
   return items.flatMap((item) => [
     item,
@@ -26,7 +28,7 @@ const flat = computed(() => flatten(props.links ?? []));
     <summary
       class="cursor-pointer px-4 py-3 text-sm font-semibold text-neutral-700 dark:text-neutral-200 select-none"
     >
-      Contents
+      {{ t('toc.contents') }}
     </summary>
     <nav class="px-4 pb-4" aria-label="Table of contents (mobile)">
       <ul class="space-y-1 text-sm border-l border-neutral-200 dark:border-neutral-800">

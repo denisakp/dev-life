@@ -5,11 +5,14 @@ const { t, te, locale } = useI18n();
 const items = computed(() =>
   (props.topics ?? [])
     .filter((s): s is string => typeof s === "string" && s.length > 0)
-    .map((slug) => {
-      const key = `topics.${slug}.label`;
-      const label = te(key) ? t(key) : slug;
-      return { slug, label };
-    })
+    // Only show topics that have a registered i18n label (i.e., known topics).
+    // Unknown topic slugs (e.g. "docker", "mongodb") would otherwise render
+    // as lowercase slugs and link to a 404 /topics/<slug> page.
+    .filter((slug) => te(`topics.${slug}.label`))
+    .map((slug) => ({
+      slug,
+      label: t(`topics.${slug}.label`),
+    }))
 );
 </script>
 

@@ -5,6 +5,8 @@ const props = defineProps({
   links: { type: Array, default: () => [] },
 });
 
+const { t } = useI18n();
+
 const flattenLinks = (links) =>
   links
     .map((link) => {
@@ -55,7 +57,7 @@ function scrollTo(id) {
 <template>
   <nav class="toc" aria-label="Table of contents">
     <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500 mb-3">
-      On this page
+      {{ t('toc.onThisPage') }}
     </p>
     <ul class="space-y-1 text-sm border-l border-neutral-200 dark:border-neutral-800">
       <li

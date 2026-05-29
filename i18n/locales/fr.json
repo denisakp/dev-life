@@ -11,6 +11,10 @@
     "previous": "Précédent",
     "next": "Suivant"
   },
+  "toc": {
+    "onThisPage": "Sur cette page",
+    "contents": "Sommaire"
+  },
   "tags": {
     "indexTitle": "Étiquettes",
     "posts": "{count} articles",

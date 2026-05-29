@@ -1,14 +1,28 @@
 <script setup lang="ts">
 import { tagToSlug } from "~/utils/normalize-tag";
 
-const props = defineProps<{ tags?: string[] | null }>();
+const props = defineProps<{
+  tags?: string[] | null;
+  excludeSlugs?: string[] | null;
+}>();
 const { locale } = useI18n();
 
+const excluded = computed(() => {
+  return new Set((props.excludeSlugs ?? []).map((s) => s.toLowerCase()));
+});
+
 const items = computed(() => {
+  const seen = new Set<string>();
   return (props.tags ?? [])
     .filter((t): t is string => typeof t === "string" && t.length > 0)
     .map((t) => ({ label: t, slug: tagToSlug(t) }))
-    .filter((t) => t.slug.length > 0);
+    .filter((t) => {
+      if (t.slug.length === 0) return false;
+      if (excluded.value.has(t.slug)) return false;
+      if (seen.has(t.slug)) return false;
+      seen.add(t.slug);
+      return true;
+    });
 });
 
 const prefix = computed(() => (locale.value === "fr" ? "/fr/tags/" : "/tags/"));

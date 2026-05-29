@@ -51,10 +51,18 @@ const pathFilter = computed(() =>
 
 const { data: surround } = await useAsyncData(
   () => `surround-${locale.value}-${basePath.value}`,
-  () =>
-    queryCollectionItemSurroundings("content", contentPath.value, {
-      fields: ["title", "path"],
-    }),
+  async () => {
+    // Fetch all posts in current locale, sorted oldest → newest (default order)
+    const all = await queryCollection("content")
+      .where("path", isFr.value ? "LIKE" : "NOT LIKE", "%.fr")
+      .select("title", "path")
+      .all();
+    const idx = all.findIndex((p) => p.path === contentPath.value);
+    if (idx === -1) return [null, null];
+    const prevPost = idx > 0 ? all[idx - 1] : null;
+    const nextPost = idx < all.length - 1 ? all[idx + 1] : null;
+    return [prevPost, nextPost];
+  },
   { watch: [locale] }
 );
 
@@ -155,7 +163,7 @@ const { data: related } = await useAsyncData(
 
         <div class="flex flex-wrap items-center gap-2 mb-6">
           <TopicChips :topics="article.topics" />
-          <TagChips :tags="article.tags" />
+          <TagChips :tags="article.tags" :exclude-slugs="article.topics" />
         </div>
 
         <MobileToc :links="tocLinks" />

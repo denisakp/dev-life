@@ -11,6 +11,10 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "toc": {
+    "onThisPage": "On this page",
+    "contents": "Contents"
+  },
   "tags": {
     "indexTitle": "Tags",
     "posts": "{count} posts",
