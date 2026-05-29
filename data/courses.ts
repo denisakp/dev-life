@@ -41,10 +41,10 @@ export interface Course {
 const courses: Course[] = [
   {
     slug: "distributed-programming-java",
-    title: "Distributed Programming with Java",
+    title: "Programmation distribuée avec Java",
     description:
       "Sockets TCP/UDP, RMI, multithreading, synchronisation, concurrence, premiers pas en systèmes distribués.",
-    semester: "2025-S1",
+    semester: "2026-S7",
     language: "fr",
     materials: [
       // Replace url:"" with real Google Drive / GitHub links.
@@ -56,28 +56,28 @@ const courses: Course[] = [
   },
   {
     slug: "gis-ml-modeling",
-    title: "GIS & Machine Learning Modeling",
+    title: "SIG & modélisation Machine Learning",
     description:
       "Systèmes d'information géographique, données spatiales, modélisation prédictive appliquée à la géomatique.",
-    semester: "2025-S1",
+    semester: "2026-S8",
     language: "fr",
     materials: [],
   },
   {
     slug: "database-fundamentals",
-    title: "Database Fundamentals",
+    title: "Fondamentaux de base de données",
     description:
       "Modèle relationnel, algèbre relationnelle, normalisation, SQL, transactions, ACID.",
-    semester: "2025-S1",
+    semester: "2025-S3",
     language: "fr",
     materials: [],
   },
   {
     slug: "intro-dbms",
-    title: "Introduction to DBMS",
+    title: "Introduction aux SGBD",
     description:
       "Architecture des SGBD, stockage, index, optimiseur de requêtes, gestion des transactions et reprise après panne.",
-    semester: "2025-S1",
+    semester: "2025-S3",
     language: "fr",
     materials: [],
   },
