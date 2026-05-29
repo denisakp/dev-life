@@ -86,7 +86,7 @@ Branch `001-nuxt4-ui-upgrade` (current) is mid Nuxt 3 → Nuxt 4 migration + UI 
 `.specify/` and `.github/agents/speckit.*.agent.md` are the [Spec Kit](https://github.com/github/spec-kit) workflow (specify → plan → tasks → implement). When a user invokes a `/speckit.*` slash command, follow the corresponding agent prompt file rather than improvising.
 
 <!-- SPECKIT START -->
-Current plan: [specs/006-privacy-i18n/plan.md](specs/006-privacy-i18n/plan.md)
+Current plan: [specs/007-pwa-a11y/plan.md](specs/007-pwa-a11y/plan.md)
 (spec → research → data-model → contracts → quickstart in the same folder).
-Roadmap: [phases.md](phases.md). Prior phases: specs/001-nuxt4-ui-upgrade/, specs/002-content-surfaces/, specs/003-social-discovery/, specs/004-search-v2/, specs/005-engagement/.
+Roadmap: [phases.md](phases.md). Prior phases: specs/001-nuxt4-ui-upgrade/, specs/002-content-surfaces/, specs/003-social-discovery/, specs/004-search-v2/, specs/005-engagement/, specs/006-privacy-i18n/.
 <!-- SPECKIT END -->

@@ -8,8 +8,61 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "@nuxtjs/i18n",
+    "@vite-pwa/nuxt",
     "nuxt-og-image",
   ],
+
+  pwa: {
+    registerType: "autoUpdate",
+    injectRegister: "script",
+    manifest: {
+      name: "Denis AKPAGNONITE",
+      short_name: "denisakp.me",
+      description: "Cloud-native, DevOps, SRE, distributed systems.",
+      theme_color: "#4F46E5",
+      background_color: "#ffffff",
+      display: "standalone",
+      start_url: "/",
+      scope: "/",
+      lang: "en",
+      icons: [
+        { src: "/favicon/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+        { src: "/favicon/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+        { src: "/favicon/maskable-icon.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      ],
+    },
+    workbox: {
+      navigateFallback: "/offline",
+      cleanupOutdatedCaches: true,
+      globPatterns: ["**/*.{js,css,html,woff2}"],
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }: { request: Request }) => request.mode === "navigate",
+          handler: "NetworkFirst",
+          options: {
+            networkTimeoutSeconds: 3,
+            cacheName: "html",
+            expiration: { maxEntries: 50 },
+          },
+        },
+        {
+          urlPattern: /\.(?:js|css|woff2)$/,
+          handler: "StaleWhileRevalidate",
+          options: { cacheName: "static-assets" },
+        },
+        {
+          urlPattern: /\.(?:png|jpg|jpeg|svg|webp|avif)$/,
+          handler: "CacheFirst",
+          options: {
+            cacheName: "images",
+            expiration: { maxEntries: 60, maxAgeSeconds: 30 * 24 * 60 * 60 },
+          },
+        },
+      ],
+    },
+    client: { installPrompt: false },
+    devOptions: { enabled: false },
+  },
 
   i18n: {
     defaultLocale: "en",
@@ -126,7 +179,8 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    cacheMaxAgeSeconds: 3600
+    cacheMaxAgeSeconds: 3600,
+    exclude: ["/offline"]
   },
 
   compatibilityDate: "2024-07-18",

@@ -6,6 +6,8 @@ import Toc from "~/components/Toc.vue";
 import MobileToc from "~/components/content/MobileToc.vue";
 import RelatedPosts from "~/components/RelatedPosts.vue";
 import NewsletterForm from "~/components/shared/NewsletterForm.vue";
+import TopicChips from "~/components/shared/TopicChips.vue";
+import TagChips from "~/components/shared/TagChips.vue";
 import { formatDate, dateLocaleFor } from "~/utils/format-date";
 
 const { locale, t } = useI18n();
@@ -92,6 +94,15 @@ defineOgImage("Post", {
   date: article.value?.date ?? "",
 });
 
+// Inject a print-only citation line via a CSS custom property on <html>.
+useHead({
+  style: [
+    {
+      innerHTML: `:root { --print-citation: "denisakp.me${path}"; }`,
+    },
+  ],
+});
+
 const { data: related } = await useAsyncData(
   () => `related-${locale.value}-${basePath.value}`,
   async () => {
@@ -133,7 +144,7 @@ const { data: related } = await useAsyncData(
         <h1 class="text-2xl sm:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mt-0 mb-2 leading-tight wrap-break-words">
           {{ article.title }}
         </h1>
-        <p class="text-sm text-neutral-500 mb-6">
+        <p class="text-sm text-neutral-500 mb-3">
           <span v-if="displayDate">{{ displayDate }} · </span>{{ reading.label }}
           <NuxtLink
             v-if="siblingHref"
@@ -141,6 +152,11 @@ const { data: related } = await useAsyncData(
             class="ml-2 text-primary-600 dark:text-primary-400 hover:underline"
           >· {{ siblingLabel }}</NuxtLink>
         </p>
+
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <TopicChips :topics="article.topics" />
+          <TagChips :tags="article.tags" />
+        </div>
 
         <MobileToc :links="tocLinks" />
 

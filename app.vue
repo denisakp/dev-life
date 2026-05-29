@@ -1,8 +1,10 @@
 <script setup>
-//import { SpeedInsights } from "@vercel/speed-insights/nuxt";
+import { SpeedInsights } from "@vercel/speed-insights/nuxt";
+import { useLocaleHead } from "#i18n";
 
 import Header from "~/components/shared/Header.vue";
 import Footer from "~/components/shared/Footer.vue";
+import SkipToContent from "~/components/shared/SkipToContent.vue";
 
 const { locale } = useI18n();
 const localeHead = useLocaleHead({ addSeoAttributes: true });
@@ -89,10 +91,11 @@ useHead({
 
 <template>
   <UApp>
+    <SkipToContent />
     <div class="w-full bg-white dark:bg-neutral-950 flex flex-col min-h-screen text-neutral-900 dark:text-neutral-100">
-      <!--<SpeedInsights />-->
+      <SpeedInsights />
       <Header />
-      <main class="pt-16 md:pt-24 grow">
+      <main id="main" tabindex="-1" class="pt-16 md:pt-24 grow">
         <NuxtPage />
       </main>
       <Footer />

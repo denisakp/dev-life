@@ -4,6 +4,20 @@
     "switchToEnglish": "Read in English",
     "switchLanguage": "Switch language"
   },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "tags": {
+    "indexTitle": "Tags",
+    "posts": "{count} posts",
+    "emptyFr": "No French articles tagged yet — see the English version.",
+    "browse": "Browse posts by tag"
+  },
+  "offline": {
+    "title": "You're offline",
+    "message": "This page isn't available without a connection. Already-visited pages should still work.",
+    "backHome": "Go home"
+  },
   "home": {
     "tagline": "Software Engineer · Cloud Native · DevOps/SRE",
     "intro": "I build and write about distributed systems, observability, and supply-chain security.",

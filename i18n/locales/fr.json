@@ -4,6 +4,20 @@
     "switchToEnglish": "Read in English",
     "switchLanguage": "Changer de langue"
   },
+  "a11y": {
+    "skipToContent": "Aller au contenu"
+  },
+  "tags": {
+    "indexTitle": "Étiquettes",
+    "posts": "{count} articles",
+    "emptyFr": "Aucun article en français avec cette étiquette — voir la version anglaise.",
+    "browse": "Parcourir les articles par étiquette"
+  },
+  "offline": {
+    "title": "Vous êtes hors ligne",
+    "message": "Cette page n'est pas disponible sans connexion. Les pages déjà visitées doivent rester accessibles.",
+    "backHome": "Aller à l'accueil"
+  },
   "home": {
     "tagline": "Ingénieur logiciel · Cloud Native · DevOps/SRE",
     "intro": "Je conçois et j'écris sur les systèmes distribués, l'observabilité et la sécurité de la chaîne d'approvisionnement.",
