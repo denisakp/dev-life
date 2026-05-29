@@ -1,14 +1,55 @@
 export default defineAppConfig({
-  prose: {
-    headings: {
-      icon: "ph:anchor",
+  ui: {
+    colors: {
+      primary: 'indigo',
+      neutral: 'zinc',
     },
-    h1: {
-      icon: "ph:anchor",
-    },
-    copyButton: {
-      iconCopy: "ph:copy",
-      iconCopied: "ph:check",
+    prose: {
+      a: {
+        base: [
+          'text-primary border-b border-transparent hover:border-primary font-medium focus-visible:outline-primary [&>code]:border-dashed hover:[&>code]:border-primary hover:[&>code]:text-primary',
+          'transition-colors [&>code]:transition-colors',
+        ],
+      },
+      p: {
+        base: 'text-justify hyphens-auto',
+      },
+      li: {
+        base: 'hyphens-auto',
+      },
+      codeIcon: {
+        typescript: 'i-lucide-braces',
+        ts: 'i-lucide-braces',
+        javascript: 'i-lucide-file-code',
+        js: 'i-lucide-file-code',
+        jsx: 'i-lucide-file-code',
+        tsx: 'i-lucide-file-code',
+        vue: 'i-lucide-file-code',
+        json: 'i-lucide-braces',
+        yaml: 'i-lucide-file-text',
+        yml: 'i-lucide-file-text',
+        conf: 'i-lucide-settings',
+        ini: 'i-lucide-settings',
+        toml: 'i-lucide-settings',
+        bash: 'i-lucide-terminal',
+        sh: 'i-lucide-terminal',
+        shell: 'i-lucide-terminal',
+        zsh: 'i-lucide-terminal',
+        python: 'i-lucide-file-code',
+        py: 'i-lucide-file-code',
+        go: 'i-lucide-file-code',
+        rust: 'i-lucide-file-code',
+        rs: 'i-lucide-file-code',
+        docker: 'i-lucide-container',
+        dockerfile: 'i-lucide-container',
+        nginx: 'i-lucide-server',
+        sql: 'i-lucide-database',
+        html: 'i-lucide-file-code',
+        css: 'i-lucide-file-code',
+        md: 'i-lucide-file-text',
+        markdown: 'i-lucide-file-text',
+        terminal: 'i-lucide-terminal-square',
+      },
     },
   },
 });

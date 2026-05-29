@@ -1,5 +1,5 @@
 <script setup>
-import formatDate from "../utils/date-formating";
+import { formatDate } from "~/utils/format-date";
 
 const props = defineProps({
   post: {
@@ -8,47 +8,44 @@ const props = defineProps({
   },
 });
 
-const destination = ref("/blog" + props.post?._path);
+const destination = computed(() => "/blog" + (props.post?.path ?? ""));
 </script>
 
 <template>
-  <div
-    class="h-full border-dark-low border rounded-sm hover:shadow-sm"
-  >
-    <NuxtLink
-      :to="destination"
-      class="w-full"
-      style="text-decoration: none"
+  <NuxtLink :to="destination" class="block h-full" style="text-decoration: none">
+    <UCard
+      :ui="{
+        root: 'h-full hover:ring-2 hover:ring-primary-500 active:scale-[0.99] transition cursor-pointer',
+        body: 'p-4 flex flex-col h-full',
+      }"
     >
-      <div class="p-4 flex flex-col h-full">
-        <p class="text-dark-high font-medium">
-          {{ props.post.title }}
-        </p>
-        <p
-          class="flex-1 mt-2 text-sm leading-5 text-dark"
-        >
-          {{ props.post.description }}
-        </p>
+      <p class="text-neutral-900 dark:text-neutral-100 font-medium">
+        {{ props.post.title }}
+      </p>
+      <p class="flex-1 mt-2 text-sm leading-5 text-neutral-700 dark:text-neutral-300">
+        {{ props.post.description }}
+      </p>
 
-        <div class="flex flex-wrap items-center mt-2">
-          <div class="flex flex-grow mr-2 flex-wrap">
-            <p
-              v-for="(tag, index) in props.post.tags"
-              :key="index"
-              class="ml-2 mt-1 text-xs py-1 px-2 bg-dark-low border border-dark-low rounded-sm text-gray-600"
-            >
-              #{{ tag }}
-            </p>
-          </div>
-
-          <p
-            v-if="props.post.date !== 'Invalid date'"
-            class="text-sm text-gray-400 mt-3 ml-2"
+      <div class="flex flex-wrap items-center mt-3 gap-2">
+        <div class="flex grow flex-wrap gap-1.5">
+          <UBadge
+            v-for="(tag, index) in props.post.tags"
+            :key="index"
+            color="neutral"
+            variant="subtle"
+            size="sm"
           >
-            {{ formatDate(props.post.date) }}
-          </p>
+            #{{ tag }}
+          </UBadge>
         </div>
+
+        <p
+          v-if="props.post.date !== 'Invalid date'"
+          class="text-sm text-neutral-500"
+        >
+          {{ formatDate(props.post.date) }}
+        </p>
       </div>
-    </NuxtLink>
-  </div>
+    </UCard>
+  </NuxtLink>
 </template>

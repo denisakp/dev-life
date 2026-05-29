@@ -2,33 +2,44 @@
 import loadTopic from "~/utils/load-topic";
 
 const props = defineProps({
-  topics: { type: Array, default: () => [] }
+  topics: { type: Array, default: () => [] },
 });
+
+const { t, te } = useI18n();
+
+const items = computed(() =>
+  (props.topics ?? [])
+    .filter((tp) => tp?.path && loadTopic(tp.path))
+    .map((tp) => {
+      const topic = loadTopic(tp.path);
+      const key = `topics.${topic.slug}.label`;
+      const label = te(key) ? t(key) : topic.title;
+      return { path: tp.path, topic, label };
+    })
+);
 </script>
 
 <template>
-  <div class="flex flex-wrap my-4">
-    <template v-for="(item, index) in props.topics" :key="index">
-      <div v-if="loadTopic(item._path)" class="p-2 lg:w-1/6 md:w-1/4 w-1/2">
-        <NuxtLink :to="'/topics' + item._path">
-          <div
-            class="h-full flex items-center p-2 rounded-sm hover:shadow-sm slick-border dark-text"
-          >
-            <div class="mr-6">
-              <nuxt-img
-                class="mx-auto h-auto w-5 flex-shrink-0"
-                :src="loadTopic(item._path).iconPath"
-                :alt="loadTopic(item._path).title + ' - Logo'"
-              />
-            </div>
-            <div class="flex-grow">
-              <p class="font-medium">
-                {{ loadTopic(item._path).title }}
-              </p>
-            </div>
-          </div>
-        </NuxtLink>
-      </div>
-    </template>
+  <div class="flex flex-wrap gap-2 my-4">
+    <ULink
+      v-for="(item, index) in items"
+      :key="index"
+      :to="'/topics' + item.path"
+      class="inline-flex"
+    >
+      <UBadge
+        color="neutral"
+        variant="subtle"
+        size="lg"
+        class="gap-2 hover:bg-primary-50 dark:hover:bg-primary-950 transition-colors"
+      >
+        <nuxt-img
+          class="h-4 w-4 shrink-0"
+          :src="item.topic.iconPath"
+          :alt="`${item.label} logo`"
+        />
+        {{ item.label }}
+      </UBadge>
+    </ULink>
   </div>
 </template>

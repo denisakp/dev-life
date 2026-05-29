@@ -1,77 +1,152 @@
 <script setup>
 import { META_DESCRIPTION, META_IMAGE } from "~/utils/config";
-import {faGithub, faLinkedin, faXTwitter} from '@fortawesome/free-brands-svg-icons'
+import topics from "~/data/topics";
+import projects from "~/data/projects";
+
+const { locale, t } = useI18n();
+const isFr = computed(() => locale.value === "fr");
+const blogPath = computed(() => (isFr.value ? "/fr/blog" : "/blog"));
+const aboutPath = computed(() => (isFr.value ? "/fr/about" : "/about"));
+
+const { data: latestPosts } = await useAsyncData(
+  () => `latest-posts-${locale.value}`,
+  () =>
+    queryCollection("content")
+      .where("path", isFr.value ? "LIKE" : "NOT LIKE", "%.fr")
+      .select("path", "title", "description", "date", "tags")
+      .order("date", "DESC")
+      .limit(3)
+      .all(),
+  { watch: [locale] }
+);
+
+const featuredProjects = computed(() => projects.filter((p) => p.featured));
+
+const { data: topicCounts } = await useAsyncData("topic-counts", async () => {
+  const posts = await queryCollection("content").select("topics").all();
+  const counts = {};
+  for (const p of posts) {
+    for (const t of (p.topics ?? [])) {
+      counts[t] = (counts[t] ?? 0) + 1;
+    }
+  }
+  return counts;
+});
+
+const popularTopics = computed(() => {
+  const counts = topicCounts.value ?? {};
+  return topics
+    .filter((t) => (counts[t.slug] ?? 0) > 0)
+    .sort((a, b) => (counts[b.slug] ?? 0) - (counts[a.slug] ?? 0))
+    .slice(0, 6);
+});
 
 useSeoMeta({
   title: "Welcome",
   description: META_DESCRIPTION,
-
   ogTitle: "Welcome - Denis AKPAGNONITE",
   ogDescription: META_DESCRIPTION,
   ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me",
-
   twitterCard: "summary_large_image",
   twitterTitle: "Welcome - Denis AKPAGNONITE",
   twitterDescription: META_DESCRIPTION,
-  twitterImage: META_IMAGE
+  twitterImage: META_IMAGE,
 });
 </script>
 
 <template>
-    <div class="grid grid-cols-1 lg:grid-cols-2 font-mono">
-      <!-- Header & profile -->
-      <div class="flex flex-col items-center justify-center text-center lg:text-left lg:pl-20 py-16">
-        <div class="text-5xl text-blue font-bold mb-6 ">&lt;/&gt;</div>
-        <h2 class="text-3xl text-blue font-semibold mb-4">Denis AKPAGNONITE</h2>
-        <p class="text-lg">
-          Software Engineer👨🏽‍💻 | DevSecOps⎈ | SRE  📊 | Cloud Engineer ☁️
-        </p>
-
-        <!-- Social Links -->
-        <div class="mt-6 flex space-x-4">
-          <nuxt-link to="https://github.com/denisakp" target="_blank" >
-            <font-awesome :icon="faGithub" />
-          </nuxt-link>
-
-          <nuxt-link to="https://x.com/N1BBzerLZXT" target="_blank">
-            <font-awesome :icon="faXTwitter" />
-          </nuxt-link>
-
-          <nuxt-link to="https://linkedin.com/in/denis-akpagnonite" target="_blank">
-            <font-awesome :icon="faLinkedin" />
-          </nuxt-link>
-
-        </div>
+  <div>
+    <!-- Hero (compact) -->
+    <section class="container pt-4 pb-2 lg:pt-6 lg:pb-2 text-center">
+      <h1 class="text-2xl lg:text-3xl text-primary-600 dark:text-primary-400 font-bold mb-1">
+        &lt; Denis AKPAGNONITE /&gt;
+      </h1>
+      <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-1">
+        {{ t('home.tagline') }}
+      </p>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-3">
+        {{ t('home.intro') }}
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-2 mb-2">
+        <UButton :to="blogPath" color="primary" size="sm" icon="i-lucide-book-open">
+          {{ t('home.readBlog') }}
+        </UButton>
+        <UButton :to="aboutPath" color="neutral" variant="outline" size="sm" icon="i-lucide-user">
+          {{ t('home.aboutMe') }}
+        </UButton>
       </div>
+    </section>
 
-      <!-- About, Skills, Projects, contact -->
-      <div class="flex flex-col justify-center px-10 lg:px py-16">
-        <h2 class="text-2xl text-blue font-bold mb-6">👀 About</h2>
-
-        <p class="mb-6">
-          Passionate about DevOps, Cloud Native technologies, and distributed systems. I specialize in leveraging
-          open-source tools to solve challenges in data consistency, fault tolerance, and security.
-        </p>
-
-        <p class="mb-10">
-          Currently, I'm the <span class="highlighted">Lead Backend Engineer</span> at <span class="highlighted">TalentFindr</span>,
-          a SaaS platform powered by AI that accelerates recruitment processes. TalentFindr helps companies
-          <em>hire the best talent 3x faster</em>. I focus on building secure, reliable, and scalable backend systems,
-          applying strong DevSecOps and software engineering practices to ensure performance and trust at scale.
-        </p>
-
-        <!-- Skills -->
-        <h2 class="text-2xl text-blue font-bold mb-4">🛠️ Skills</h2>
-        <ul class="list-disc ml-4 mb-10">
-          <li><b>Programming languages</b>: Go, Python, TypeScript, C/C++, PHP, Lua</li>
-          <li><b>CI/CD</b>: GitLab CI, GitHub Actions, Teamcity, Jenkins</li>
-          <li><b>DevOps & Cloud</b>: Kubernetes, Terraform, ArgoCD, Helm, AWS, GCP</li>
-          <li><b>SecOps & IAM</b>: OWASP, Trivy, SonarQube, Keycloak, OpenFGA </li>
-          <li><b>Logging & Monitoring</b>: OpenTelemetry, Grafana, Prometheus </li>
-        </ul>
-
+    <!-- Latest writing -->
+    <section v-if="(latestPosts ?? []).length" class="container mt-2 mb-6 lg:mt-3 lg:mb-8">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
+          {{ t('home.latestWriting') }}
+        </h2>
+        <NuxtLink :to="blogPath"
+          class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+          {{ t('home.seeAll') }}
+        </NuxtLink>
       </div>
-    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Post v-for="post in (latestPosts ?? [])" :key="post.path" :post="post" />
+      </div>
+    </section>
 
+    <!-- Explore by topic (single line, scroll horizontally on overflow) -->
+    <section v-if="popularTopics.length" class="container my-6 lg:my-8">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
+          {{ t('home.exploreByTopic') }}
+        </h2>
+        <NuxtLink to="/topics"
+          class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+          {{ t('home.seeAll') }}
+        </NuxtLink>
+      </div>
+      <div class="flex flex-nowrap gap-2 overflow-x-auto -mx-4 px-4 pb-1">
+        <ULink
+          v-for="topic in popularTopics"
+          :key="topic.slug"
+          :to="`/topics/${topic.slug}`"
+          class="inline-flex shrink-0"
+        >
+          <UBadge
+            color="neutral"
+            variant="subtle"
+            size="lg"
+            class="gap-2 hover:bg-primary-50 dark:hover:bg-primary-950 transition-colors"
+          >
+            <nuxt-img
+              v-if="topic.iconPath"
+              class="h-4 w-4 shrink-0"
+              :src="topic.iconPath"
+              :alt="`${topic.title} logo`"
+            />
+            {{ topic.title }}
+            <span class="ml-1 text-xs opacity-60">
+              {{ topicCounts?.[topic.slug] }}
+            </span>
+          </UBadge>
+        </ULink>
+      </div>
+    </section>
+
+    <!-- Featured projects -->
+    <section v-if="featuredProjects.length" class="container my-6 lg:my-8">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400">
+          {{ t('home.featuredProjects') }}
+        </h2>
+        <NuxtLink to="/projects"
+          class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+          {{ t('home.seeAll') }}
+        </NuxtLink>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Project v-for="project in featuredProjects" :key="project.title" :project="project" />
+      </div>
+    </section>
+  </div>
 </template>
