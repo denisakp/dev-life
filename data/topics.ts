@@ -29,6 +29,22 @@ const topics = [
     iconPath: "/images/techs/devops.png",
   },
   {
+    title: "Databases",
+    slug: "databases",
+    description:
+      "Explore the databases ecosystem — MongoDB, PostgreSQL, Redis and more: replication, backups, clustering, performance tuning, and the patterns to run them reliably in production.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  },
+  {
+    title: "Docker",
+    slug: "docker",
+    description:
+      "Explore Docker and containerization: multi-stage builds, Compose, image optimization, networking, and the patterns to ship containerized workloads with confidence.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  },
+  {
     title: "Kubernetes",
     slug: "kubernetes",
     description:

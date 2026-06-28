@@ -12,6 +12,25 @@ export default defineNuxtConfig({
     "nuxt-og-image",
   ],
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          // Explicit langs REPLACE the default preloaded set — list every
+          // fence language used across content/ or it renders unhighlighted.
+          langs: [
+            "bash", "shell", "sh",
+            "js", "javascript", "ts", "typescript",
+            "json", "yaml", "yml", "ini",
+            "python", "nginx", "sql",
+            "dockerfile", "docker",
+            "html", "css", "vue", "md", "mdc", "diff",
+          ],
+        },
+      },
+    },
+  },
+
   pwa: {
     registerType: "autoUpdate",
     injectRegister: "script",

@@ -5,6 +5,8 @@ import LocaleToggle from "~/components/shared/LocaleToggle.vue";
 
 const { t } = useI18n();
 const mobileNavOpen = ref(false);
+
+const STUDIO_URL = "https://yaovi-studio.mychariow.co";
 const searchModalRef = ref(null);
 
 const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
@@ -50,6 +52,21 @@ function openSearch() {
       </div>
 
       <div class="flex justify-center items-center space-x-2 md:space-x-3">
+        <UButton
+          :to="STUDIO_URL"
+          target="_blank"
+          rel="noopener"
+          external
+          color="primary"
+          variant="solid"
+          icon="i-lucide-store"
+          size="sm"
+          class="hidden md:inline-flex font-semibold"
+          :aria-label="t('header.studioAria')"
+        >
+          {{ t('header.studio') }}
+        </UButton>
+
         <LocaleToggle />
 
         <ClientOnly>
@@ -133,6 +150,21 @@ function openSearch() {
               </nuxt-link>
             </li>
           </ul>
+          <UButton
+            :to="STUDIO_URL"
+            target="_blank"
+            rel="noopener"
+            external
+            block
+            color="primary"
+            variant="solid"
+            icon="i-lucide-store"
+            class="font-semibold"
+            :aria-label="t('header.studioAria')"
+            @click="mobileNavOpen = false"
+          >
+            {{ t('header.studio') }}
+          </UButton>
           <UButton
             block
             color="neutral"
