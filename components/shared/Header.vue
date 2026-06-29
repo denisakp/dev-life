@@ -6,7 +6,7 @@ import LocaleToggle from "~/components/shared/LocaleToggle.vue";
 const { t } = useI18n();
 const mobileNavOpen = ref(false);
 
-const STUDIO_URL = "https://yaovi-studio.mychariow.co";
+const STUDIO_URL = "https://studio.denisakp.me";
 const searchModalRef = ref(null);
 
 const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
