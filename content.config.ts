@@ -12,7 +12,8 @@ export default defineContentConfig({
         topics: z.array(z.string()),
         date: z.coerce.date(),
         slug: z.string(),
-        img: z.string().url()
+        img: z.string().url(),
+        draft: z.boolean().default(false)
       })
     })
   }
