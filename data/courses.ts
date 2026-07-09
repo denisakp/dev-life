@@ -40,11 +40,31 @@ export interface Course {
 
 const courses: Course[] = [
   {
+    slug: "big-data-security",
+    title: "Big Data & Security",
+    description:
+      "Fondamentaux de la sécurité appliquée au Big Data : chiffrement, gouvernance des données, détections d'anomalies et sécurisation des pipelines MLOps",
+    semester: "2026-S8, Master 1 IA/Big Data",
+    language: "fr",
+    materials: [],
+    schools: ["ESGIS"]
+  },
+  {
+    slug: "cloud-big-data",
+    title: "Cloud & Big Data",
+    description:
+      "Initiation à l'ingénierie du Cloud pour le Big Data : conception, déploiement, automatisation, monitoring des systèmes data en environnement de production.",
+    semester: "2026-S8, Master 1 IA/Big Data",
+    language: "fr",
+    materials: [],
+    schools: ["ESGIS"]
+  },
+  {
     slug: "distributed-programming-java",
     title: "Programmation distribuée avec Java",
     description:
       "Sockets TCP/UDP, RMI, multithreading, synchronisation, concurrence, premiers pas en systèmes distribués.",
-    semester: "2026-S7",
+    semester: "2026-S7, Master 1, Architecture logicielle",
     language: "fr",
     materials: [
       // Replace url:"" with real Google Drive / GitHub links.
@@ -53,15 +73,17 @@ const courses: Course[] = [
       // { type: "td",       title: "TD 1 — Premiers échanges", url: "" },
       // { type: "lab",      title: "TP 1 — Client/serveur TCP", url: "" },
     ],
+    schools: ["ESGIS"]
   },
   {
     slug: "gis-ml-modeling",
     title: "SIG & modélisation Machine Learning",
     description:
       "Systèmes d'information géographique, données spatiales, modélisation prédictive appliquée à la géomatique.",
-    semester: "2026-S8",
+    semester: "2026-S8, Master Economie",
     language: "fr",
     materials: [],
+    schools: ["UCAO-UIT"]
   },
   {
     slug: "database-fundamentals",
@@ -71,6 +93,7 @@ const courses: Course[] = [
     semester: "2025-S3",
     language: "fr",
     materials: [],
+    schools: ["ESGIS"]
   },
   {
     slug: "intro-dbms",
@@ -80,6 +103,7 @@ const courses: Course[] = [
     semester: "2025-S3",
     language: "fr",
     materials: [],
+    schools: ["ESIG"]
   },
 ];
 

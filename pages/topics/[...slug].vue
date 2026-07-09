@@ -15,7 +15,9 @@ const currentPage = ref(1);
 
 const baseQuery = () =>
   publishedOnly(
-    queryCollection("content").where("topics", "LIKE", `%${slug.value}%`)
+    queryCollection("content")
+      .where("topics", "LIKE", `%${slug.value}%`)
+      .where("path", "NOT LIKE", "%.fr")
   );
 
 const { data: totalArticles } = await useAsyncData(
