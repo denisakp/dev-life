@@ -1,4 +1,6 @@
 export interface Talk {
+  /** Session format. Omitted = "talk". */
+  type?: "talk" | "workshop";
   /** Short presentation title. */
   title: string;
   /** Conference, meetup, podcast, or other venue name. */
@@ -9,6 +11,8 @@ export interface Talk {
   slidesUrl?: string;
   /** Optional video recording URL. */
   recordingUrl?: string;
+  /** Optional code / materials repo URL (handy for workshops). */
+  repoUrl?: string;
   /** Optional 1-2 sentence summary. */
   description?: string;
 }
