@@ -76,6 +76,7 @@ These are enforced for this repo:
 - Components grouped by context: `components/shared/` (cross-page), `components/content/` (markdown renderers like `PostImage`, `ExternalLink`), `components/project/` (projects page).
 - Markdown frontmatter `date` must be `YYYY-MM-DD`.
 - Lighthouse ≥ 90 desktop for content-heavy pages before merge.
+- **Never use the em-dash `—` (or en-dash `–`) in prose.** This covers frontmatter, article body, EN and FR alike. Rewrite with a comma, colon, parentheses, a period, or a conjunction (and / but / so / because / car / mais / donc) instead. Applies to all authored text; code blocks and quoted output are exempt.
 
 ## Active work
 
