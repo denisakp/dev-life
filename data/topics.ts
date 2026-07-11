@@ -114,6 +114,14 @@ const topics = [
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg",
   },
+  {
+    title: "Resilience",
+    slug: "resilience",
+    description:
+      "Keeping systems up when parts fail: retries with backoff and jitter, retry budgets, circuit breakers, timeouts, rate limiting, high-availability and failover. The patterns that turn a hiccup into a non-event instead of an outage.",
+    iconPath:
+      "https://cdn.jsdelivr.net/npm/lucide-static/icons/shield-check.svg",
+  },
 ];
 
 export default topics;
