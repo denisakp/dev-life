@@ -43,16 +43,16 @@ const onPageChanged = (page: number) => {
 };
 
 useSeoMeta({
-  title: "Talks",
+  title: "Talks & Workshops",
   description:
-    "Speaking engagements, conference talks, and meetup presentations by Denis AKPAGNONITE.",
-  ogTitle: "Talks — Denis AKPAGNONITE",
-  ogDescription: "Speaking engagements, conference talks, and meetup presentations.",
+    "Speaking engagements, workshops, conference talks, and meetup presentations by Denis AKPAGNONITE.",
+  ogTitle: "Talks & Workshops — Denis AKPAGNONITE",
+  ogDescription: "Speaking engagements, workshops, conference talks, and meetup presentations.",
   ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me/talks",
   twitterCard: "summary_large_image",
-  twitterTitle: "Talks — Denis AKPAGNONITE",
-  twitterDescription: "Speaking engagements, conference talks, and meetup presentations.",
+  twitterTitle: "Talks & Workshops — Denis AKPAGNONITE",
+  twitterDescription: "Speaking engagements, workshops, conference talks, and meetup presentations.",
   twitterImage: META_IMAGE,
 });
 </script>
@@ -61,10 +61,10 @@ useSeoMeta({
   <main class="container py-8 lg:py-12">
     <header class="mb-8">
       <h1 class="text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-bold mb-2">
-        Talks
+        Talks &amp; Workshops
       </h1>
       <p class="text-neutral-700 dark:text-neutral-300">
-        Conference talks, meetup presentations, and podcast appearances.
+        Conference talks, workshops, meetup presentations, and podcast appearances.
       </p>
     </header>
 
@@ -79,6 +79,15 @@ useSeoMeta({
             :key="`${talk.date}-${talk.title}`"
             class="slick-border p-4 rounded-sm"
           >
+            <UBadge
+              :color="talk.type === 'workshop' ? 'primary' : 'neutral'"
+              variant="subtle"
+              size="sm"
+              :icon="talk.type === 'workshop' ? 'i-lucide-wrench' : 'i-lucide-mic'"
+              class="mb-2"
+            >
+              {{ talk.type === 'workshop' ? 'Workshop' : 'Talk' }}
+            </UBadge>
             <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
               {{ talk.title }}
             </h3>
@@ -91,7 +100,10 @@ useSeoMeta({
             >
               {{ talk.description }}
             </p>
-            <div v-if="talk.slidesUrl || talk.recordingUrl" class="flex gap-2">
+            <div
+              v-if="talk.slidesUrl || talk.recordingUrl || talk.repoUrl"
+              class="flex flex-wrap gap-2"
+            >
               <UButton
                 v-if="talk.slidesUrl"
                 :to="talk.slidesUrl"
@@ -115,6 +127,18 @@ useSeoMeta({
                 icon="i-lucide-video"
               >
                 Recording
+              </UButton>
+              <UButton
+                v-if="talk.repoUrl"
+                :to="talk.repoUrl"
+                target="_blank"
+                rel="noopener"
+                color="neutral"
+                variant="outline"
+                size="sm"
+                icon="i-lucide-code"
+              >
+                Code
               </UButton>
             </div>
           </article>

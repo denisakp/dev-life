@@ -29,6 +29,22 @@ const topics = [
     iconPath: "/images/techs/devops.png",
   },
   {
+    title: "Databases",
+    slug: "databases",
+    description:
+      "Explore the databases ecosystem — MongoDB, PostgreSQL, Redis and more: replication, backups, clustering, performance tuning, and the patterns to run them reliably in production.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  },
+  {
+    title: "Docker",
+    slug: "docker",
+    description:
+      "Explore Docker and containerization: multi-stage builds, Compose, image optimization, networking, and the patterns to ship containerized workloads with confidence.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  },
+  {
     title: "Kubernetes",
     slug: "kubernetes",
     description:
@@ -97,6 +113,14 @@ const topics = [
       "End-to-end software supply chain security: Sigstore, cosign, SLSA, SBOMs, Trivy, attestations, and admission control with Kyverno or OPA Gatekeeper. Trust your build, sign your artifacts.",
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg",
+  },
+  {
+    title: "Resilience",
+    slug: "resilience",
+    description:
+      "Keeping systems up when parts fail: retries with backoff and jitter, retry budgets, circuit breakers, timeouts, rate limiting, high-availability and failover. The patterns that turn a hiccup into a non-event instead of an outage.",
+    iconPath:
+      "https://cdn.jsdelivr.net/npm/lucide-static/icons/shield-check.svg",
   },
 ];
 

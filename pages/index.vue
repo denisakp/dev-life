@@ -22,16 +22,28 @@ const { data: latestPosts } = await useAsyncData(
 
 const featuredProjects = computed(() => projects.filter((p) => p.featured));
 
-const { data: topicCounts } = await useAsyncData("topic-counts", async () => {
-  const posts = await queryCollection("content").select("topics").all();
-  const counts = {};
-  for (const p of posts) {
-    for (const t of (p.topics ?? [])) {
-      counts[t] = (counts[t] ?? 0) + 1;
+const { data: topicCounts } = await useAsyncData(
+  () => `topic-counts-${locale.value}`,
+  async () => {
+    const posts = await publishedOnly(
+      queryCollection("content").where(
+        "path",
+        isFr.value ? "LIKE" : "NOT LIKE",
+        "%.fr"
+      )
+    )
+      .select("topics")
+      .all();
+    const counts = {};
+    for (const p of posts) {
+      for (const t of (p.topics ?? [])) {
+        counts[t] = (counts[t] ?? 0) + 1;
+      }
     }
-  }
-  return counts;
-});
+    return counts;
+  },
+  { watch: [locale] }
+);
 
 const popularTopics = computed(() => {
   const counts = topicCounts.value ?? {};

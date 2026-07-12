@@ -21,8 +21,14 @@ function rfc822(date: string | Date | undefined): string {
 }
 
 export default defineEventHandler(async (event) => {
-  const posts = await queryCollection(event, "content")
-    .where("path", "NOT LIKE", "%.fr")
+  let query = queryCollection(event, "content").where(
+    "path",
+    "NOT LIKE",
+    "%.fr"
+  );
+  // Drafts stay out of the feed in production; visible in dev for preview.
+  if (!import.meta.dev) query = query.where("draft", "<>", true);
+  const posts = await query
     .select("path", "title", "description", "date", "tags", "topics")
     .order("date", "DESC")
     .all();

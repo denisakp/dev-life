@@ -14,7 +14,11 @@ const perPage = DEFAULT_PAGINATION_LIMIT;
 const currentPage = ref(1);
 
 const baseQuery = () =>
-  queryCollection("content").where("topics", "LIKE", `%${slug.value}%`);
+  publishedOnly(
+    queryCollection("content")
+      .where("topics", "LIKE", `%${slug.value}%`)
+      .where("path", "NOT LIKE", "%.fr")
+  );
 
 const { data: totalArticles } = await useAsyncData(
   `topic-count-${slug.value}`,

@@ -27,6 +27,11 @@ const { data: article } = await useAsyncData(
   { watch: [locale] }
 );
 
+// A draft is reachable by direct URL but must not exist in production.
+if (isHiddenDraft(article.value)) {
+  throw createError({ statusCode: 404, statusMessage: "Not Found", fatal: true });
+}
+
 // Sibling lookup — the OTHER locale variant
 const { data: sibling } = await useAsyncData(
   () => `article-sibling-${locale.value}-${basePath.value}`,
@@ -53,8 +58,13 @@ const { data: surround } = await useAsyncData(
   () => `surround-${locale.value}-${basePath.value}`,
   async () => {
     // Fetch all posts in current locale, sorted oldest → newest (default order)
-    const all = await queryCollection("content")
-      .where("path", isFr.value ? "LIKE" : "NOT LIKE", "%.fr")
+    const all = await publishedOnly(
+      queryCollection("content").where(
+        "path",
+        isFr.value ? "LIKE" : "NOT LIKE",
+        "%.fr"
+      )
+    )
       .select("title", "path")
       .all();
     const idx = all.findIndex((p) => p.path === contentPath.value);
@@ -115,8 +125,13 @@ const { data: related } = await useAsyncData(
   () => `related-${locale.value}-${basePath.value}`,
   async () => {
     if (!article.value) return [];
-    const all = await queryCollection("content")
-      .where("path", pathFilter.value[0], pathFilter.value[1])
+    const all = await publishedOnly(
+      queryCollection("content").where(
+        "path",
+        pathFilter.value[0],
+        pathFilter.value[1]
+      )
+    )
       .select("path", "title", "description", "date", "tags", "topics")
       .all();
     const currentTags = new Set(article.value.tags ?? []);

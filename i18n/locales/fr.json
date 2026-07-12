@@ -49,7 +49,9 @@
     "search": "Rechercher",
     "toggleTheme": "Changer de thème",
     "openMenu": "Ouvrir le menu",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "studio": "Studio",
+    "studioAria": "Visiter mon Studio — livres & coaching (ouvre dans un nouvel onglet)"
   },
   "footer": {
     "uses": "/uses",

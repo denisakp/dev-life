@@ -19,9 +19,13 @@ const pathFilter = computed(() =>
 const { data: totalArticles } = await useAsyncData(
   () => `blog-count-${locale.value}`,
   () =>
-    queryCollection("content")
-      .where("path", pathFilter.value[0], pathFilter.value[1])
-      .count(),
+    publishedOnly(
+      queryCollection("content").where(
+        "path",
+        pathFilter.value[0],
+        pathFilter.value[1]
+      )
+    ).count(),
   { watch: [locale] }
 );
 
@@ -30,8 +34,13 @@ const totalPages = computed(() =>
 );
 
 const loadContent = (skip, limit) =>
-  queryCollection("content")
-    .where("path", pathFilter.value[0], pathFilter.value[1])
+  publishedOnly(
+    queryCollection("content").where(
+      "path",
+      pathFilter.value[0],
+      pathFilter.value[1]
+    )
+  )
     .order("date", "DESC")
     .skip(skip)
     .limit(limit)
