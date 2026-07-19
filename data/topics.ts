@@ -122,6 +122,14 @@ const topics = [
     iconPath:
       "https://cdn.jsdelivr.net/npm/lucide-static/icons/shield-check.svg",
   },
+  {
+    title: "Authorization",
+    slug: "authz",
+    description:
+      "Answering 'can this user do this?' at scale: RBAC, ABAC and relationship-based access control (ReBAC), Google's Zanzibar and its open-source heirs OpenFGA, SpiceDB and Ory Keto. Modeling permissions as relations, keeping checks consistent, and getting a real audit story.",
+    iconPath:
+      "https://cdn.jsdelivr.net/npm/lucide-static/icons/key-round.svg",
+  },
 ];
 
 export default topics;
