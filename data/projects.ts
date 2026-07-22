@@ -70,16 +70,7 @@ const projects: Project[] = [
     tags: ["python", "scraping", "open-source"],
     github: "https://github.com/denisakp/canal-olympia-scrapper",
     preview: "https://denisakp.github.io/canal-olympia-scrapper/",
-  },
-  {
-    title: "Fake Store API",
-    description:
-      "Fake Store API provides fake e-commerce JSON-formatted data for quick e-commerce web and mobile apps prototyping.",
-    date: "May 2023",
-    tags: ["api", "nextjs", "mongodb"],
-    github: "https://github.com/denisakp/fake-store-api",
-    preview: "https://fake-store-api-sigma.vercel.app",
-  },
+  }
 ];
 
 export default projects;
