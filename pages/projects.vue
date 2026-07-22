@@ -51,7 +51,7 @@ useSeoMeta({
   ogTitle: "Projects - Denis AKPAGNONITE",
   ogDescription: META_DESCRIPTION,
   ogImage: META_IMAGE,
-  ogUrl: "https://denisakp.me",
+  ogUrl: "https://denisakp.me/projects",
 
   twitterCard: "summary_large_image",
   twitterTitle: "Projects - Denis AKPAGNONITE",
