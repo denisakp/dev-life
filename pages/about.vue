@@ -34,12 +34,12 @@ const latestTalks = computed(() =>
 useSeoMeta({
   title: "About",
   description: META_DESCRIPTION,
-  ogTitle: "About — Denis AKPAGNONITE",
+  ogTitle: "About - Denis AKPAGNONITE",
   ogDescription: META_DESCRIPTION,
   ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me/about",
   twitterCard: "summary_large_image",
-  twitterTitle: "About — Denis AKPAGNONITE",
+  twitterTitle: "About - Denis AKPAGNONITE",
   twitterDescription: META_DESCRIPTION,
   twitterImage: META_IMAGE,
 });
@@ -98,7 +98,7 @@ useSeoMeta({
           👨🏽‍🏫 Enseignement
         </h2>
         <p class="text-neutral-700 dark:text-neutral-300 mb-3">
-          Vacataire universitaire — j'enseigne les cours suivants :
+          Vacataire universitaire, j'enseigne les cours suivants :
         </p>
         <ul class="list-disc ml-4 text-neutral-700 dark:text-neutral-300 space-y-1">
           <li>SIG &amp; modélisation par apprentissage automatique</li>
@@ -245,7 +245,7 @@ useSeoMeta({
         </NuxtLink>
       </div>
       <p class="text-sm text-neutral-600 dark:text-neutral-400">
-        Email: <span class="font-mono">{{ email }}</span> (ROT47-encoded — decode at
+        Email: <span class="font-mono">{{ email }}</span> (ROT47-encoded, decode at
         <NuxtLink to="https://rot47.net" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline">
           rot47.net
         </NuxtLink>)

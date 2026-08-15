@@ -18,7 +18,7 @@
   "tags": {
     "indexTitle": "Tags",
     "posts": "{count} posts",
-    "emptyFr": "No French articles tagged yet — see the English version.",
+    "emptyFr": "No French articles tagged yet. See the English version.",
     "browse": "Browse posts by tag"
   },
   "offline": {
@@ -51,7 +51,7 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "studio": "Studio",
-    "studioAria": "Visit my Studio — books & coaching (opens in a new tab)"
+    "studioAria": "Visit my Studio, books & coaching (opens in a new tab)"
   },
   "footer": {
     "uses": "/uses",
@@ -61,7 +61,7 @@
   "blog": {
     "indexTitle": "Articles",
     "readingTime": "{minutes} min read",
-    "emptyFr": "No French articles yet — see the English version.",
+    "emptyFr": "No French articles yet. See the English version.",
     "publishedOn": "Published on {date}"
   },
   "newsletter": {
@@ -71,9 +71,9 @@
     "helperAbout": "A short email when something new ships. No spam.",
     "submit": "Subscribe",
     "submitting": "Subscribing…",
-    "success": "Thanks — check your inbox to confirm your subscription.",
+    "success": "Thanks! Check your inbox to confirm your subscription.",
     "errorInvalid": "Please enter a valid email address.",
-    "errorTransport": "Something went wrong — please try again.",
+    "errorTransport": "Something went wrong. Please try again.",
     "comingSoon": "Newsletter signup coming soon.",
     "poweredBy": "Powered by Buttondown.",
     "emailLabel": "Email address"

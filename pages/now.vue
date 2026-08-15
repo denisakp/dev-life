@@ -2,16 +2,16 @@
 const { locale } = useI18n();
 
 const description =
-  "What I'm focused on right now — current projects, work, and reading list.";
+  "What I'm focused on right now: current projects, work, and reading list.";
 
 useSeoMeta({
   title: "Now",
   description,
-  ogTitle: "Now — Denis AKPAGNONITE",
+  ogTitle: "Now - Denis AKPAGNONITE",
   ogDescription: description,
   ogUrl: "https://denisakp.me/now",
   twitterCard: "summary_large_image",
-  twitterTitle: "Now — Denis AKPAGNONITE",
+  twitterTitle: "Now - Denis AKPAGNONITE",
   twitterDescription: description,
 });
 
@@ -27,7 +27,7 @@ defineOgImage("Default", { title: "Now" });
         </h1>
         <p class="text-sm text-neutral-500">Dernière mise à jour : 2026-05-28</p>
         <p class="text-neutral-600 dark:text-neutral-400 mt-3">
-          C'est une <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">page /now</a> — un court instantané de ce qui retient mon attention ce mois-ci.
+          C'est une <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">page /now</a>, un court instantané de ce qui retient mon attention ce mois-ci.
         </p>
       </header>
 
@@ -44,17 +44,17 @@ defineOgImage("Default", { title: "Now" });
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-3">Projets actifs</h2>
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
-          <li><b>Ce blog</b> — la phase 006 (analytics privacy + i18n EN/FR) vient d'arriver. Voir <NuxtLink to="/fr/blog" class="text-primary-600 dark:text-primary-400 hover:underline">/fr/blog</NuxtLink>.</li>
-          <li><b>Projets open source</b> — petites contributions à mes propres outils (<NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline">Sentinel, Ogoune, Obscura</NuxtLink>) quand le temps le permet.</li>
-          <li><b>Enseignement</b> — préparation des supports pour le semestre de printemps (voir <NuxtLink to="/teaching" class="text-primary-600 dark:text-primary-400 hover:underline">/teaching</NuxtLink>).</li>
+          <li><b>Ce blog</b> : la phase 006 (analytics privacy + i18n EN/FR) vient d'arriver. Voir <NuxtLink to="/fr/blog" class="text-primary-600 dark:text-primary-400 hover:underline">/fr/blog</NuxtLink>.</li>
+          <li><b>Projets open source</b> : petites contributions à mes propres outils (<NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline">Sentinel, Ogoune, Obscura</NuxtLink>) quand le temps le permet.</li>
+          <li><b>Enseignement</b> : préparation des supports pour le semestre de printemps (voir <NuxtLink to="/teaching" class="text-primary-600 dark:text-primary-400 hover:underline">/teaching</NuxtLink>).</li>
         </ul>
       </section>
 
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-3">Lectures en cours</h2>
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
-          <li><i>Designing Data-Intensive Applications</i> — Martin Kleppmann (relecture).</li>
-          <li><i>Database Internals</i> — Alex Petrov.</li>
+          <li><i>Designing Data-Intensive Applications</i>, Martin Kleppmann (relecture).</li>
+          <li><i>Database Internals</i>, Alex Petrov.</li>
           <li>Divers RFC et post-mortems d'incidents publics.</li>
         </ul>
       </section>
@@ -71,7 +71,7 @@ defineOgImage("Default", { title: "Now" });
         </h1>
         <p class="text-sm text-neutral-500">Last updated: 2026-05-28</p>
         <p class="text-neutral-600 dark:text-neutral-400 mt-3">
-          This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">/now page</a> — a short snapshot of what has my attention this month.
+          This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">/now page</a>, a short snapshot of what has my attention this month.
         </p>
       </header>
 
@@ -88,17 +88,17 @@ defineOgImage("Default", { title: "Now" });
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-3">Active Projects</h2>
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
-          <li><b>This blog</b> — phase 005 (engagement surfaces) just landed. See <NuxtLink to="/blog" class="text-primary-600 dark:text-primary-400 hover:underline">/blog</NuxtLink>.</li>
-          <li><b>Open-source side projects</b> — small contributions to my own tools (<NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline">Sentinel, Ogoune, Obscura</NuxtLink>) as time allows.</li>
-          <li><b>Teaching</b> — preparing course material for the spring semester (see <NuxtLink to="/teaching" class="text-primary-600 dark:text-primary-400 hover:underline">/teaching</NuxtLink>).</li>
+          <li><b>This blog</b>: phase 005 (engagement surfaces) just landed. See <NuxtLink to="/blog" class="text-primary-600 dark:text-primary-400 hover:underline">/blog</NuxtLink>.</li>
+          <li><b>Open-source side projects</b>: small contributions to my own tools (<NuxtLink to="/projects" class="text-primary-600 dark:text-primary-400 hover:underline">Sentinel, Ogoune, Obscura</NuxtLink>) as time allows.</li>
+          <li><b>Teaching</b>: preparing course material for the spring semester (see <NuxtLink to="/teaching" class="text-primary-600 dark:text-primary-400 hover:underline">/teaching</NuxtLink>).</li>
         </ul>
       </section>
 
       <section class="mb-10">
         <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-3">Currently Reading</h2>
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
-          <li><i>Designing Data-Intensive Applications</i> — Martin Kleppmann (re-read).</li>
-          <li><i>Database Internals</i> — Alex Petrov.</li>
+          <li><i>Designing Data-Intensive Applications</i>, Martin Kleppmann (re-read).</li>
+          <li><i>Database Internals</i>, Alex Petrov.</li>
           <li>Various RFCs and incident write-ups from public post-mortems.</li>
         </ul>
       </section>

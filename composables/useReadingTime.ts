@@ -5,7 +5,7 @@
  *   - Object: { tag, value?, children? }
  *   - Tuple:  [tagName, props, ...children]
  *
- * We skip `code` and `pre` nodes — those are scanning, not reading.
+ * We skip `code` and `pre` nodes, those are scanning, not reading.
  */
 function countWords(node: unknown, depth = 0): number {
   if (depth > 200) return 0; // recursion guard

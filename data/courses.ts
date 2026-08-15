@@ -7,13 +7,13 @@ export type CourseMaterialType =
   | "exam";
 
 export interface CourseMaterial {
-  /** Material category — drives badge color and label. */
+  /** Material category: drives badge color and label. */
   type: CourseMaterialType;
   /** Short title shown to students. */
   title: string;
   /** Absolute URL: Google Drive (PDF, slides), GitHub repo, or self-hosted PDF. */
   url: string;
-  /** Optional ISO YYYY-MM-DD — session date or publication date. */
+  /** Optional ISO YYYY-MM-DD: session date or publication date. */
   date?: string;
   /** Optional 1-line description. */
   description?: string;
@@ -46,7 +46,13 @@ const courses: Course[] = [
       "Fondamentaux de la sécurité appliquée au Big Data : chiffrement, gouvernance des données, détections d'anomalies et sécurisation des pipelines MLOps",
     semester: "2026-S8, Master 1 IA/Big Data",
     language: "fr",
-    materials: [],
+    materials: [
+      {
+        url: "https://drive.google.com/file/d/1yFDhYyn3fPdIljyV5uXLuru_JCoYAUYX/view?usp=sharing",
+        title: "Support de cours",
+        type: "lecture"
+      }
+    ],
     schools: ["ESGIS"]
   },
   {
@@ -56,7 +62,13 @@ const courses: Course[] = [
       "Initiation à l'ingénierie du Cloud pour le Big Data : conception, déploiement, automatisation, monitoring des systèmes data en environnement de production.",
     semester: "2026-S8, Master 1 IA/Big Data",
     language: "fr",
-    materials: [],
+    materials: [
+      {
+        url: "https://drive.google.com/file/d/1sn5j5CD1XD9grPT_smEzcW9HBXkNNyIn/view?usp=sharing",
+        title: "Support de cours",
+        type: "lecture"
+      }
+    ],
     schools: ["ESGIS"]
   },
   {
@@ -69,9 +81,9 @@ const courses: Course[] = [
     materials: [
       // Replace url:"" with real Google Drive / GitHub links.
       // { type: "syllabus", title: "Plan du cours", url: "" },
-      // { type: "lecture",  title: "CM 1 — Intro aux systèmes distribués", url: "" },
-      // { type: "td",       title: "TD 1 — Premiers échanges", url: "" },
-      // { type: "lab",      title: "TP 1 — Client/serveur TCP", url: "" },
+      // { type: "lecture",  title: "CM 1 : Intro aux systèmes distribués", url: "" },
+      // { type: "td",       title: "TD 1 : Premiers échanges", url: "" },
+      // { type: "lab",      title: "TP 1 : Client/serveur TCP", url: "" },
     ],
     schools: ["ESGIS"]
   },
@@ -82,7 +94,13 @@ const courses: Course[] = [
       "Systèmes d'information géographique, données spatiales, modélisation prédictive appliquée à la géomatique.",
     semester: "2026-S8, Master Economie",
     language: "fr",
-    materials: [],
+    materials: [
+      {
+        type: "lecture",
+        title: "Support de cours",
+        url: "https://drive.google.com/file/d/1PmUrbo0YuUF8N6oOX6uyY8iPyBiOCuOJ/view?usp=sharing"
+      }
+    ],
     schools: ["UCAO-UIT"]
   },
   {

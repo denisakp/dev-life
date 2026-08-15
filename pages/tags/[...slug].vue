@@ -63,7 +63,7 @@ const onPageChanged = (page: number) => {
 useSeoMeta({
   title: () => "#" + displayLabel.value,
   description: () => `Posts tagged ${displayLabel.value}`,
-  ogTitle: () => "#" + displayLabel.value + " — Denis AKPAGNONITE",
+  ogTitle: () => "#" + displayLabel.value + " - Denis AKPAGNONITE",
   ogUrl: () =>
     (isFr.value ? "https://denisakp.me/fr/tags/" : "https://denisakp.me/tags/") +
     slug.value,

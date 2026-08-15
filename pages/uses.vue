@@ -2,16 +2,16 @@
 const { locale } = useI18n();
 
 const description =
-  "What I use day-to-day — editor, hardware, dotfiles, cloud, observability, and AI tooling.";
+  "What I use day-to-day: editor, hardware, dotfiles, cloud, observability, and AI tooling.";
 
 useSeoMeta({
   title: "Uses",
   description,
-  ogTitle: "Uses — Denis AKPAGNONITE",
+  ogTitle: "Uses - Denis AKPAGNONITE",
   ogDescription: description,
   ogUrl: "https://denisakp.me/uses",
   twitterCard: "summary_large_image",
-  twitterTitle: "Uses — Denis AKPAGNONITE",
+  twitterTitle: "Uses - Denis AKPAGNONITE",
   twitterDescription: description,
 });
 
@@ -45,8 +45,8 @@ defineOgImage("Default", { title: "Uses" });
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
           <li><b>Machine principale</b> : MacBook Pro M4 Pro.</li>
           <li><b>Clavier</b> : mécanique low-profile.</li>
-          <li><b>Casque</b> : Sony WH-CH720N (bleu) — à réduction de bruit, sans fil.</li>
-          <li><b>Écran externe</b> : Samsung U32R590CWU — 32" UHD 4K incurvé.</li>
+          <li><b>Audio</b> : AirPods Pro 3 au quotidien. Sony WH-CH720N (bleu) pour les longues sessions au bureau.</li>
+          <li><b>Écran externe</b> : Samsung U32R590CWU, 32" UHD 4K incurvé.</li>
         </ul>
       </section>
 
@@ -76,7 +76,7 @@ defineOgImage("Default", { title: "Uses" });
       </section>
 
       <p class="text-sm text-neutral-500 italic">
-        Cette liste est opinionnée et évolue lentement — voir <NuxtLink to="/fr/now" class="text-primary-600 dark:text-primary-400 hover:underline">/now</NuxtLink> pour mes priorités du moment.
+        Cette liste est opinionnée et évolue lentement, voir <NuxtLink to="/fr/now" class="text-primary-600 dark:text-primary-400 hover:underline">/now</NuxtLink> pour mes priorités du moment.
       </p>
     </template>
 
@@ -105,7 +105,7 @@ defineOgImage("Default", { title: "Uses" });
         <ul class="list-disc ml-6 text-neutral-700 dark:text-neutral-300 space-y-1">
           <li><b>Main machine</b>: MacBook Pro M4 Pro.</li>
           <li><b>Keyboard</b>: low-profile mechanical.</li>
-          <li><b>Headphones</b>: Sony WH-CH720N (blue) noise-cancelling, wireless.</li>
+          <li><b>Audio</b>: AirPods Pro 3 day to day. Sony WH-CH720N (blue) for long desk sessions.</li>
           <li><b>External display</b>: Samsung U32R590CWU 32" UHD 4K curved.</li>
         </ul>
       </section>
@@ -136,7 +136,7 @@ defineOgImage("Default", { title: "Uses" });
       </section>
 
       <p class="text-sm text-neutral-500 italic">
-        This list is opinionated and evolves slowly — see <NuxtLink to="/now" class="text-primary-600 dark:text-primary-400 hover:underline">/now</NuxtLink> for what I'm focused on this month.
+        This list is opinionated and evolves slowly, see <NuxtLink to="/now" class="text-primary-600 dark:text-primary-400 hover:underline">/now</NuxtLink> for what I'm focused on this month.
       </p>
     </template>
   </main>

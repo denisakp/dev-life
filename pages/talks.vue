@@ -46,12 +46,12 @@ useSeoMeta({
   title: "Talks & Workshops",
   description:
     "Speaking engagements, workshops, conference talks, and meetup presentations by Denis AKPAGNONITE.",
-  ogTitle: "Talks & Workshops — Denis AKPAGNONITE",
+  ogTitle: "Talks & Workshops - Denis AKPAGNONITE",
   ogDescription: "Speaking engagements, workshops, conference talks, and meetup presentations.",
   ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me/talks",
   twitterCard: "summary_large_image",
-  twitterTitle: "Talks & Workshops — Denis AKPAGNONITE",
+  twitterTitle: "Talks & Workshops - Denis AKPAGNONITE",
   twitterDescription: "Speaking engagements, workshops, conference talks, and meetup presentations.",
   twitterImage: META_IMAGE,
 });
@@ -158,7 +158,7 @@ useSeoMeta({
     <template v-else>
       <div class="text-center py-16">
         <p class="text-lg text-neutral-700 dark:text-neutral-300 mb-4">
-          No talks yet — but I'd love to.
+          No talks yet, but I'd love to.
         </p>
         <UButton to="/about#contact" color="primary">Get in touch</UButton>
       </div>

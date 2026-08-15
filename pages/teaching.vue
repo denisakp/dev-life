@@ -6,7 +6,7 @@ import courses, { type CourseMaterial } from "~/data/courses";
 import { formatDate } from "~/utils/format-date";
 import Pagination from "~/components/shared/Pagination.vue";
 
-const perPage = 4;
+const perPage = 6;
 const currentPage = ref(1);
 
 const total = computed(() => courses.length);
@@ -52,13 +52,13 @@ function isGithub(url: string): boolean {
 useSeoMeta({
   title: "Teaching",
   description:
-    "University courses taught by Denis AKPAGNONITE — distributed programming, GIS, machine learning, databases.",
-  ogTitle: "Teaching — Denis AKPAGNONITE",
+    "University courses taught by Denis AKPAGNONITE: distributed programming, GIS, machine learning, databases.",
+  ogTitle: "Teaching - Denis AKPAGNONITE",
   ogDescription: "University courses, lecture notes, exercises, and labs.",
   ogImage: META_IMAGE,
   ogUrl: "https://denisakp.me/teaching",
   twitterCard: "summary_large_image",
-  twitterTitle: "Teaching — Denis AKPAGNONITE",
+  twitterTitle: "Teaching - Denis AKPAGNONITE",
   twitterDescription: "University courses and supporting materials.",
   twitterImage: META_IMAGE,
 });
@@ -71,7 +71,7 @@ useSeoMeta({
         Teaching
       </h1>
       <p class="text-neutral-700 dark:text-neutral-300">
-        Adjunct lecturer — university courses, with lecture notes, exercises (TD),
+        Adjunct lecturer, university courses, with lecture notes, exercises (TD),
         lab work (TP), and supporting materials.
       </p>
     </header>

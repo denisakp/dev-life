@@ -32,7 +32,7 @@ const topics = [
     title: "Databases",
     slug: "databases",
     description:
-      "Explore the databases ecosystem — MongoDB, PostgreSQL, Redis and more: replication, backups, clustering, performance tuning, and the patterns to run them reliably in production.",
+      "Explore the databases ecosystem (MongoDB, PostgreSQL, Redis and more): replication, backups, clustering, performance tuning, and the patterns to run them reliably in production.",
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
   },
@@ -71,7 +71,7 @@ const topics = [
     title: "Observability",
     slug: "observability",
     description:
-      "Explore metrics, logs, traces, and continuous profiling — OpenTelemetry pipelines, Grafana stack (Tempo / Loki / Mimir), SLOs, error budgets, and the patterns SREs use to keep production diagnosable.",
+      "Explore metrics, logs, traces, and continuous profiling: OpenTelemetry pipelines, Grafana stack (Tempo / Loki / Mimir), SLOs, error budgets, and the patterns SREs use to keep production diagnosable.",
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg",
   },
@@ -79,7 +79,7 @@ const topics = [
     title: "Platform Engineering",
     slug: "platform-engineering",
     description:
-      "Internal developer platforms, golden paths, Backstage, Crossplane, scorecards — how engineering organizations build self-service infrastructure that lets product teams ship without filing tickets.",
+      "Internal developer platforms, golden paths, Backstage, Crossplane, scorecards, and how engineering organizations build self-service infrastructure that lets product teams ship without filing tickets.",
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/circleci/circleci-plain.svg",
   },
@@ -95,7 +95,7 @@ const topics = [
     title: "eBPF",
     slug: "ebpf",
     description:
-      "eBPF in production: Cilium for networking and service mesh, Tetragon for runtime security, Parca and Pixie for continuous profiling and tracing — kernel-level observability without sidecars.",
+      "eBPF in production: Cilium for networking and service mesh, Tetragon for runtime security, Parca and Pixie for continuous profiling and tracing. Kernel-level observability without sidecars.",
     iconPath: "https://ebpf.io/static/logo-big.svg",
   },
   {
@@ -105,6 +105,13 @@ const topics = [
       "Cloud cost engineering: OpenCost for Kubernetes attribution, egress optimization, right-sizing with VPA, savings plans vs reserved instances. Make cost a first-class engineering signal.",
     iconPath:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  },
+  {
+    title: "Security",
+    slug: "security",
+    description:
+      "Securing systems end to end: threat modeling, secrets management, encryption at rest and in transit, hardening and least privilege, audit trails, incident response, and mapping regulatory obligations onto real infrastructure.",
+    iconPath: "https://cdn.jsdelivr.net/npm/lucide-static/icons/lock.svg",
   },
   {
     title: "Supply Chain Security",

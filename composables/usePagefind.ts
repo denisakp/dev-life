@@ -35,7 +35,7 @@ async function loadRuntime(): Promise<PagefindRuntime | null> {
       try {
         // Pagefind ships its runtime as a static asset emitted by the
         // build hook in nuxt.config.ts. Vite + TS must not try to
-        // resolve this at build time — it only exists in
+        // resolve this at build time, it only exists in
         // .output/public/pagefind/ at runtime. Indirect string defeats
         // both Vite's analyzer and TS's module-resolution check.
         const url = "/pagefind/pagefind.js";
@@ -45,7 +45,7 @@ async function loadRuntime(): Promise<PagefindRuntime | null> {
         }
         return mod;
       } catch (err) {
-        // Dev mode or blocked assets — no /pagefind/ on disk.
+        // Dev mode or blocked assets, no /pagefind/ on disk.
         // Surface as disabled state, not as a thrown error.
         if (import.meta.dev) {
           // eslint-disable-next-line no-console
