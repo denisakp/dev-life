@@ -37,6 +37,22 @@ const topics = [
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
   },
   {
+    title: "PostgreSQL",
+    slug: "postgresql",
+    description:
+      "Running PostgreSQL in production: streaming replication and high availability with Patroni, backups and point-in-time recovery, connection pooling, indexing and query tuning, and the operational patterns that keep a cluster healthy.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  },
+  {
+    title: "MongoDB",
+    slug: "mongodb",
+    description:
+      "Operating MongoDB with confidence: replica sets and elections, sharding, backup and restore, running it under Docker and Kubernetes, and the tuning that keeps read and write paths predictable.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain.svg",
+  },
+  {
     title: "Docker",
     slug: "docker",
     description:
@@ -58,6 +74,14 @@ const topics = [
     description:
       "Explore the backend ecosystem articles, tutorials, and resources to help you get started with backend development.",
     iconPath: "/images/techs/frameworks.png",
+  },
+  {
+    title: "NestJS",
+    slug: "nest-js",
+    description:
+      "Building backend services with NestJS: modules, providers and dependency injection, controllers and guards, TypeORM and relational modeling, validation and testing, and the patterns that keep a Node.js API maintainable as it grows.",
+    iconPath:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg",
   },
   {
     title: "AI",
