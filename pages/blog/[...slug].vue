@@ -32,7 +32,7 @@ if (isHiddenDraft(article.value)) {
   throw createError({ statusCode: 404, statusMessage: "Not Found", fatal: true });
 }
 
-// Sibling lookup — the OTHER locale variant
+// Sibling lookup: the OTHER locale variant
 const { data: sibling } = await useAsyncData(
   () => `article-sibling-${locale.value}-${basePath.value}`,
   () =>

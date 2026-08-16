@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          // Explicit langs REPLACE the default preloaded set — list every
+          // Explicit langs REPLACE the default preloaded set, list every
           // fence language used across content/ or it renders unhighlighted.
           langs: [
             "bash", "shell", "sh",
@@ -167,7 +167,7 @@ export default defineNuxtConfig({
         const bin = "node_modules/.bin/pagefind";
         if (!existsSync(bin)) {
           throw new Error(
-            "[pagefind] binary not found at " + bin + " — run `pnpm install`."
+            "[pagefind] binary not found at " + bin + ", run `pnpm install`."
           );
         }
         // Vercel's Nitro preset writes to .vercel/output/static/; default is .output/public/.
@@ -178,7 +178,7 @@ export default defineNuxtConfig({
           console.warn(
             "[pagefind] no prerendered /blog directory found in " +
               candidates.join(" or ") +
-              " — skipping index"
+              ", skipping index"
           );
           return;
         }

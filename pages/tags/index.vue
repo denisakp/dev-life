@@ -20,7 +20,7 @@ const { data: tags } = await useAsyncData(
 useSeoMeta({
   title: () => t("tags.indexTitle"),
   description: () => t("tags.browse"),
-  ogTitle: () => t("tags.indexTitle") + " — Denis AKPAGNONITE",
+  ogTitle: () => t("tags.indexTitle") + " - Denis AKPAGNONITE",
   ogDescription: () => t("tags.browse"),
   ogUrl: () => (isFr.value ? "https://denisakp.me/fr/tags" : "https://denisakp.me/tags"),
   twitterCard: "summary_large_image",

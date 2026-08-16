@@ -50,7 +50,7 @@ const talks: Talk[] = [
       "Building fine-grained, relationship-based authorization (ReBAC) with OpenFGA into modern apps.",
   },
   {
-    title: "How I passed the KCNA Exam — Tips & Insights",
+    title: "How I passed the KCNA Exam: Tips & Insights",
     venue: "Andela",
     date: "2025-05-20",
     slidesUrl:

@@ -18,7 +18,7 @@
   "tags": {
     "indexTitle": "Étiquettes",
     "posts": "{count} articles",
-    "emptyFr": "Aucun article en français avec cette étiquette — voir la version anglaise.",
+    "emptyFr": "Aucun article en français avec cette étiquette. Voir la version anglaise.",
     "browse": "Parcourir les articles par étiquette"
   },
   "offline": {
@@ -51,7 +51,7 @@
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "studio": "Studio",
-    "studioAria": "Visiter mon Studio — livres & coaching (ouvre dans un nouvel onglet)"
+    "studioAria": "Visiter mon Studio, livres & coaching (ouvre dans un nouvel onglet)"
   },
   "footer": {
     "uses": "/uses",
@@ -61,7 +61,7 @@
   "blog": {
     "indexTitle": "Articles",
     "readingTime": "{minutes} min de lecture",
-    "emptyFr": "Pas encore d'articles en français — voir la version anglaise.",
+    "emptyFr": "Pas encore d'articles en français. Voir la version anglaise.",
     "publishedOn": "Publié le {date}"
   },
   "newsletter": {
@@ -71,9 +71,9 @@
     "helperAbout": "Un court e-mail quand il y a du nouveau. Pas de spam.",
     "submit": "S'abonner",
     "submitting": "Inscription…",
-    "success": "Merci — vérifiez votre boîte de réception pour confirmer votre abonnement.",
+    "success": "Merci ! Vérifiez votre boîte de réception pour confirmer votre abonnement.",
     "errorInvalid": "Veuillez saisir une adresse e-mail valide.",
-    "errorTransport": "Une erreur est survenue — veuillez réessayer.",
+    "errorTransport": "Une erreur est survenue, veuillez réessayer.",
     "comingSoon": "Inscription à la newsletter bientôt disponible.",
     "poweredBy": "Propulsé par Buttondown.",
     "emailLabel": "Adresse e-mail"

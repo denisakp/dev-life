@@ -2,7 +2,7 @@
 //
 // Articles with `draft: true` in their frontmatter are hidden from every
 // public surface (blog list, topics, related, prev/next, RSS, sitemap) and
-// return 404 on direct access — but only in production. During `pnpm dev`
+// return 404 on direct access, but only in production. During `pnpm dev`
 // drafts stay fully visible so they can be previewed locally.
 //
 // Usage: wrap a queryCollection() builder before the terminal call, e.g.
