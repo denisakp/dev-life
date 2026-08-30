@@ -7,6 +7,8 @@ const { t } = useI18n();
 const mobileNavOpen = ref(false);
 
 const STUDIO_URL = "https://studio.denisakp.me";
+// Studio link temporarily hidden. Flip to true to bring the header button back.
+const STUDIO_ENABLED = false;
 const searchModalRef = ref(null);
 
 const { current: themeCurrent, toggle: toggleColorMode } = useThemeTransition();
@@ -53,6 +55,7 @@ function openSearch() {
 
       <div class="flex justify-center items-center space-x-2 md:space-x-3">
         <UButton
+          v-if="STUDIO_ENABLED"
           :to="STUDIO_URL"
           target="_blank"
           rel="noopener"
@@ -151,6 +154,7 @@ function openSearch() {
             </li>
           </ul>
           <UButton
+            v-if="STUDIO_ENABLED"
             :to="STUDIO_URL"
             target="_blank"
             rel="noopener"

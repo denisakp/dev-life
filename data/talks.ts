@@ -19,6 +19,36 @@ export interface Talk {
 
 const talks: Talk[] = [
   {
+    type: "talk",
+    title: "DevOps: a Culture, not a Job Title",
+    venue: "PyCon Togo 2026",
+    date: "2026-08-29",
+    slidesUrl:
+      "https://docs.google.com/presentation/d/1v-oTVFUsKHHjCS44rbZB5vXugT6xsT7Ux0yIz8SOEw8/edit?usp=sharing",
+    description:
+      "Why DevOps is a set of shared practices and incentives across teams rather than a role to hire for, and what changes when an organization treats it as a job title.",
+  },
+  {
+    type: "workshop",
+    title: "From code to observable",
+    venue: "PyCon Togo 2026",
+    date: "2026-08-28",
+    repoUrl: "https://github.com/denisakp/workshop-code-to-observable",
+    description:
+      "Hands-on session (in French) instrumenting an application end to end: metrics, logs, and traces, from code to a fully observable service.",
+  },
+  {
+    type: "workshop",
+    title: "Kubernetes et Agent IA",
+    venue: "Togo AI Lab Summer School 2026",
+    date: "2026-08-27",
+    slidesUrl:
+      "https://1drv.ms/p/c/6d5adcccac3c614d/IQAkqwxVeiBbR7JpoHqKbVxLAfnmbzrKB9hcPMe1k_6EwpE?e=yhSfSn&nav=eyJzSWQiOjI1NiwiY0lkIjowfQ",
+    repoUrl: "https://github.com/denisakp/ai-agent-workshop",
+    description:
+      "Workshop (in French) on building and running AI agents on Kubernetes, from packaging to deployment and operations.",
+  },
+  {
     title:
       "Le diplôme ne suffit plus : Repenser la formation Tech au Togo pour des carrières qui durent",
     venue: "Synca Conf, Togo",
