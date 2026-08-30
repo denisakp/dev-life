@@ -19,6 +19,16 @@ export interface Talk {
 
 const talks: Talk[] = [
   {
+    type: "talk",
+    title: "DevOps: a Culture, not a Job Title",
+    venue: "PyCon Togo 2026",
+    date: "2026-08-29",
+    slidesUrl:
+      "https://docs.google.com/presentation/d/1v-oTVFUsKHHjCS44rbZB5vXugT6xsT7Ux0yIz8SOEw8/edit?usp=sharing",
+    description:
+      "Why DevOps is a set of shared practices and incentives across teams rather than a role to hire for, and what changes when an organization treats it as a job title.",
+  },
+  {
     type: "workshop",
     title: "From code to observable",
     venue: "PyCon Togo 2026",
