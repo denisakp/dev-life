@@ -164,9 +164,26 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    routeRules: {
+      // i18n mirrors /sitemap.xml under the fr prefix, where no sitemap route
+      // answers, so the page renders empty with a 200. Sitemaps are not
+      // per-locale here, the index already lists both, so send it there.
+      "/fr/sitemap.xml": { redirect: { to: "/sitemap_index.xml", statusCode: 301 } },
+    },
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/sitemap.xml", "/robots.txt", "/rss.xml"],
+      // /sitemap_index.xml, not /sitemap.xml: with i18n the sitemap module emits
+      // one sitemap per locale behind an index, and /sitemap.xml is only a
+      // redirect to it. Prerendering that redirect wrote an HTML stub into a
+      // DIRECTORY named sitemap.xml, so the URL served HTML instead of XML.
+      // Either entry tells @nuxtjs/sitemap to prerender the real sitemaps.
+      routes: ["/", "/sitemap_index.xml", "/robots.txt", "/rss.xml"],
+      // Any path ending in /sitemap.xml stays runtime-only, never on disk. A
+      // regex, not a string: string entries match by prefix, which let the
+      // locale-prefixed variants (/fr/sitemap.xml, /fr/fr/sitemap.xml) through
+      // and each one landed as an HTML page inside a directory named
+      // sitemap.xml. /sitemap_index.xml and /__sitemap__/*.xml do not match.
+      ignore: [/\/sitemap\.xml$/],
     },
   },
 
