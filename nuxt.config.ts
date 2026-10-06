@@ -52,7 +52,17 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
+      // Workbox turns navigateFallback into a NavigationRoute registered BEFORE
+      // runtimeCaching. With no denylist it matches every navigation, so any URL
+      // absent from the precache manifest got the fallback page even with a
+      // working network, and the NetworkFirst route below never ran. This site
+      // is prerendered, not an SPA shell, so that route must never fire: the
+      // denylist rejects every pathname. Dropping navigateFallback entirely is
+      // not an option, @vite-pwa/nuxt then defaults it to "/".
+      // The offline page is wired to the navigation route below through
+      // precacheFallback, which only fires once the network has actually failed.
       navigateFallback: "/offline",
+      navigateFallbackDenylist: [/./],
       cleanupOutdatedCaches: true,
       globPatterns: ["**/*.{js,css,html,woff2}"],
       runtimeCaching: [
@@ -63,6 +73,7 @@ export default defineNuxtConfig({
             networkTimeoutSeconds: 3,
             cacheName: "html",
             expiration: { maxEntries: 50 },
+            precacheFallback: { fallbackURL: "/offline" },
           },
         },
         {
@@ -153,9 +164,26 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    routeRules: {
+      // i18n mirrors /sitemap.xml under the fr prefix, where no sitemap route
+      // answers, so the page renders empty with a 200. Sitemaps are not
+      // per-locale here, the index already lists both, so send it there.
+      "/fr/sitemap.xml": { redirect: { to: "/sitemap_index.xml", statusCode: 301 } },
+    },
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/sitemap.xml", "/robots.txt", "/rss.xml"],
+      // /sitemap_index.xml, not /sitemap.xml: with i18n the sitemap module emits
+      // one sitemap per locale behind an index, and /sitemap.xml is only a
+      // redirect to it. Prerendering that redirect wrote an HTML stub into a
+      // DIRECTORY named sitemap.xml, so the URL served HTML instead of XML.
+      // Either entry tells @nuxtjs/sitemap to prerender the real sitemaps.
+      routes: ["/", "/sitemap_index.xml", "/robots.txt", "/rss.xml"],
+      // Any path ending in /sitemap.xml stays runtime-only, never on disk. A
+      // regex, not a string: string entries match by prefix, which let the
+      // locale-prefixed variants (/fr/sitemap.xml, /fr/fr/sitemap.xml) through
+      // and each one landed as an HTML page inside a directory named
+      // sitemap.xml. /sitemap_index.xml and /__sitemap__/*.xml do not match.
+      ignore: [/\/sitemap\.xml$/],
     },
   },
 
