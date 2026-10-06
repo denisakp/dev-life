@@ -52,7 +52,17 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
+      // Workbox turns navigateFallback into a NavigationRoute registered BEFORE
+      // runtimeCaching. With no denylist it matches every navigation, so any URL
+      // absent from the precache manifest got the fallback page even with a
+      // working network, and the NetworkFirst route below never ran. This site
+      // is prerendered, not an SPA shell, so that route must never fire: the
+      // denylist rejects every pathname. Dropping navigateFallback entirely is
+      // not an option, @vite-pwa/nuxt then defaults it to "/".
+      // The offline page is wired to the navigation route below through
+      // precacheFallback, which only fires once the network has actually failed.
       navigateFallback: "/offline",
+      navigateFallbackDenylist: [/./],
       cleanupOutdatedCaches: true,
       globPatterns: ["**/*.{js,css,html,woff2}"],
       runtimeCaching: [
@@ -63,6 +73,7 @@ export default defineNuxtConfig({
             networkTimeoutSeconds: 3,
             cacheName: "html",
             expiration: { maxEntries: 50 },
+            precacheFallback: { fallbackURL: "/offline" },
           },
         },
         {
