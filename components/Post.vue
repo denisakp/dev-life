@@ -1,5 +1,6 @@
 <script setup>
 import { formatDate } from "~/utils/format-date";
+import { pathLang, stripLangSuffix } from "~/utils/content-lang";
 
 const props = defineProps({
   post: {
@@ -8,7 +9,13 @@ const props = defineProps({
   },
 });
 
-const destination = computed(() => "/blog" + (props.post?.path ?? ""));
+// post.path is the CONTENT path ("/ai/foo" en, "/ai/foo.fr" fr), not a URL.
+// The language suffix must be stripped and replaced by the i18n route prefix.
+const destination = computed(() => {
+  const contentPath = props.post?.path ?? "";
+  const base = stripLangSuffix(contentPath);
+  return pathLang(contentPath) === "fr" ? `/fr/blog${base}` : `/blog${base}`;
+});
 </script>
 
 <template>
