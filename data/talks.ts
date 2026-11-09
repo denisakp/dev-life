@@ -20,6 +20,16 @@ export interface Talk {
 const talks: Talk[] = [
   {
     type: "talk",
+    title: "Sovereignty by Necessity",
+    venue: "KCD Nigeria 2026",
+    date: "2026-10-24",
+    slidesUrl:
+      "https://docs.google.com/presentation/d/1SUKAZWecsHQSVXPyiB2iYcC7pPYROKh5H53aefNlcAU/edit?usp=sharing",
+    description:
+      "How West African data protection and cybersecurity rules become Kubernetes decisions on bare metal, from sovereign GPU clusters to the admission webhook deadlock, and a three-step method to apply to any African regulation.",
+  },
+  {
+    type: "talk",
     title: "DevOps: a Culture, not a Job Title",
     venue: "PyCon Togo 2026",
     date: "2026-08-29",
